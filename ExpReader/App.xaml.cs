@@ -1,8 +1,4 @@
-﻿using ExpReader.Services;
-using ExpReader.Views;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace ExpReader
 {
@@ -13,7 +9,6 @@ namespace ExpReader
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

@@ -7,26 +7,51 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
-            <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Disabled">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
+            <Color x:Key="DarkBlueColor">#2e384d</Color>
+            <Color x:Key="LightColor">#f2f2f7</Color>
+
+            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="TextColorDark">White</Color>
+
+            <Style x:Key="MyFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource DarkBlueColor},
+                    Light={StaticResource LightColor}}" />
+                <Setter Property="Padding" Value="10" />
             </Style>
-        </ResourceDictionary>        
+
+            <Style x:Key="MyLabel" TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColor}}" />
+            </Style>
+
+            <Style x:Key="MyButton" TargetType="Button">
+                <Setter Property="TextColor" Value="{AppThemeBinding
+                    Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColor}}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding
+                    Dark={StaticResource DarkBlueColor},
+                    Light={StaticResource LightColor}}" />
+                <Setter Property="BorderColor" Value="{AppThemeBinding
+                    Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColor}}" />
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="MyRadioButton" TargetType="RadioButton">
+                <Setter Property="TextColor" Value="{AppThemeBinding
+                    Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColor}}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

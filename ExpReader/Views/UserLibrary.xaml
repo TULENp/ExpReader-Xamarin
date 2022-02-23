@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels"
+             x:Class="ExpReader.Views.UserLibrary">
+    <ContentPage.BindingContext>
+        <ViewModels:UserLibraryVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame Style="{StaticResource MyFrame}">
+            <ListView ItemsSource ="{Binding Books}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="50,*">
+                            <Label Style="{StaticResource MyLabel}" Text="{Binding Title}"/>
+                            <Label Style="{StaticResource MyLabel}" Text="{Binding Author}"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
