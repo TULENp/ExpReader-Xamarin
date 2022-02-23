@@ -11,5 +11,12 @@ namespace ExpReader.Views
         {
             InitializeComponent();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //Shell.SetTabBarIsVisible(this, false);
+            Shell.SetNavBarIsVisible(this, false);
+
+        }
     }
 }

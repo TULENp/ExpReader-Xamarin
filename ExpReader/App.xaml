@@ -7,7 +7,8 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            
+            <Color x:Key="Primary">#2e74ff</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -15,6 +16,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
+                                    <!--<Setter Property="BackgroundColor" Value="{StaticResource Primary}" />-->
                                     <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -27,6 +29,21 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+
+            <Color x:Key="DarkBlueColor">#2e384d</Color>
+            <Color x:Key="LightColor">#f2f2f7</Color>
+
+            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="TextColorDark">White</Color>
+
+            <Style x:Key="MyFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource DarkBlueColor},
+                    Light={StaticResource LightColor}}" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            
         </ResourceDictionary>        
     </Application.Resources>
 </Application>
