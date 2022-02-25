@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
+             x:Class="ExpReader.Views.UserLibrary">
+
+    <ContentPage.BindingContext>
+        <vm:UserLibraryVM />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#2e74ff</Color>
+            <Color x:Key="SecColor">White</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+ <ScrollView>
+
+    <StackLayout BackgroundColor="#171817" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+        <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{StaticResource Accent}" Padding="0,0,0,35" Margin="0,0,0,0">
+
+            <Label Text="Библиотека" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev"/>
+
+        </StackLayout>
+        <!-- <StackLayout BackgroundColor="{StaticResource SecColor}" Orientation="Vertical" IsVisible="true" Margin="0,-6,0,-6">-->
+
+
+        <Frame CornerRadius="50" IsVisible="true" Margin="0,-50,0,0">
+            <StackLayout>
+                <Label Text ="Продолжить читать" FontSize="20" FontFamily="LatoMed" TextColor="{StaticResource Accent}" Margin="30,0,0,15"></Label>
+                <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" >
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.6*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="Dune.jpg" WidthRequest="100" Margin="20,15,0,20"></Image>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="63" />
+                                <RowDefinition Height="60"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="1"  Text="Дюна" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Text="Фрэнк Герберт" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                            <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
+                            <Label Grid.Row="2" Text="15%" FontSize="17" Padding="23,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" ></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="1315 очков" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                        </Grid>
+                    </Grid>
+
+                </Frame>
+            </StackLayout>
+        </Frame>
+        <!-- </StackLayout>-->
+        <StackLayout Background="#171817" Orientation="Horizontal" Margin="30,15,0,0">
+            <SearchBar BackgroundColor="#333333" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="#AEAEAE" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
+            <Frame BackgroundColor="#171817" HeightRequest="3" >
+                <StackLayout Orientation="Horizontal" Padding="-5,-10,-5,-13">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TapCommandSotr}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="SortIcon.png" WidthRequest="20" Margin="0,-5,0,0"/>
+                    <Label Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+        
+            <Frame BackgroundColor="{StaticResource SecColor}" CornerRadius="50" Margin="0,15,0,0" Padding="30,20,5,60">
+                <StackLayout>
+                    <Label Text="Ваши книги" FontFamily="LatoMed" TextColor="{StaticResource Accent}" FontSize="23" Padding="15,0,0,0"></Label>
+                    <StackLayout BindableLayout.ItemsSource="{Binding Books}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="CoverGreen.png" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,20" />
+                                    <StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label  Text="{Binding  Title}" FontSize="20" FontFamily="LatoMed" Margin="0,5,0,0" TextColor="Black"/>
+                                            <Label  Text="{Binding  Author}" FontSize="18" FontFamily="LatoLig" TextColor="Black" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="PrizeBlue.png" WidthRequest="40" Margin="-10,5,0,0"/>
+                                            <Label  Text="55 прочтённых страниц" FontSize="18" TextColor="{StaticResource Accent}" Margin="0,15,0,0" />   
+                                        </StackLayout>
+                                        
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        
+        
+        <!--Здесь будет библиотека пользователя,код можно переделать под наши книги-->
+    </StackLayout>
+</ScrollView>
+</ContentPage>

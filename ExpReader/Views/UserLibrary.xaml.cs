@@ -1,21 +1,21 @@
-﻿using ExpReader.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ExpReader.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class UserLibrary : ContentPage
     {
-        public LoginPage()
+        public UserLibrary()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            Shell.SetNavBarIsVisible(this, false);
         }
     }
 }
