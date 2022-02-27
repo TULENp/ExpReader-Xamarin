@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ExpReader.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserLibrary : ContentPage
+    public partial class Reader : ContentPage
     {
-        public UserLibrary()
+        public Reader()
         {
             InitializeComponent();
         }

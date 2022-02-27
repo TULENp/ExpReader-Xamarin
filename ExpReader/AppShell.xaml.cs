@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ExpReader.Views;
+using Xamarin.Forms;
 
 namespace ExpReader
 {
@@ -7,6 +8,7 @@ namespace ExpReader
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(Reader),typeof(Reader));
         }
 
     }

@@ -7,17 +7,24 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Frame Style="{StaticResource MyFrame}">
-            <ListView ItemsSource ="{Binding Books}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid RowDefinitions="*,*" ColumnDefinitions="50,*">
-                            <Label Style="{StaticResource MyLabel}" Text="{Binding Title}"/>
-                            <Label Style="{StaticResource MyLabel}" Text="{Binding Author}"/>
-
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackLayout>
+                <ListView x:Name="BookList" ItemsSource ="{Binding Books}" RowHeight="100" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Cover}"/>
+                                    <StackLayout>
+                                        <Label Style="{StaticResource MyLabel}" Text="{Binding Title}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,10"/>
+                                        <Label Style="{StaticResource MyLabel}" Text="{Binding Author}" FontSize="15"/>
+                                        <Button Text="Read" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:UserLibraryVM}}, Path=OpenBookCommand}" CommandParameter="{Binding .}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </Frame>
     </ContentPage.Content>
 </ContentPage>
