@@ -9676,6 +9676,9 @@ namespace ExpReader.Droid
 			}
 		}
 		
+			}
+		}
+		
 		public partial class Color
 		{
 			
@@ -10165,9 +10168,6 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F0500A1
 			public const int mtrl_indicator_text_color = 2131034273;
 			
-			// aapt resource value: 0x7F0500A2
-			public const int mtrl_navigation_item_background_color = 2131034274;
-			
 			// aapt resource value: 0x7F0500A3
 			public const int mtrl_navigation_item_icon_tint = 2131034275;
 			
@@ -10305,6 +10305,9 @@ namespace ExpReader.Droid
 			
 			// aapt resource value: 0x7F0500D0
 			public const int tooltip_background_light = 2131034320;
+			
+			// aapt resource value: 0x7f0c003e
+			public const int switch_thumb_normal_material_light = 2131492926;
 			
 			static Color()
 			{
@@ -11688,9 +11691,6 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F07006E
 			public const int design_password_eye = 2131165294;
 			
-			// aapt resource value: 0x7F07006F
-			public const int design_snackbar_background = 2131165295;
-			
 			// aapt resource value: 0x7F070070
 			public const int Dune = 2131165296;
 			
@@ -11823,6 +11823,9 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F07009B
 			public const int xamarin_logo = 2131165339;
 			
+			// aapt resource value: 0x7f02010b
+			public const int notify_panel_notification_icon_bg = 2130837771;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -11833,7 +11836,7 @@ namespace ExpReader.Droid
 			}
 		}
 		
-		public partial class Id
+		public partial class Mipmap
 		{
 			
 			// aapt resource value: 0x7F08000A
@@ -13590,11 +13593,6 @@ namespace ExpReader.Droid
 			
 			static String()
 			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private String()
-			{
 			}
 		}
 		
@@ -15074,9 +15072,6 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F0F01B7
 			public const int Theme_MaterialComponents_DayNight_NoActionBar_Bridge = 2131689911;
 			
-			// aapt resource value: 0x7F0F01B8
-			public const int Theme_MaterialComponents_Dialog = 2131689912;
-			
 			// aapt resource value: 0x7F0F01C0
 			public const int Theme_MaterialComponents_DialogWhenLarge = 2131689920;
 			
@@ -15710,15 +15705,15 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F0F02BB
 			public const int Widget_Support_CoordinatorLayout = 2131690171;
 			
+			// aapt resource value: 0x7f0b000a
+			public const int Widget_MediaRouter_MediaRouteButton = 2131427338;
+			
 			static Style()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
 			private Style()
-			{
-			}
-		}
 		
 		public partial class Styleable
 		{
@@ -19544,6 +19539,9 @@ namespace ExpReader.Droid
 			}
 			
 			private Xml()
+			{
+			}
+		}
 			{
 			}
 		}
