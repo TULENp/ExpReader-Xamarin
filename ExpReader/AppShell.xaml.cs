@@ -1,7 +1,4 @@
-﻿using ExpReader.ViewModels;
-using ExpReader.Views;
-using System;
-using System.Collections.Generic;
+﻿using ExpReader.Views;
 using Xamarin.Forms;
 
 namespace ExpReader
@@ -11,8 +8,7 @@ namespace ExpReader
         public AppShell()
         {
             InitializeComponent();
-           // Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-           // Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(ReadingPage), typeof(ReadingPage));
         }
 
     }
