@@ -17,7 +17,9 @@
                                     <StackLayout>
                                         <Label Style="{StaticResource MyLabel}" Text="{Binding Title}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,10"/>
                                         <Label Style="{StaticResource MyLabel}" Text="{Binding Author}" FontSize="15"/>
-                                        <Button Text="Read" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:UserLibraryVM}}, Path=OpenBookCommand}" CommandParameter="{Binding .}"/>
+                                        <Button Text="Read" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:UserLibraryVM}},
+                                            Path=OpenBookCommand}" CommandParameter="{Binding .}"/>
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>
