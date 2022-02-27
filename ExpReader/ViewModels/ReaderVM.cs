@@ -1,30 +1,49 @@
-﻿using ExpReader.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using Xamarin.Essentials;
-using Xamarin.Forms.Shapes;
+using Xamarin.Forms;
 
 namespace ExpReader.ViewModels
 {
-    class ReaderVM
+    [QueryProperty(nameof(Path), nameof(Path))]
+    class ReaderVM : BindableObject
     {
+        string path;
+        string text;
 
-        public string Text { get; set; }
         public ReaderVM()
         {
             InitBooks();
+            //Path = path;
         }
+
+        public string Path
+        {
+            get => path; 
+            set
+            {
+                path = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Text
+        {
+            get => text;
+            set
+            {
+                text = value;
+                OnPropertyChanged();
+            }
+        }
+
         public async void InitBooks()
         {
-            //using (var stream = await FileSystem.OpenAppPackageFileAsync(path))
-            //{
-            //    using (var reader = new StreamReader(stream))
-            //    {
-            //        Text = await reader.ReadToEndAsync();
-            //    }
-            //}
+            using (var stream = await FileSystem.OpenAppPackageFileAsync(Path))
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    Text = await reader.ReadToEndAsync();
+                }
+            }
         }
     }
 }

@@ -16,7 +16,8 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="UserLibrary" Icon="icon_about.png" Route="UserLibrary" ContentTemplate="{DataTemplate local:UserLibrary}"/>
+        <ShellContent Title="UserLib" Icon="icon_about.png" Route="UserLib" ContentTemplate="{DataTemplate local:UserLibrary}"/>
+       
     </TabBar>
 
     <!--

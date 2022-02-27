@@ -1,32 +1,33 @@
 ﻿using ExpReader.Models;
 using ExpReader.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Text;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ExpReader.ViewModels
 {
-    class UserLibraryVM : BindableObject
+    class UserLibVM : BindableObject
     {
 
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
         ObservableCollection<Book> db { get; set; }
-        public UserLibraryVM()
+        public UserLibVM()
         {
             InitBooks();
         }
         //todo нихуя не сделал блять 
         //todo tapped event on listview item to open a book
-        public ICommand OpenBookCommand = new Command<Book>(book=>
+
+        public ICommand OpenBookCommand => new Command<Book>(OpenBook);
+
+        public void OpenBook(Book book)
         {
-            Shell.Current.GoToAsync(nameof(Reader));
-            
-        });
+
+
+            string route = $"{nameof(ReaderPage)}?{nameof(ReaderVM.Path)}={book.Path}";
+            Shell.Current.GoToAsync(route);
+        }
 
         private void InitBooks()
         {

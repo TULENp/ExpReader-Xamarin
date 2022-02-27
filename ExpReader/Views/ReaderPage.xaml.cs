@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using ExpReader.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ExpReader.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Reader : ContentPage
+    public partial class ReaderPage : ContentPage
     {
-        public Reader()
+        public ReaderPage()
         {
             InitializeComponent();
+            BindingContext = new ReaderVM();
         }
     }
 }

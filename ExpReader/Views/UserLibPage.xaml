@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels"
              x:Class="ExpReader.Views.UserLibrary">
     <ContentPage.BindingContext>
-        <ViewModels:UserLibraryVM/>
+        <ViewModels:UserLibVM/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Frame Style="{StaticResource MyFrame}">
             <StackLayout>
+                <!--<Button Text="Read" Command="{Binding OpenBookCommand}"/>-->
                 <ListView x:Name="BookList" ItemsSource ="{Binding Books}" RowHeight="100" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -18,7 +19,7 @@
                                         <Label Style="{StaticResource MyLabel}" Text="{Binding Title}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,10"/>
                                         <Label Style="{StaticResource MyLabel}" Text="{Binding Author}" FontSize="15"/>
                                         <Button Text="Read" 
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:UserLibraryVM}},
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:UserLibVM}},
                                             Path=OpenBookCommand}" CommandParameter="{Binding .}"/>
                                     </StackLayout>
                                 </StackLayout>
