@@ -4,16 +4,15 @@ using Xamarin.Forms;
 
 namespace ExpReader.ViewModels
 {
-    [QueryProperty(nameof(Path), nameof(Path))]
     class ReaderVM : BindableObject
     {
         string path;
         string text;
 
-        public ReaderVM()
+        public ReaderVM(string newpath)
         {
+            Path = newpath;
             InitBooks();
-            //Path = path;
         }
 
         public string Path

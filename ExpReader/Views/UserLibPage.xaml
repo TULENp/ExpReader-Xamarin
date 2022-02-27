@@ -9,20 +9,24 @@
         <Frame Style="{StaticResource MyFrame}">
             <StackLayout>
                 <!--<Button Text="Read" Command="{Binding OpenBookCommand}"/>-->
-                <ListView x:Name="BookList" ItemsSource ="{Binding Books}" RowHeight="100" SelectionMode="None">
+                <ListView x:Name="BookList" ItemsSource ="{Binding Books}" RowHeight="140" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Cover}"/>
-                                    <StackLayout>
-                                        <Label Style="{StaticResource MyLabel}" Text="{Binding Title}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,10"/>
-                                        <Label Style="{StaticResource MyLabel}" Text="{Binding Author}" FontSize="15"/>
-                                        <Button Text="Read" 
+                                <Frame BackgroundColor="Transparent" Style="{StaticResource MyFrame}" BorderColor="white" 
+                                       CornerRadius="10">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Cover}"/>
+                                        <StackLayout>
+                                            <Label Style="{StaticResource MyLabel}" Text="{Binding Title}" FontSize="20" 
+                                                   FontAttributes="Bold" Margin="0,0,0,10"/>
+                                            <Label Style="{StaticResource MyLabel}" Text="{Binding Author}" FontSize="15"/>
+                                            <Button Text="Read" Style="{StaticResource MyButton}" HeightRequest="40"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:UserLibVM}},
                                             Path=OpenBookCommand}" CommandParameter="{Binding .}"/>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -23,10 +23,11 @@ namespace ExpReader.ViewModels
 
         public void OpenBook(Book book)
         {
+            //string route = $"{nameof(ReaderPage)}?{nameof(ReaderVM.Path)}={book.Path}";
+            //string route = $"{nameof(ReaderPage)}?{nameof(ReaderVM.Text)}={book.Path}";
+            //Shell.Current.GoToAsync(route);
+            Shell.Current.Navigation.PushAsync(new ReaderPage(book.Path));
 
-
-            string route = $"{nameof(ReaderPage)}?{nameof(ReaderVM.Path)}={book.Path}";
-            Shell.Current.GoToAsync(route);
         }
 
         private void InitBooks()
@@ -40,7 +41,7 @@ namespace ExpReader.ViewModels
                     Title = "Преступление и наказание",
                     Author = "Достоевский Ф.М.",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
-                    Path = "avidreaders.ru__prestuplenie-i-nakazanie-dr-izd.txt"
+                    Path = "aaaaa.pdf"
                 },
                 new Book
                 {
