@@ -16,23 +16,18 @@ namespace ExpReader.ViewModels
         {
             InitBooks();
         }
-        //todo нихуя не сделал блять 
-        //todo tapped event on listview item to open a book
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
 
         public void OpenBook(Book book)
         {
-            //string route = $"{nameof(ReaderPage)}?{nameof(ReaderVM.Path)}={book.Path}";
-            //string route = $"{nameof(ReaderPage)}?{nameof(ReaderVM.Text)}={book.Path}";
-            //Shell.Current.GoToAsync(route);
             Shell.Current.Navigation.PushAsync(new ReaderPage(book.Path));
 
         }
 
         private void InitBooks()
         {
-            //todo this is test collection. It should be in db or somewhere else
+            //todo Move this collection to db or somewhere else
             db = new ObservableCollection<Book>()
             {
                 new Book

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Aspose.Words;
 
 namespace ExpReader.ViewModels
 {
@@ -8,16 +9,9 @@ namespace ExpReader.ViewModels
     {
         string path;
         string text;
-
-        public ReaderVM(string newpath)
-        {
-            Path = newpath;
-            InitBooks();
-        }
-
         public string Path
         {
-            get => path; 
+            get => path;
             set
             {
                 path = value;
@@ -33,7 +27,11 @@ namespace ExpReader.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        public ReaderVM(string newpath)
+        {
+            Path = newpath;
+            InitBooks();
+        }
         public async void InitBooks()
         {
             using (var stream = await FileSystem.OpenAppPackageFileAsync(Path))
