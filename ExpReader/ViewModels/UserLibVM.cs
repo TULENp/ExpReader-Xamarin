@@ -33,14 +33,30 @@ namespace ExpReader.ViewModels
                 new Book
                 {
                     Id = 0,
-                    Title = "Преступление и наказание",
+                    Title = "Преступление и наказание(Pdf)",
                     Author = "Достоевский Ф.М.",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
-                    Path = "aaaaa.pdf"
+                    Path = "Прест.pdf"
                 },
                 new Book
                 {
                     Id = 1,
+                    Title = "Преступление и наказание(Epub)",
+                    Author = "Достоевский Ф.М.",
+                    Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
+                    Path = "Преступление и наказание.epub"
+                },
+                new Book
+                {
+                    Id = 2,
+                    Title = "Мастер и маргарита(F2b)",
+                    Author = "Достоевский Ф.М.",
+                    Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
+                    Path = "Мастер и маргарита.fb2"
+                },
+                new Book
+                {
+                    Id = 3,
                     Title = "Путешествия Души",
                     Author = "М. Ньютон",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
@@ -48,7 +64,7 @@ namespace ExpReader.ViewModels
                 },
                 new Book
                 {
-                    Id = 2,
+                    Id = 4,
                     Title = "Укрощение строптивой",
                     Author = "Юлия Витальевна Шилова",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
