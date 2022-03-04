@@ -9,7 +9,10 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="LOL"></Label>
+            
         </StackLayout>
+
+      
+        
     </ContentPage.Content>
 </ContentPage>
