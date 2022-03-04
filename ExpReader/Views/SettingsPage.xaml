@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpReader.Views.SettingsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Изменить тему приложения" FontFamily="LatoMed" FontSize="20" HorizontalOptions="Start"/>
+                    <Switch x:Name="SwitchTheme" Toggled="SwitchTheme_Toggled" HorizontalOptions="End" Margin="20,0,0,0" Scale="1.3" ></Switch>
+                </StackLayout>
+                
+            </Frame>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
