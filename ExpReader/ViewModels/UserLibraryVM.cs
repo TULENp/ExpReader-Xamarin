@@ -1,4 +1,5 @@
-﻿using ExpReader.Models;
+﻿using Android.Widget;
+using ExpReader.Models;
 using ExpReader.Views;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,13 @@ namespace ExpReader.ViewModels
         private async void OnReading()
         {
             await Shell.Current.GoToAsync(nameof(ReadingPage)); // хуйня не работает
+        }
+
+        public ICommand OpenBookCommand => new Command<Book>(OpenBook);
+
+        public async void OpenBook(Book book)
+        {
+            await Shell.Current.Navigation.PushAsync(new ReadingPage(book));
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using ExpReader.ViewModels;
-using ExpReader.Views;
-using System;
-using System.Collections.Generic;
+﻿using ExpReader.Views;
 using Xamarin.Forms;
 
 namespace ExpReader

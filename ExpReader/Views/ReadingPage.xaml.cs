@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ExpReader.Models;
+using ExpReader.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,10 @@ namespace ExpReader.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReadingPage : ContentPage
     {
-        public ReadingPage()
+        public ReadingPage(Book book)
         {
             InitializeComponent();
+            BindingContext = new ReadingVM(book);
         }
     }
 }

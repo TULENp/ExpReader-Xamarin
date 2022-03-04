@@ -8,9 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="KEK"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding  Text}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
