@@ -15,7 +15,7 @@ namespace ExpReader
         {
             InitializeComponent();
             TheTheme.SetTheme();
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
 
         }

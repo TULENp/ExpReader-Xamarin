@@ -4,12 +4,12 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
-using ExpReader.Services;
 using System.Drawing;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using AndroidX.Core.View;
+using ExpReader.Services;
 
 [assembly: Dependency(typeof(ExpReader.Droid.MainActivity.Environment))]
 namespace ExpReader.Droid
@@ -34,6 +34,8 @@ namespace ExpReader.Droid
 
         public class Environment : IEnvironment
         {
+            //remove obsolete if pizdec
+            [Obsolete]
             public void SetStatusBarColor(System.Drawing.Color color, bool darkStatusBarTint)
             {
                 if (Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Lollipop)
