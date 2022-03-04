@@ -4,9 +4,9 @@
              x:Class="ExpReader.Views.ReaderPage">
     <ContentPage.Content>
         <Frame Style="{StaticResource MyFrame}">
-            <StackLayout>
+            <ScrollView>
                 <Label Text="{Binding Text}"/>
-            </StackLayout>
+            </ScrollView>
         </Frame>
     </ContentPage.Content>
 </ContentPage>

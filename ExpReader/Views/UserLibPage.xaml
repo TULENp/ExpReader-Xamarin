@@ -22,7 +22,7 @@
                                                    FontAttributes="Bold" Margin="0,0,0,10"/>
                                             <Label Style="{StaticResource MyLabel}" Text="{Binding Author}" FontSize="15"/>
                                             <Button Text="Read" Style="{StaticResource MyButton}" HeightRequest="40"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:UserLibVM}},
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ViewM}},
                                             Path=OpenBookCommand}" CommandParameter="{Binding .}"/>
                                         </StackLayout>
                                     </StackLayout>

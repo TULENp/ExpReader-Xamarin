@@ -36,7 +36,7 @@ namespace ExpReader.ViewModels
                     Title = "Преступление и наказание(Pdf)",
                     Author = "Достоевский Ф.М.",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
-                    Path = "Прест.pdf"
+                    Path = "prest.pdf"
                 },
                 new Book
                 {
@@ -44,7 +44,7 @@ namespace ExpReader.ViewModels
                     Title = "Преступление и наказание(Epub)",
                     Author = "Достоевский Ф.М.",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
-                    Path = "Преступление и наказание.epub"
+                    Path = "prest.epub"
                 },
                 new Book
                 {
@@ -52,7 +52,7 @@ namespace ExpReader.ViewModels
                     Title = "Мастер и маргарита(F2b)",
                     Author = "Достоевский Ф.М.",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
-                    Path = "Мастер и маргарита.fb2"
+                    Path = "master.fb2"
                 },
                 new Book
                 {
@@ -69,6 +69,14 @@ namespace ExpReader.ViewModels
                     Author = "Юлия Витальевна Шилова",
                     Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
                     Path = "213286.txt"
+                },
+                new Book
+                {
+                    Id = 5,
+                    Title = "Иэнис",
+                    Author = "Юлия Витальевна Шилова",
+                    Cover = new Uri("https://sun9-78.userapi.com/impg/ZAIRkdW85lMCo-IbM93iu5yeMNEQdNTk9t3wZQ/9KOLEdAridM.jpg?size=448x664&quality=96&sign=b75b2d5971eb40c18b7915c4646368ef&type=album"),
+                    Path = "ienis.docx"
                 }
             };
 

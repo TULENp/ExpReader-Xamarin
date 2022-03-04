@@ -2,6 +2,8 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Aspose.Words;
+using System.Runtime.InteropServices.ComTypes;
+using Android.Content.Res;
 
 namespace ExpReader.ViewModels
 {
@@ -30,10 +32,11 @@ namespace ExpReader.ViewModels
         public ReaderVM(string newpath)
         {
             Path = newpath;
-            InitBooks();
+            OpenBook();
         }
-        public async void InitBooks()
+        public async void OpenBook()
         {
+            //reading txt
             using (var stream = await FileSystem.OpenAppPackageFileAsync(Path))
             {
                 using (var reader = new StreamReader(stream))
@@ -41,6 +44,16 @@ namespace ExpReader.ViewModels
                     Text = await reader.ReadToEndAsync();
                 }
             }
+
+
+            //todo need to use OpenRead or smth else Method(not FileSystem.OpenAppPackageFileAsync(Path)) to open file
+            //var dir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+
+            // using (Stream stream = File.OpenRead(dir+Path))
+            // {
+            //     Document doc = new Document(stream);
+            //     Text = doc.GetText();
+            // }
         }
     }
 }

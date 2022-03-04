@@ -11695,8 +11695,8 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F07006E
 			public const int ic_mtrl_chip_checked_circle = 2131165294;
 			
-			// aapt resource value: 0x7F070070
-			public const int Dune = 2131165296;
+			// aapt resource value: 0x7F07006F
+			public const int ic_mtrl_chip_close_circle = 2131165295;
 			
 			// aapt resource value: 0x7F070072
 			public const int material_ic_calendar_black_24dp = 2131165298;
