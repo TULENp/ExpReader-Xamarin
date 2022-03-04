@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="ExpReader.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            
+            <Color x:Key="Primary">#2e74ff</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -15,6 +17,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
+                                    <!--<Setter Property="BackgroundColor" Value="{StaticResource Primary}" />-->
                                     <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -27,6 +30,75 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+
+            <Color x:Key="DarkColor">#282828</Color>
+            <Color x:Key="DarkColor1">#121212</Color>
+            <Color x:Key="MDarkColor">#171817</Color>
+            <Color x:Key="LightColor">White</Color>
+
+            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="TextColorTitle">#2e74ff</Color>
+            <Color x:Key="TextColorTitle1">#001EDE</Color>
+            <Color x:Key="TextColorDark">White</Color>
+            <Color x:Key="TextColorTitleDark">#001</Color>
+
+
+            <Style x:Key="MyFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource DarkColor},
+                    Light={StaticResource LightColor}}" />
+            </Style>
+
+            <Style x:Key="MyFrame1" TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColor},
+                    Light={StaticResource MDarkColor}}" />
+            </Style>
+
+            <Style x:Key="MyText" TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColor}}"/>
+            </Style>
+
+            <Style x:Key="MyTextTitle" TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColorDark},
+                    Light={StaticResource TextColorTitle}}"/>
+            </Style>
+
+            <Style x:Key="MyStackLayout" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColor},
+                    Light={StaticResource MDarkColor}}"/>
+            </Style>
+
+            <Style x:Key="MyStackLayoutHead" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColorTitle1},
+                    Light={StaticResource TextColorTitle}}"/>
+            </Style>
+
+            <Style x:Key="MyFrame2" TargetType="yummy:PancakeView">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource DarkColor1},
+                    Light={StaticResource LightColor}}"/>
+            </Style>
+
+            <Style x:Key="MyFrame3" TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource DarkColor1},
+                    Light={StaticResource LightColor}}" />
+            </Style>
+
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

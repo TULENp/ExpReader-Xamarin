@@ -4,7 +4,14 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using ExpReader.Services;
+using System.Drawing;
+using Xamarin.Forms;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
+using AndroidX.Core.View;
 
+[assembly: Dependency(typeof(ExpReader.Droid.MainActivity.Environment))]
 namespace ExpReader.Droid
 {
     [Activity(Label = "ExpReader", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
@@ -23,6 +30,31 @@ namespace ExpReader.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public class Environment : IEnvironment
+        {
+            public void SetStatusBarColor(System.Drawing.Color color, bool darkStatusBarTint)
+            {
+                if (Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Lollipop)
+                    return;
+
+                var activity = Platform.CurrentActivity;
+                var window = activity.Window;
+
+                //this may not be necessary(but may be fore older than M)
+                window.AddFlags(Android.Views.WindowManagerFlags.DrawsSystemBarBackgrounds);
+                window.ClearFlags(Android.Views.WindowManagerFlags.TranslucentStatus);
+
+
+                if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M)
+                {
+                    var flag = (Android.Views.StatusBarVisibility)Android.Views.SystemUiFlags.LightStatusBar;
+                    window.DecorView.SystemUiVisibility = darkStatusBarTint ? flag : 0;
+                }
+
+                window.SetStatusBarColor(color.ToPlatformColor());
+            }
         }
     }
 }
