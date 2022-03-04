@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels"
              x:Class="ExpReader.Views.ReaderPage">
     <ContentPage.Content>
-        <Frame Style="{StaticResource MyFrame}">
-            <ScrollView>
-                <Label Text="{Binding Text}"/>
-            </ScrollView>
-        </Frame>
+        <StackLayout>
+            <Frame Style="{StaticResource MyFrame}">
+                <ScrollView>
+                    <Label Text="{Binding Text}"/>
+                </ScrollView>
+            </Frame>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

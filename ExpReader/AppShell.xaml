@@ -30,7 +30,7 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Библиотека" Icon="BooksIcon.png" Route="AboutPage" ContentTemplate="{DataTemplate local:UserLIbPage}" />
+        <ShellContent Title="Библиотека" Icon="BooksIcon.png" Route="AboutPage" ContentTemplate="{DataTemplate local:UserLibPage}" />
         <ShellContent Title="Профиль" Icon="userIcon.png" ContentTemplate="{DataTemplate local:ProfilePage}"/>
         <ShellContent Title="Настройки" Icon="gear.png" ContentTemplate="{DataTemplate local:SettingsPage}"/>
         

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="ExpReader.Views.UserLIbPage">
+             x:Class="ExpReader.Views.UserLibPage">
 
     <ContentPage.BindingContext>
         <vm:UserLibVM />

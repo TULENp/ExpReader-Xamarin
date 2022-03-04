@@ -8,10 +8,10 @@ namespace ExpReader.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReaderPage : ContentPage
     {
-        public ReaderPage(Book path)
+        public ReaderPage(Book book)
         {
             InitializeComponent();
-            BindingContext = new ReaderVM(path);
+            BindingContext = new ReaderVM(book);
         }
     }
 }

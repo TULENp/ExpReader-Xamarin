@@ -37,7 +37,7 @@
     <EmbeddedResource Update="Views\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\UserLIbPage.xaml">
+    <EmbeddedResource Update="Views\UserLibPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -57,7 +57,7 @@
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\UserLIbPage.xaml.cs">
-      <DependentUpon>UserLIbPage.xaml</DependentUpon>
+      <DependentUpon>UserLibPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

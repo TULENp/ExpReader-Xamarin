@@ -10,14 +10,14 @@ namespace ExpReader.ViewModels
 {
     class ReaderVM : BindableObject
     {
-        Book newbook;
+        Book newBook;
         string text;
-        public Book newBook
+        public Book NewBook
         {
-            get => newbook;
+            get => newBook;
             set
             {
-                newbook = value;
+                newBook = value;
                 OnPropertyChanged();
             }
         }
@@ -32,13 +32,13 @@ namespace ExpReader.ViewModels
         }
         public ReaderVM(Book newbook)
         {
-            newBook = newbook;
+            NewBook = newbook;
             OpenBook();
         }
         public async void OpenBook()
         {
             //reading txt
-            using (var stream = await FileSystem.OpenAppPackageFileAsync(newBook.Path))
+            using (var stream = await FileSystem.OpenAppPackageFileAsync(NewBook.Path))
             {
                 using (var reader = new StreamReader(stream))
                 {

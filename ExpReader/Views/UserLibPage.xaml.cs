@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace ExpReader.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserLIbPage : ContentPage
+    public partial class UserLibPage : ContentPage
     {
         //private double _ProgressValue;
         //public double ProgressValue
@@ -27,7 +27,7 @@ namespace ExpReader.Views
         //    }
         //}
 
-        public UserLIbPage()
+        public UserLibPage()
         {
             InitializeComponent();
             Shell.SetNavBarIsVisible(this, false);
