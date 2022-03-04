@@ -21,7 +21,7 @@ namespace ExpReader.ViewModels
 
         public void OpenBook(Book book)
         {
-            Shell.Current.Navigation.PushAsync(new ReaderPage(book.Path));
+            Shell.Current.Navigation.PushAsync(new ReaderPage(book));
 
         }
 

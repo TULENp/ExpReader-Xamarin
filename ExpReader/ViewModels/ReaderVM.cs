@@ -1,22 +1,23 @@
 ﻿using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Aspose.Words;
+//using Aspose.Words; //todo add nuget 
 using System.Runtime.InteropServices.ComTypes;
 using Android.Content.Res;
+using ExpReader.Models;
 
 namespace ExpReader.ViewModels
 {
     class ReaderVM : BindableObject
     {
-        string path;
+        Book newbook;
         string text;
-        public string Path
+        public Book newBook
         {
-            get => path;
+            get => newbook;
             set
             {
-                path = value;
+                newbook = value;
                 OnPropertyChanged();
             }
         }
@@ -29,15 +30,15 @@ namespace ExpReader.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ReaderVM(string newpath)
+        public ReaderVM(Book newbook)
         {
-            Path = newpath;
+            newBook = newbook;
             OpenBook();
         }
         public async void OpenBook()
         {
             //reading txt
-            using (var stream = await FileSystem.OpenAppPackageFileAsync(Path))
+            using (var stream = await FileSystem.OpenAppPackageFileAsync(newBook.Path))
             {
                 using (var reader = new StreamReader(stream))
                 {
