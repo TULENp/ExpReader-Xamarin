@@ -69,6 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\prest.epub" />
+    <AndroidAsset Include="Assets\master.fb2" />
+    <AndroidAsset Include="Assets\prest.pdf" />
+    <AndroidAsset Include="Assets\ienis.docx" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

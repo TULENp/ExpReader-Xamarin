@@ -4,7 +4,6 @@ using ExpReader.Views;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ExpReader
 {

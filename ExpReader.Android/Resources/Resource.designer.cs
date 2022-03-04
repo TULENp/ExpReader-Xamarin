@@ -12974,8 +12974,8 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F0500D0
 			public const int tooltip_background_light = 2131034320;
 			
-			// aapt resource value: 0x7f0c003e
-			public const int switch_thumb_normal_material_light = 2131492926;
+			// aapt resource value: 0x7F0500D0
+			public const int tooltip_background_light = 2131034320;
 			
 			static Color()
 			{
@@ -14503,8 +14503,8 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F07009E
 			public const int ZoomPngBlue = 2131165342;
 			
-			// aapt resource value: 0x7f02010b
-			public const int notify_panel_notification_icon_bg = 2130837771;
+			// aapt resource value: 0x7F070092
+			public const int xamarin_logo = 2131165330;
 			
 			static Drawable()
 			{
@@ -16255,6 +16255,21 @@ namespace ExpReader.Droid
 			
 			// aapt resource value: 0x7F0E0054
 			public const int path_password_eye = 2131624020;
+			
+			// aapt resource value: 0x7F0E0055
+			public const int path_password_eye_mask_strike_through = 2131624021;
+			
+			// aapt resource value: 0x7F0E0056
+			public const int path_password_eye_mask_visible = 2131624022;
+			
+			// aapt resource value: 0x7F0E0057
+			public const int path_password_strike_through = 2131624023;
+			
+			// aapt resource value: 0x7F0E0058
+			public const int search_menu_title = 2131624024;
+			
+			// aapt resource value: 0x7F0E0059
+			public const int status_bar_notification_info_overflow = 2131624025;
 			
 			// aapt resource value: 0x7F0E0055
 			public const int path_password_eye_mask_strike_through = 2131624021;
@@ -18385,8 +18400,8 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F0F02BB
 			public const int Widget_Support_CoordinatorLayout = 2131690171;
 			
-			// aapt resource value: 0x7f0b000a
-			public const int Widget_MediaRouter_MediaRouteButton = 2131427338;
+			// aapt resource value: 0x7F0F02BB
+			public const int Widget_Support_CoordinatorLayout = 2131690171;
 			
 			static Style()
 			{
@@ -19979,6 +19994,9 @@ namespace ExpReader.Droid
 			// aapt resource value: 3
 			public const int CoordinatorLayout_Layout_layout_behavior = 3;
 			
+			// aapt resource value: 3
+			public const int CoordinatorLayout_Layout_layout_behavior = 3;
+			
 			// aapt resource value: 4
 			public const int CoordinatorLayout_Layout_layout_dodgeInsetEdges = 4;
 			
@@ -19990,6 +20008,17 @@ namespace ExpReader.Droid
 			
 			// aapt resource value: 1
 			public const int CoordinatorLayout_statusBarBackground = 1;
+			
+			// aapt resource value: { 0x7F03002C,0x7F03002D,0x7F030042,0x7F03009D,0x7F0300E6,0x7F03012A,0x7F0301F6,0x7F030255 }
+			public static int[] DrawerArrowToggle = new int[] {
+					2130903084,
+					2130903085,
+					2130903106,
+					2130903197,
+					2130903270,
+					2130903338,
+					2130903542,
+					2130903637};
 			
 			// aapt resource value: { 0x7F03002C,0x7F03002D,0x7F030042,0x7F03009D,0x7F0300E6,0x7F03012A,0x7F0301F6,0x7F030255 }
 			public static int[] DrawerArrowToggle = new int[] {
@@ -20052,6 +20081,13 @@ namespace ExpReader.Droid
 			// aapt resource value: 1
 			public const int ExtendedFloatingActionButton_Behavior_Layout_behavior_autoShrink = 1;
 			
+			// aapt resource value: 7
+			public const int DrawerArrowToggle_thickness = 7;
+			
+			// aapt resource value: { 0x7F0300F2 }
+			public static int[] DrawerLayout = new int[] {
+					2130903282};
+			
 			// aapt resource value: 0
 			public const int ExtendedFloatingActionButton_elevation = 0;
 			
@@ -20086,6 +20122,9 @@ namespace ExpReader.Droid
 					2130903526,
 					2130903530,
 					2130903679};
+			
+			// aapt resource value: 0
+			public const int FloatingActionButton_android_enabled = 0;
 			
 			// aapt resource value: 0
 			public const int FloatingActionButton_android_enabled = 0;
@@ -20184,6 +20223,9 @@ namespace ExpReader.Droid
 			// aapt resource value: 2
 			public const int FontFamilyFont_android_fontStyle = 2;
 			
+			// aapt resource value: 3
+			public const int FloatingActionButton_borderWidth = 3;
+			
 			// aapt resource value: 4
 			public const int FontFamilyFont_android_fontVariationSettings = 4;
 			
@@ -20199,11 +20241,20 @@ namespace ExpReader.Droid
 			// aapt resource value: 6
 			public const int FontFamilyFont_fontStyle = 6;
 			
+			// aapt resource value: 5
+			public const int FontFamilyFont_font = 5;
+			
+			// aapt resource value: 6
+			public const int FontFamilyFont_fontStyle = 6;
+			
 			// aapt resource value: 7
 			public const int FontFamilyFont_fontVariationSettings = 7;
 			
 			// aapt resource value: 8
 			public const int FontFamilyFont_fontWeight = 8;
+			
+			// aapt resource value: 9
+			public const int FontFamilyFont_ttcIndex = 9;
 			
 			// aapt resource value: 9
 			public const int FontFamilyFont_ttcIndex = 9;
