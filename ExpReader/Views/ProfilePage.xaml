@@ -8,10 +8,8 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
-            
-        </StackLayout>
-
+            <Frame Style="{StaticResource MyFrame}"></Frame>
+        
       
         
     </ContentPage.Content>
