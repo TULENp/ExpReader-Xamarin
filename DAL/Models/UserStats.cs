@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    class User
+    class UserStats
     {
         [Key]
-        public int ID { get; set; }
-        public string Nickname { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public int Id { get; set; }
+        [ForeignKey("FK_UserID")]
+        public int UserId { get; set; }
     }
 }
