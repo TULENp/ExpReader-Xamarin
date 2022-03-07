@@ -13,6 +13,6 @@ namespace DAL.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("FK_UserID")]
-        public int UserId { get; set; }
+        public User UserId { get; set; }
     }
 }
