@@ -3,7 +3,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 //using Aspose.Words; //todo add nuget 
 using System.Runtime.InteropServices.ComTypes;
-using Android.Content.Res;
+//using Android.Content.Res;
 using ExpReader.Models;
 
 namespace ExpReader.ViewModels
