@@ -2,7 +2,7 @@
 
 namespace DAL.Models
 {
-    class Book
+    public class Book
     {
         [Key]
         public int ID { get; set; }
