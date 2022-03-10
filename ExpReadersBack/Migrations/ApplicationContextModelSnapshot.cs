@@ -82,29 +82,18 @@ namespace ExpReadersBack.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("FK_UserID")
-                        .HasColumnType("int");
-
                     b.Property<int>("ReadBooks")
                         .HasColumnType("int");
 
                     b.Property<int>("ReadPages")
                         .HasColumnType("int");
 
+                    b.Property<int>("User")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("FK_UserID");
-
                     b.ToTable("UserStatistics");
-                });
-
-            modelBuilder.Entity("DAL.Models.UserStats", b =>
-                {
-                    b.HasOne("DAL.Models.User", "UserId")
-                        .WithMany()
-                        .HasForeignKey("FK_UserID");
-
-                    b.Navigation("UserId");
                 });
 #pragma warning restore 612, 618
         }
