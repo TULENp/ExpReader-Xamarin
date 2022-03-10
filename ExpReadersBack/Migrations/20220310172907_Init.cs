@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace ExpReadersBack.Migrations
 {
-    public partial class Initialize : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,25 +58,14 @@ namespace ExpReadersBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    FK_UserID = table.Column<int>(type: "int", nullable: true),
+                    User = table.Column<int>(type: "int", nullable: false),
                     ReadBooks = table.Column<int>(type: "int", nullable: false),
                     ReadPages = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserStatistics", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserStatistics_Users_FK_UserID",
-                        column: x => x.FK_UserID,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserStatistics_FK_UserID",
-                table: "UserStatistics",
-                column: "FK_UserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -88,10 +77,10 @@ namespace ExpReadersBack.Migrations
                 name: "UserBooks");
 
             migrationBuilder.DropTable(
-                name: "UserStatistics");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "UserStatistics");
         }
     }
 }
