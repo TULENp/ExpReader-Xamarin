@@ -10,7 +10,7 @@ namespace DAL.Models
     public class User
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Nickname { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }

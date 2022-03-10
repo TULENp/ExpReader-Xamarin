@@ -14,5 +14,7 @@ namespace DAL.Models
         public int Id { get; set; }
         [ForeignKey("FK_UserID")]
         public User UserId { get; set; }
+        public int ReadBooks { get; set; }
+        public int ReadPages { get; set; }
     }
 }

@@ -5,10 +5,8 @@ namespace DAL.Models
 {
     public class UserBook
     {
-        [Key]
-        public int UserID { get; set; }
-        [Key]
-        public int BookID { get; set; }
+        public int UserId { get; set; }
+        public int BookId { get; set; }
         public int ReadPages { get; set; }
         public DateTime LastBookDate { get; set; }
     }
