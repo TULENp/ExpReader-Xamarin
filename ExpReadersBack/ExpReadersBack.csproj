@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj" />
     <ProjectReference Include="..\ExpReader\ExpReader.csproj" />
   </ItemGroup>
 
