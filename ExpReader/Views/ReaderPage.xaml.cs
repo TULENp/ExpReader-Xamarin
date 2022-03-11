@@ -15,6 +15,8 @@ namespace ExpReader.Views
         {
             InitializeComponent();
             BindingContext = new ReaderVM(book);
+            Shell.SetNavBarIsVisible(this, false);
+            Shell.SetTabBarIsVisible(this, false);
             //PdfJsWebView.Uri = Path.Combine(FileSystem.AppDataDirectory, book.Path);
         }
         private void ScrollToTop(object sender, System.EventArgs e)

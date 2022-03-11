@@ -5,10 +5,10 @@ using System.Runtime.InteropServices.ComTypes;
 //using Android.Content.Res;
 using ExpReader.Models;
 using System;
-using Aspose.Words;
-using Android.Media;
-using SkiaSharp;
-using Java.Nio;
+//using Aspose.Words;
+//using Android.Media;
+//using SkiaSharp;
+//using Java.Nio;
 using System.Collections.Generic;
 using System.Windows.Input;
 
