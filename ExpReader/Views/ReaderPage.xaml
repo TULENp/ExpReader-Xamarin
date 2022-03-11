@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels"
-             x:Class="ExpReader.Views.ReaderPage">
+             x:Class="ExpReader.Views.ReaderPage"
+             x:DataType="ViewModels:ReaderVM">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame Style="{StaticResource MyFrame}">
-                <ScrollView>
-                    <Label Text="{Binding Text}"/>
+        <Frame Style="{StaticResource MyFrame}" VerticalOptions="FillAndExpand">
+            <StackLayout >
+                <ScrollView >
+                    <Label Text="{Binding Text}" Style="{StaticResource MyText}"/>
                 </ScrollView>
-            </Frame>
-        </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                    <Button Text="Previous" Command="{Binding OpenPrevPage}"/>
+                    <Button Text="Next" Command="{Binding OpenNextPage}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
