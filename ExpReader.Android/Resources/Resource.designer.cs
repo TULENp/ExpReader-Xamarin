@@ -22980,6 +22980,9 @@ namespace ExpReader.Droid
 			// aapt resource value: 0x7F0500A2
 			public const int mtrl_indicator_text_color = 2131034274;
 			
+			// aapt resource value: 0x7F0500A2
+			public const int mtrl_navigation_item_background_color = 2131034274;
+			
 			// aapt resource value: 0x7F0500A3
 			public const int mtrl_navigation_bar_colored_item_tint = 2131034275;
 			
@@ -24787,6 +24790,9 @@ namespace ExpReader.Droid
 			
 			// aapt resource value: 0x7F07006F
 			public const int ic_mtrl_chip_checked_black = 2131165295;
+			
+			// aapt resource value: 0x7F07006F
+			public const int design_snackbar_background = 2131165295;
 			
 			// aapt resource value: 0x7F070070
 			public const int ic_mtrl_chip_checked_circle = 2131165296;
