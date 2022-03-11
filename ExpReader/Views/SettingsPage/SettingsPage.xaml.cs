@@ -17,7 +17,8 @@ namespace ExpReader.Views
         public SettingsPage()
         {
             InitializeComponent();
-            switch(Settings.Theme)
+            Shell.SetNavBarIsVisible(this, false);
+            switch (Settings.Theme)
             {
                 case 1: SwitchTheme.IsToggled = false;
                     break;
@@ -31,7 +32,7 @@ namespace ExpReader.Views
             switch(e.Value)
             {
                 case false: Settings.Theme = 1;
-                        break;
+                    break;
                 case true: Settings.Theme = 2;
                     break;
             }

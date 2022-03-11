@@ -13,35 +13,45 @@ namespace ExpReader.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserLibPage : ContentPage
     {
-        //private double _ProgressValue;
-        //public double ProgressValue
-        //{
-        //    get
-        //    {
-        //        return _ProgressValue;
-        //    }
-        //    set
-        //    {
-        //        _ProgressValue = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
+        
         public UserLibPage()
         {
             InitializeComponent();
             Shell.SetNavBarIsVisible(this, false);
+            HidePanelSort();
             
         }
 
-        public void LOLKEK1()
+        private void HidePanelSort()
         {
-            
+           PanelSort.Scale = 0;
+           PanelSort.IsVisible = false;
         }
+
 
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //await Shell.Current.GoToAsync(nameof(SettingsPage));
         }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+             if(PanelSort.IsVisible)
+             {
+                
+                 PanelSort.ScaleTo(0, 250, Easing.CubicIn);
+                await Task.Delay(250);
+                PanelSort.IsVisible = false;
+             }
+             else
+             {
+                
+                PanelSort.IsVisible = true;
+                PanelSort.ScaleTo(1, 250, Easing.CubicOut);
+             }
+
+        }
+
+       
     }
 }

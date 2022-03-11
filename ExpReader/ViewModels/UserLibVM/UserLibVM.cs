@@ -9,23 +9,46 @@ namespace ExpReader.ViewModels
 {
     class UserLibVM : BindableObject
     {
+        
+        private double _ProgressValue;
+        public double ProgressValue
+        {
+            get
+            {
+                return _ProgressValue;
+            }
+            set
+            {
+                _ProgressValue = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
         ObservableCollection<Book> db { get; set; }
         public UserLibVM()
         {
             InitBooks();
+            ProgressValue = 1;
+            
         }
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
+        public ICommand TestCommand => new Command(Test1);
 
         public void OpenBook(Book book)
         {
             Shell.Current.Navigation.PushAsync(new ReaderPage(book));
+            
+        }
+
+        public void Test1()
+        {
 
         }
 
         private void InitBooks()
-        {
+        { 
             //todo Move this collection to db or somewhere else
             db = new ObservableCollection<Book>()
             {

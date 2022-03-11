@@ -54,8 +54,8 @@
                                     <Label Grid.Row="0" Grid.Column="1"  Text="Дюна" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
                                     <Label Grid.Row="1" Grid.Column="1" Text="Фрэнк Герберт" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                     <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
-                                    <Label Grid.Row="2" Text="15%" FontSize="17" Padding="23,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" ></Label>
-                                    <Label Grid.Row="2" Grid.Column="1" Text="1315 очков" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                                    <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="1315 страниц" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                <!--Здесь должна выводится последняя открытая книга-->
                                 </Grid>
                             </Grid>
@@ -64,24 +64,29 @@
                     </StackLayout>
                 </yummy:PancakeView>
                 <!-- </StackLayout>-->
-                <StackLayout Style="{StaticResource MyStackLayout}" Orientation="Horizontal" Margin="30,15,0,0">
-                    <SearchBar BackgroundColor="{AppThemeBinding Light=#333333, Dark=#121212}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="#AEAEAE" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+                    <StackLayout  Style="{StaticResource MyStackLayout}" Orientation="Horizontal" Margin="30,15,0,0">
+
+                        <SearchBar BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="#AEAEAE" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
 
 
-                    <Frame Style="{StaticResource MyFrame1}" HeightRequest="3" >
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding TapCommandSotr}"/>
-                        </Frame.GestureRecognizers>
-                        <StackLayout Orientation="Horizontal" Padding="-5,-10,-5,-13">
-                        <!--Здесь открывается кнопка сортировки-->
-                            <Image Source="SortIcon.png" WidthRequest="20" Margin="0,-5,0,0"/>
-                            <Label Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
+                        <Frame Style="{StaticResource MyFrame1}" HeightRequest="3">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Frame.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" Padding="-5,-10,-5,-13">
+                            <!--Здесь открывается кнопка сортировки-->
+                                <Image Source="SortIconWhite.png" WidthRequest="20" Margin="0,-5,0,0"/>
+                                <Label Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
 
-
-                <yummy:PancakeView Style="{StaticResource MyFrame2}" CornerRadius="50,0,0,0" Margin="0,15,0,0" Padding="30,20,0,0">
+                    <yummy:PancakeView Grid.Row="1" Style="{StaticResource MyFrame2}" CornerRadius="50,0,0,0" Margin="0,15,0,0" Padding="30,20,0,0">
                     <StackLayout>
                         <Label Text="Ваши книги" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" FontSize="23" Padding="15,0,0,0"></Label>
                         <CollectionView ItemsSource="{Binding Books}" 
@@ -108,15 +113,19 @@
                                                 <StackLayout Orientation="Vertical">
                                                     <Label  Text="{Binding  Title}" FontSize="20" FontFamily="LatoMed" Margin="0,5,0,0" TextColor="{AppThemeBinding Dark=White,Light=Black}"/>
                                                     <Label  Text="{Binding  Author}" FontSize="18" FontFamily="LatoLig" TextColor="{AppThemeBinding Dark=White,Light=Black}" />
-                                                    <ProgressBar x:Name="progressbar" ProgressColor="{AppThemeBinding Light=#2e74ff,Dark=#001EDE}" Progress="{Binding ProgressValue}" WidthRequest="180"></ProgressBar>
                                                     
                                                 </StackLayout>
-                                                
-                                               <!--<StackLayout Orientation="Horizontal" Margin="0,50,0,0">
-                                                    
-                                                   
-                                                </StackLayout>--> 
-                                            </StackLayout>
+
+                                                    <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+
+                                                        <ProgressBar x:Name="progressbar" 
+                                                                     ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
+                                                                     Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
+                                                                     Path= ProgressValue}" 
+                                                                     WidthRequest="150"></ProgressBar> 
+
+                                                    </StackLayout>
+                                                </StackLayout>
 
                                         </StackLayout>
                                     </Frame>
@@ -125,12 +134,36 @@
                         </CollectionView>
                     </StackLayout>
                 </yummy:PancakeView>
-
+               <StackLayout x:Name="PanelSort" Grid.Row="0" HorizontalOptions="End" TranslationY="60" BackgroundColor="Transparent" Spacing="0" WidthRequest="150" >
+                       <!--Панель сортировки-->
+                        <Frame BorderColor="Black">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer /> <!--Сортировка по названию книги-->
+                            </Frame.GestureRecognizers>
+                            <Label Text="По названию" >
+                                
+                            </Label>
+                        </Frame>
+                        <Frame BorderColor="Black" >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer />   <!--Сортировка по прочитанным книгам-->
+                            </Frame.GestureRecognizers>
+                            <Label Text="Прочитано"></Label>
+                        </Frame>
+                        <Frame BorderColor="Black" >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer />   <!--Сортировка по непрочитанным книгам-->
+                            </Frame.GestureRecognizers>
+                            <Label Text="Не прочитано"></Label>
+                        </Frame>
+                    </StackLayout> 
+                </Grid>
             </StackLayout> 
 
     </ScrollView>
 
-        <ImageButton Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
+            
+            <ImageButton Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
                     HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding TapCommandRead}">
             <!--Вот здесь кнопка добавления книги-->
         </ImageButton>

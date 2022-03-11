@@ -41,6 +41,7 @@
             <Color x:Key="TextColorTitle1">#001EDE</Color>
             <Color x:Key="TextColorDark">White</Color>
             <Color x:Key="TextColorTitleDark">#001</Color>
+            <Color x:Key="TextColorTitleDark1">#EE3354</Color>
 
 
             <Style x:Key="MyFrame" TargetType="Frame">
@@ -54,7 +55,7 @@
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding
                     Dark={StaticResource TextColor},
-                    Light={StaticResource MDarkColor}}" />
+                    Light={StaticResource TextColorTitle}}" />
             </Style>
 
             <Style x:Key="MyText" TargetType="Label">
@@ -75,9 +76,29 @@
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding
                     Dark={StaticResource TextColor},
-                    Light={StaticResource MDarkColor}}"/>
+                    Light={StaticResource TextColorTitle}}"/>
             </Style>
 
+            <Style x:Key="StackLayoutProfile" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColorTitle1},
+                    Light={StaticResource TextColorTitle}}"/>
+            </Style>
+
+            <Style x:Key="FrameProfile" TargetType="yummy:PancakeView">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource DarkColor1},
+                    Light=White}"/>
+            </Style>
+
+            <Style x:Key="FrameProfile1" TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource DarkColor1},
+                    Light=White}"/>
+            </Style>
             <Style x:Key="MyStackLayoutHead" TargetType="StackLayout">
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding
