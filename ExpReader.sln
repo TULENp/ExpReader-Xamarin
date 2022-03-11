@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpReader", "ExpReader\ExpR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{40BFE4BE-EF42-4078-A00F-6F125D0A169F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpReadersBack", "ExpReadersBack\ExpReadersBack.csproj", "{023D8D71-1851-4FC7-AC13-5BE9F659F519}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,18 @@ Global
 		{40BFE4BE-EF42-4078-A00F-6F125D0A169F}.Release|iPhone.Build.0 = Release|Any CPU
 		{40BFE4BE-EF42-4078-A00F-6F125D0A169F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{40BFE4BE-EF42-4078-A00F-6F125D0A169F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Release|iPhone.Build.0 = Release|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{023D8D71-1851-4FC7-AC13-5BE9F659F519}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
