@@ -19,11 +19,7 @@ namespace ExpReader.ViewModels
         Book newBook;
         string text;
         string charbook;
-
-        List<string> BookLines = new List<string>();
-        readonly int pageLines = 3;
         readonly int pageChars = 750;
-        //int CurrentPage;
         public Book NewBook
         {
             get => newBook;
@@ -45,13 +41,12 @@ namespace ExpReader.ViewModels
         public ReaderVM(Book book)
         {
             NewBook = book;
-            
             OpenBook();
             ReadPage();
         }
         public ICommand OpenNextPage => new Command(value =>
         {
-            NewBook.CurrentPage++; 
+            NewBook.CurrentPage++;
             NewBook.ReadPages++;
             Text = "";
             ReadPage();
@@ -68,14 +63,8 @@ namespace ExpReader.ViewModels
 
         public void ReadPage()
         {
-            
             int readchar = NewBook.CurrentPage * pageChars;
             int i;
-            //while (!Char.IsSeparator(charbook[readchar]))
-            //{
-            //    readchar++;
-            //}
-
             for (i = readchar; i < readchar + pageChars; i++)
             {
                 Text += charbook[i];
@@ -84,18 +73,6 @@ namespace ExpReader.ViewModels
             {
                 Text += '-';
             }
-            //while (!Char.IsSeparator(charbook[i]))
-            //{
-            //    Text += charbook[i];
-            //    i++;
-            //}
-
-            //todo problem - lines are different. I need to split them to fixed lines
-            //int readlines = NewBook.ReadPages * pageLines;
-            //for (int i = readlines; i < readlines + pageLines; i++)
-            //{
-            //    Text += BookLines[i] + "\n";
-            //}
         }
         public async void OpenBook()
         {
@@ -106,39 +83,6 @@ namespace ExpReader.ViewModels
                     charbook = reader.ReadToEnd();
                 }
             }
-            //using (var stream = await FileSystem.OpenAppPackageFileAsync(NewBook.Path))
-            //{
-            //    using (StreamReader reader = new StreamReader(stream))
-            //    {
-            //        while (!reader.EndOfStream)
-            //        {
-            //            BookLines.Add(await reader.ReadLineAsync());
-            //        }
-            //    }
-            //}
-
-
-            //AssetManager assetManager = Android.App.Application.Context.Assets;
-            //using (Stream stream = assetManager.Open(NewBook.Path))
-            //{
-            //    Document doc = new Document(stream);
-            //    Text = doc.GetText();
-            //}
-            //string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);\
-
-
-            //var file = await FilePicker.PickAsync();
-            //using (var stream = File.OpenRead(file.FullPath))
-            //{
-            //    Document doc = new Document(stream);
-            //    Text = doc.GetText();
-            //}
-
-            //Document doc = new Document(Android.App.Application.Context.Assets + NewBook.Path);
-            //Text = doc.GetText();
-            //reading txt
-
         }
-
     }
 }
