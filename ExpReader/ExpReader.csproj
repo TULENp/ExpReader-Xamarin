@@ -35,10 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\ProfilePage\ProfilePage.xaml">
+    <EmbeddedResource Update="Views\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\UserLibPage\UserLibPage.xaml">
+    <EmbeddedResource Update="Views\UserLibPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -54,16 +54,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\ReaderPage\ReaderPage.xaml.cs">
+    <Compile Update="Views\ReaderPage.xaml.cs">
       <DependentUpon>ReaderPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\UserLibPage\UserLibPage.xaml.cs">
+    <Compile Update="Views\UserLibPage.xaml.cs">
       <DependentUpon>UserLibPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\ReaderPage\ReaderPage.xaml">
+    <EmbeddedResource Update="Views\ReaderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
