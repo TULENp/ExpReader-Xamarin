@@ -10,5 +10,7 @@ namespace ExpReader.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public string Path { get; set; }
+        public int CurrentPage { get; set; }
+        public int ReadPages { get; set; }
     }
 }

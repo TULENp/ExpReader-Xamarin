@@ -85,9 +85,11 @@ namespace ExpReader.ViewModels
                     Id = 4,
                     Title = "Преступление и наказание(Txt)",
                     Author = "Достоевский Ф.М.",
-                    Path = "prestup.txt"
+                    Path = "prestup.txt",
+                    ReadPages = 0,
+            CurrentPage = 0
                 }
-            };
+    };
 
             foreach (var file in db)
             {

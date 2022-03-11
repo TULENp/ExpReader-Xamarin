@@ -1,10 +1,16 @@
 ﻿using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-//using Aspose.Words; //todo add nuget 
 using System.Runtime.InteropServices.ComTypes;
 //using Android.Content.Res;
 using ExpReader.Models;
+using System;
+using Aspose.Words;
+using Android.Media;
+using SkiaSharp;
+using Java.Nio;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace ExpReader.ViewModels
 {
@@ -12,6 +18,8 @@ namespace ExpReader.ViewModels
     {
         Book newBook;
         string text;
+        string charbook;
+        readonly int pageChars = 750;
         public Book NewBook
         {
             get => newBook;
@@ -30,31 +38,51 @@ namespace ExpReader.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ReaderVM(Book newbook)
+        public ReaderVM(Book book)
         {
-            NewBook = newbook;
+            NewBook = book;
             OpenBook();
+            ReadPage();
+        }
+        public ICommand OpenNextPage => new Command(value =>
+        {
+            NewBook.CurrentPage++;
+            NewBook.ReadPages++;
+            Text = "";
+            ReadPage();
+        });
+        public ICommand OpenPrevPage => new Command(value =>
+        {
+            if (NewBook.CurrentPage != 0)
+            {
+                NewBook.CurrentPage--;
+                Text = "";
+                ReadPage();
+            }
+        });
+
+        public void ReadPage()
+        {
+            int readchar = NewBook.CurrentPage * pageChars;
+            int i;
+            for (i = readchar; i < readchar + pageChars; i++)
+            {
+                Text += charbook[i];
+            }
+            if (!(Char.IsWhiteSpace(charbook[i - 1]) || charbook[i - 1] == '-'))
+            {
+                Text += '-';
+            }
         }
         public async void OpenBook()
         {
-            //reading txt
             using (var stream = await FileSystem.OpenAppPackageFileAsync(NewBook.Path))
             {
-                using (var reader = new StreamReader(stream))
+                using (StreamReader reader = new StreamReader(stream))
                 {
-                    Text = await reader.ReadToEndAsync();
+                    charbook = reader.ReadToEnd();
                 }
             }
-
-
-            //todo need to use OpenRead or smth else Method(not FileSystem.OpenAppPackageFileAsync(Path)) to open file
-            //var dir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
-
-            // using (Stream stream = File.OpenRead(dir+Path))
-            // {
-            //     Document doc = new Document(stream);
-            //     Text = doc.GetText();
-            // }
         }
     }
 }

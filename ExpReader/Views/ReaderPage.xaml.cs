@@ -1,7 +1,10 @@
 ﻿using ExpReader.Models;
 using ExpReader.ViewModels;
+using System.IO;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static ExpReader.ViewModels.ReaderVM;
 
 namespace ExpReader.Views
 {
@@ -12,6 +15,11 @@ namespace ExpReader.Views
         {
             InitializeComponent();
             BindingContext = new ReaderVM(book);
+            //PdfJsWebView.Uri = Path.Combine(FileSystem.AppDataDirectory, book.Path);
+        }
+        private void ScrollToTop(object sender, System.EventArgs e)
+        {
+            scroll.ScrollToAsync(0, 0, false);
         }
     }
 }
