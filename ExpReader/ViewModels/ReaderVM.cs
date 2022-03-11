@@ -68,6 +68,7 @@ namespace ExpReader.ViewModels
 
         public void ReadPage()
         {
+            
             int readchar = NewBook.CurrentPage * pageChars;
             int i;
             //while (!Char.IsSeparator(charbook[readchar]))
