@@ -4,12 +4,13 @@
              x:Class="ExpReader.Views.ProfilePage">
 
     <ContentPage.BindingContext>
-        <vm:ProfileViewModel/>
+        <vm:ProfileVM/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="LOL"></Label>
-        </StackLayout>
+            <Frame Style="{StaticResource MyFrame}"></Frame>
+        
+      
+        
     </ContentPage.Content>
 </ContentPage>

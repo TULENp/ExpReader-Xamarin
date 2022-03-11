@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ExpReader.ViewModels
 {
-    class ProfileViewModel
+    class ProfileVM
     {
     }
 }
