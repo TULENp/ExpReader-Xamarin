@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpReader.Views.SettingsPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{AppThemeBinding Light=White,Dark=black}">
+            <StackLayout >
+                <Label Text="Тема приложения" TextColor="{AppThemeBinding Light=Black,Dark=White}" FontSize="28" Margin="15,20,0,0" FontFamily="LatoLig"/>
+                <Frame BackgroundColor="{AppThemeBinding Light=White,Dark=Black}" BorderColor="{AppThemeBinding Dark=#30FFFFFF}" >
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Image Source="iconTheme.png" WidthRequest="35" />
+                        <Label Style="{StaticResource MyText}" Text="Изменить тему" FontFamily="LatoHev" FontSize="20" HorizontalOptions="Start"/>
+                        <Switch x:Name="SwitchTheme" Toggled="SwitchTheme_Toggled" HorizontalOptions="End" Margin="60,0,0,0" Scale="1.3" ThumbColor="{AppThemeBinding Dark=#001EDE,Light=#2e74ff}" OnColor="{AppThemeBinding Dark=White,Light=Black}" ></Switch>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Профиль" TextColor="{AppThemeBinding Light=Black,Dark=White}" FontSize="28" Margin="15,20,0,0" FontFamily="LatoLig"/>
+                <Frame BackgroundColor="{AppThemeBinding Light=White,Dark=Black}" BorderColor="{AppThemeBinding Dark=#30FFFFFF}" >
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Image Source="userAvatar.png" WidthRequest="35" />
+                        <Label Style="{StaticResource MyText}" Text="Сменить аватар" FontFamily="LatoHev" FontSize="20" HorizontalOptions="Start"/>
+                         
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

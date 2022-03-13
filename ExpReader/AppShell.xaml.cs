@@ -8,7 +8,7 @@ namespace ExpReader
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ReadingPage), typeof(ReadingPage));
+           Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
 
     }

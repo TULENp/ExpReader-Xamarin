@@ -15,6 +15,7 @@ namespace ExpReader.Views
         public ProfilePage()
         {
             InitializeComponent();
+            Shell.SetNavBarIsVisible(this, false);
         }
     }
 }

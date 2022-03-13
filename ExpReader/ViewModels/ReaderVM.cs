@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Runtime.InteropServices.ComTypes;
 //using Android.Content.Res;
 using ExpReader.Models;
 using System;
