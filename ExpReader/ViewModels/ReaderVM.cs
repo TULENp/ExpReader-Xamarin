@@ -5,6 +5,10 @@ using System.Runtime.InteropServices.ComTypes;
 //using Android.Content.Res;
 using ExpReader.Models;
 using System;
+//using Android.Media;
+//using SkiaSharp;
+//using Java.Nio;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace ExpReader.ViewModels
@@ -14,7 +18,7 @@ namespace ExpReader.ViewModels
         Book newBook;
         string text;
         string charbook;
-        readonly int pageChars = 750;
+        readonly int pageChars = 900;
         public Book NewBook
         {
             get => newBook;

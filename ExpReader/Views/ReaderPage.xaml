@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels" xmlns:customcomponents="clr-namespace:ExpReader.CustomComponents"
              x:Class="ExpReader.Views.ReaderPage"
-             x:DataType="ViewModels:ReaderVM">
+             x:DataType="ViewModels:ReaderVM"
+            >
     <ContentPage.Content>
-        <!--<customcomponents:PdfJsWebView x:Name="PdfJsWebView"/>-->
         <Frame Style="{StaticResource MyFrame}" VerticalOptions="FillAndExpand">
             <StackLayout >
+                <!--<customcomponents:PdfJsWebView x:Name="PdfJsWebView" Uri="{Binding NewBook.Path}"/>-->
                 <ScrollView x:Name="scroll">
                     <Label Text="{Binding Text}" Style="{StaticResource MyText}"/>
                 </ScrollView>
+                <Label Text="{Binding NewBook.CurrentPage, Mode=TwoWay}" HorizontalOptions="EndAndExpand"/>
                 <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
                     <Button Text="Previous" Clicked="ScrollToTop" Command="{Binding OpenPrevPage}"/>
                     <Button Text="Next" Clicked="ScrollToTop" Command="{Binding OpenNextPage}" HorizontalOptions="EndAndExpand"/>
