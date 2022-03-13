@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace ExpReader.CustomComponents
 {
-    class PdfJsWebView : WebView
+    public class PdfJsWebView : WebView
     {
 
         public static readonly BindableProperty UriProperty =

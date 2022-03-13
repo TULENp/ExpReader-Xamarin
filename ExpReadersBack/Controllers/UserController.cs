@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExpReadersBack.Controllers
 {
-    [Route("[Users]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {

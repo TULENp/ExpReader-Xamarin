@@ -1,4 +1,5 @@
-﻿using ExpReader.Models;
+﻿using ExpReader.CustomComponents;
+using ExpReader.Models;
 using ExpReader.ViewModels;
 using System.IO;
 using Xamarin.Essentials;
@@ -17,7 +18,7 @@ namespace ExpReader.Views
             BindingContext = new ReaderVM(book);
             Shell.SetNavBarIsVisible(this, false);
             Shell.SetTabBarIsVisible(this, false);
-            //PdfJsWebView.Uri = Path.Combine(FileSystem.AppDataDirectory, book.Path);
+           // PdfJsWebView.Uri = Path.Combine(FileSystem.AppDataDirectory, book.Path);
         }
         private void ScrollToTop(object sender, System.EventArgs e)
         {
