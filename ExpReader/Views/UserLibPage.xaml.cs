@@ -18,6 +18,7 @@ namespace ExpReader.Views
         {
             InitializeComponent();
             Shell.SetNavBarIsVisible(this, false);
+            Shell.SetTabBarIsVisible(this, true);
             HidePanelSort();
             
         }

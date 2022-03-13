@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="CustomComponents\PdfJsWebView.cs" />
     <Compile Include="CustomComponents\PdfJsWebViewRenderer.cs" />
+    <Compile Include="CustomRenderer\MyEntryRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -630,26 +631,32 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\pdfjs\build\pdf.worker.js" />
   </ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\maleAvatar.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\iconTimer.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\iconMedal.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\Polka.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\SortIconWhite.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\iconTheme.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\userAvatar.png" />
-	</ItemGroup>
-	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\maleAvatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\iconTimer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\iconMedal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Polka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\SortIconWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\iconTheme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\userAvatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\readerLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\iconLogout.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
