@@ -1,5 +1,4 @@
 ﻿using ExpReader.Services;
-using ExpReader.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,34 +11,29 @@ using Xamarin.Forms.Xaml;
 namespace ExpReader.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserLibPage : ContentPage
+    public partial class LibPage : ContentPage
     {
         
-        public UserLibPage()
+        public LibPage()
         {
             InitializeComponent();
             Shell.SetNavBarIsVisible(this, false);
-            //Shell.SetTabBarIsVisible(this, true);
             HidePanelSort();
             
         }
 
         private void HidePanelSort()
         {
-           PanelSort.Scale = 0;
-           PanelSort.IsVisible = false;
-        }
+            PanelSort.Scale = 0;
+            PanelSort.IsVisible = false;
 
-
-        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //await Shell.Current.GoToAsync(nameof(SettingsPage));
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-             if(PanelSort.IsVisible)
-             {
+
+            if (PanelSort.IsVisible)
+            {
                 if (Settings.Theme == 1)
                 {
                     TextSort.TextColor = Color.White;
@@ -51,14 +45,13 @@ namespace ExpReader.Views
                     ImageSort.Source = ImageSource.FromFile("SortIconWhite.png");
                 }
                 PanelSortBackGround.InputTransparent = true;
-                FabButton.IsVisible = true;
                 PanelSort.ScaleTo(0, 250, Easing.CubicIn);
                 await Task.Delay(250);
                 PanelSort.IsVisible = false;
-             }
-             else
-             {
-                if (Settings.Theme == 1)
+            }
+            else
+            {
+                if(Settings.Theme==1)
                 {
                     TextSort.TextColor = Color.Black;
                     ImageSort.Source = ImageSource.FromFile("SortIconBlack.png");
@@ -69,16 +62,14 @@ namespace ExpReader.Views
                     ImageSort.Source = ImageSource.FromFile("SortIcon.png");
                 }
                 PanelSortBackGround.InputTransparent = false;
-                FabButton.IsVisible = false;
                 PanelSort.IsVisible = true;
                 PanelSort.ScaleTo(1, 250, Easing.CubicOut);
-             }
-
+            }
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            TapGestureRecognizer_Tapped(sender, e);
+            TapGestureRecognizer_Tapped(sender,e);
         }
     }
 }
