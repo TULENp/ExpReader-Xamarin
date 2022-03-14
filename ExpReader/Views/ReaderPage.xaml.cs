@@ -43,11 +43,13 @@ namespace ExpReader.Views
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
         {
             SettingsPanel.TranslateTo(0, 0, 250, Easing.CubicInOut);
+            PanelBackground.BackgroundColor = Color.FromRgba(55, 55, 55, 99);
+            PanelBackground.InputTransparent = false;
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, System.EventArgs e)
         {
-            //SettingsPanel.TranslateTo(0, -80, 250, Easing.CubicInOut);
+            
             if((imageBack.IsVisible==true) && (imageGear.IsVisible==true))
             {
                 imageBack.TranslateTo(0, -80, 250, Easing.CubicIn);
@@ -64,6 +66,13 @@ namespace ExpReader.Views
                 imageGear.TranslateTo(0, 0, 250, Easing.CubicInOut);
                 imageGear.IsVisible = true;
             }
+        }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, System.EventArgs e)
+        {
+            SettingsPanel.TranslateTo(0, -80, 250, Easing.CubicInOut);
+            PanelBackground.BackgroundColor = Color.Transparent;
+            PanelBackground.InputTransparent = true;
         }
     }
 }

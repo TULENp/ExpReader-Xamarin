@@ -7,6 +7,10 @@
         <!--<customcomponents:PdfJsWebView x:Name="PdfJsWebView"/>-->
         <StackLayout VerticalOptions="FillAndExpand">
             <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>    
                 <SwipeView>
                     <SwipeView.RightItems>
                         <SwipeItems Mode="Execute">
@@ -41,35 +45,44 @@
                                     <TapGestureRecognizer Command="{Binding OpenNextPage}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
-                            <Image x:Name="imageGear" Source="gearBlue.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="End" TranslationY="10" Margin="0,20,30,0">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Image x:Name="imageBack" Source="iconBack.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="Start" TranslationY="10" Margin="20,20,0,0">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <StackLayout x:Name="SettingsPanel" BackgroundColor="#2e74ff" VerticalOptions="Start" >
-                                <StackLayout x:Name="PanelMenu" >
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                        <Frame BackgroundColor="White" CornerRadius="15">
-                                            <RadioButton  GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
-                                        </Frame>
-                                        <Frame BackgroundColor="#F5E6BD" CornerRadius="15">
-                                            <RadioButton GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
-                                        </Frame>
-                                        <Frame BackgroundColor="Black" CornerRadius="15">
-                                            <RadioButton GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
-                                        </Frame>
-                                    </StackLayout>
-                                </StackLayout>
-                            </StackLayout>
+                           
                         </Grid>
                     </ScrollView>
                 </SwipeView>
-
+                    <Image x:Name="imageGear" Source="gearBlue.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="End" TranslationY="10" Margin="0,20,30,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image x:Name="imageBack" Source="iconBack.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="Start" TranslationY="10" Margin="20,20,0,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <StackLayout x:Name="PanelBackground" InputTransparent="True">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout x:Name="SettingsPanel" BackgroundColor="#2e74ff" VerticalOptions="Start" >
+                        <StackLayout x:Name="PanelMenu" >
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Frame BackgroundColor="White" CornerRadius="15">
+                                    <RadioButton  GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                </Frame>
+                                <Frame BackgroundColor="#F5E6BD" CornerRadius="15">
+                                    <RadioButton GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                </Frame>
+                                <Frame BackgroundColor="Black" CornerRadius="15">
+                                    <RadioButton GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+               
+                
+                
                 <!--<Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3"/>
