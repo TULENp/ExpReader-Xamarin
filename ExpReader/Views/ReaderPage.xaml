@@ -5,16 +5,16 @@
              x:DataType="ViewModels:ReaderVM">
     <ContentPage.Content>
         <!--<customcomponents:PdfJsWebView x:Name="PdfJsWebView"/>-->
-        <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout x:Name="StackBackGround"  VerticalOptions="FillAndExpand">
             <StackLayout>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>    
-                <SwipeView>
+                <SwipeView x:Name="TextBackGround" >
                     <SwipeView.RightItems>
                         <SwipeItems Mode="Execute">
-                            <SwipeItemView Command="{Binding OpenNextPage}"/>
+                            <SwipeItemView  Command="{Binding OpenNextPage}"/>
                         </SwipeItems>
                     </SwipeView.RightItems>
                     <SwipeView.LeftItems>
@@ -29,7 +29,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions> 
                             
-                            <Label TextColor="Black" FontSize="22" Margin="15,0,15,0" Text="{Binding Text}" Style="{StaticResource MyText}"/>
+                            <Label x:Name="ReaderText" TextColor="Black" FontSize="22" Margin="15,0,15,0" Text="{Binding Text}" Style="{StaticResource MyText}"/>
                             <StackLayout  ScaleX="0.52">
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
@@ -68,13 +68,25 @@
                         <StackLayout x:Name="PanelMenu" >
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                 <Frame BackgroundColor="White" CornerRadius="15">
-                                    <RadioButton  GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                                    </Frame.GestureRecognizers>
+                                    <RadioButton x:Name="RadioWhiteTheme" Value="1" 
+                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
                                 </Frame>
                                 <Frame BackgroundColor="#F5E6BD" CornerRadius="15">
-                                    <RadioButton GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                                    </Frame.GestureRecognizers>
+                                    <RadioButton x:Name="RadioBeigeTheme" Value="2" 
+                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
                                 </Frame>
                                 <Frame BackgroundColor="Black" CornerRadius="15">
-                                    <RadioButton GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                                    </Frame.GestureRecognizers>
+                                    <RadioButton x:Name="RadioBlackTheme" Value="3" 
+                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
                                 </Frame>
                             </StackLayout>
                         </StackLayout>

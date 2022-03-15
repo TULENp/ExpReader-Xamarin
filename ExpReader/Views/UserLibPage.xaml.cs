@@ -24,6 +24,19 @@ namespace ExpReader.Views
             
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var e = DependencyService.Get<IEnvironment>();
+            if (App.Current.RequestedTheme == OSAppTheme.Dark)
+            {
+                e?.SetStatusBarColor(Color.FromHex("#001EDE"), false);
+            }
+            else
+            {
+                e?.SetStatusBarColor(Color.FromHex("#2e74ff"), true);
+            }
+        }
         private void HidePanelSort()
         {
            PanelSort.Scale = 0;

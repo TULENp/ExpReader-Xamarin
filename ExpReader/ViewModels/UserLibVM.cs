@@ -1,4 +1,5 @@
 ﻿using ExpReader.Models;
+using ExpReader.Services;
 using ExpReader.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -30,7 +31,7 @@ namespace ExpReader.ViewModels
         {
             InitBooks();
             ProgressValue = 1;
-            
+           
         }
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
@@ -41,6 +42,7 @@ namespace ExpReader.ViewModels
             Shell.Current.Navigation.PushAsync(new ReaderPage(book));
             
         }
+        
 
         public void Test1()
         {
