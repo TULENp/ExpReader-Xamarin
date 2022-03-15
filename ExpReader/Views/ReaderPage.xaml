@@ -10,8 +10,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
         
-            <StackLayout x:Name="StackBackGround"  VerticalOptions="FillAndExpand">
-            <StackLayout>
+            
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -69,10 +68,10 @@
                     <Button  Text="Previous" Clicked="ScrollToTop" Command="{Binding OpenPrevPage}"/>
                     <Button  Text="Next" Clicked="ScrollToTop" Command="{Binding OpenNextPage}" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>-->
-            </StackLayout>
+            
                   
             
-        </StackLayout>
+       
                     <Image x:Name="imageGear" Source="gearBlue.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="End" TranslationY="10" Margin="0,20,30,0">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>

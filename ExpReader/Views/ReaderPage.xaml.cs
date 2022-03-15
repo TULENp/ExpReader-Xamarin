@@ -71,18 +71,18 @@ namespace ExpReader.Views
             switch(Settings.ReaderTheme)
             {
                 case 1:
-                    StackBackGround.BackgroundColor = Color.White;
+                    //StackBackGround.BackgroundColor = Color.White;
                     TextBackGround.BackgroundColor = Color.White;
                     ReaderText.TextColor = Color.Black;
                     break;
                 case 2:
-                    StackBackGround.BackgroundColor = Color.FromHex("f5e6bd");
+                   // StackBackGround.BackgroundColor = Color.FromHex("f5e6bd");
                     TextBackGround.BackgroundColor = Color.FromHex("f5e6bd");
                     ReaderText.TextColor = Color.Black;
                     break;
                 case 3:
                    
-                    StackBackGround.BackgroundColor = Color.Black;
+                   // StackBackGround.BackgroundColor = Color.Black;
                     TextBackGround.BackgroundColor = Color.Black;
                     ReaderText.TextColor = Color.Gray;
                     break;
