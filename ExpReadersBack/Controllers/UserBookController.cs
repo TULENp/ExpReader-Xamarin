@@ -24,5 +24,12 @@ namespace ExpReadersBack.Controllers
             var data = from ub in db.UserBooks where ub.UserId == userid select ub;
             return await data.ToListAsync();
         }
+
+        [HttpPost("SetUserBook")]
+        public void SetUserBook([FromBody] UserBook userbook)
+        {
+            db.Update(userbook);
+            db.SaveChanges();
+        }
     }
 }
