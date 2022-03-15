@@ -1,68 +1,38 @@
-﻿using ExpReader.Models;
+﻿using DAL.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ExpReader.ViewModels
 {
-    class ProfileVM:BindableObject
+    class ProfileVM : BindableObject
     {
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
         ObservableCollection<Book> db { get; set; }
 
-        public ProfileVM()
+        private int readPages;
+        public int ReadPages
         {
-            InitBooks();
+            get => readPages; 
+            set
+            {
+                readPages = value;
+                OnPropertyChanged();
+            }
         }
 
-        private void InitBooks()
+        public ProfileVM()
         {
-            //todo Move this collection to db or somewhere else
-            db = new ObservableCollection<Book>()
-            {
-                new Book
-                {
-                    Id = 0,
-                    Title = "Преступление и наказание(Pdf)",
-                    Author = "Достоевский Ф.М.",
-                    Path = "prest.pdf"
-                },
-                new Book
-                {
-                    Id = 1,
-                    Title = "Преступление и наказание(Epub)",
-                    Author = "Достоевский Ф.М.",
-                   Path = "prest.epub"
-                },
-                new Book
-                {
-                    Id = 2,
-                    Title = "Мастер и маргарита(F2b)",
-                    Author = "да",
-                    Path = "master.fb2"
-                },
-                new Book
-                {
-                    Id = 3,
-                    Title = "Иэнис",
-                    Author = "zzz",
-                    Path = "ienis.docx"
-                },
-                new Book
-                {
-                    Id = 4,
-                    Title = "Преступление и наказание(Txt)",
-                    Author = "Достоевский Ф.М.",
-                    Path = "prestup.txt"
-                }
-            };
-
-            foreach (var file in db)
-            {
-                Books.Add(file);
-            }
+            UpdateStats();
+        }
+        public void UpdateStats()
+        {
+            Book book = JsonConvert.DeserializeObject<Book>(Preferences.Get("prestup.txt", string.Empty));
+            ReadPages = book.Pages;
         }
     }
 }

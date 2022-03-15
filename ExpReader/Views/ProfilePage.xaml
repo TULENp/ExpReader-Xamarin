@@ -40,7 +40,7 @@
                                 <Image Source="PrizeBlue.png" Margin="5,0,0,0" WidthRequest="40" HeightRequest="50"/>
                                 <Label Text="Всего страниц" FontFamily="LatoLig" 
                                        FontSize="17" Margin="0,18,0,0" TextColor="{AppThemeBinding Light=Black,Dark=White}"/>
-                                <Label Text="1315" FontFamily="LatoHev" 
+                                <Label Text="{Binding ReadPages}" FontFamily="LatoHev" 
                                        TextColor="{AppThemeBinding Light=Black,Dark=White}" Margin="10,18,0,0" 
                                        FontSize="17"/> <!--Количество прочитанных страниц-->
                             </StackLayout>

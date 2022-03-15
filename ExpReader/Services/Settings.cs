@@ -13,5 +13,6 @@ namespace ExpReader.Services
             get => Preferences.Get(nameof(Theme), theme);
             set => Preferences.Set(nameof(Theme), value);
         }
+        
     }
 }

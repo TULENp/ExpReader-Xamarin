@@ -23,7 +23,7 @@ namespace ExpReadersBack
             services.AddControllers();
             services.AddDbContext<ApplicationContext>(options =>
             {
-               options.UseMySQL(connectionString: _configuration.GetConnectionString("DbContextConnection"));
+                options.UseMySQL(connectionString: _configuration.GetConnectionString("DbContextConnection"));
             });
         }
 
@@ -50,6 +50,7 @@ namespace ExpReadersBack
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }

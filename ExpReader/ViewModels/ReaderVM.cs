@@ -3,13 +3,14 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Runtime.InteropServices.ComTypes;
 //using Android.Content.Res;
-using ExpReader.Models;
 using System;
 //using Android.Media;
 //using SkiaSharp;
 //using Java.Nio;
 using System.Collections.Generic;
 using System.Windows.Input;
+using DAL.Models;
+using Newtonsoft.Json;
 
 namespace ExpReader.ViewModels
 {
@@ -19,6 +20,17 @@ namespace ExpReader.ViewModels
         string text;
         string charbook;
         readonly int pageChars = 900;
+        int ReadPages;
+
+        //int NewBook.Pages;
+        //public int NewBook.Pages
+        //{
+        //    get => NewBook.Pages; set
+        //    {
+        //        NewBook.Pages = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         public Book NewBook
         {
             get => newBook;
@@ -45,24 +57,28 @@ namespace ExpReader.ViewModels
         }
         public ICommand OpenNextPage => new Command(value =>
         {
-            NewBook.CurrentPage++;
-            NewBook.ReadPages++;
+            NewBook.Pages++;
+            ReadPages++;
             Text = "";
             ReadPage();
+
         });
         public ICommand OpenPrevPage => new Command(value =>
         {
-            if (NewBook.CurrentPage != 0)
+            if (NewBook.Pages != 0)
             {
-                NewBook.CurrentPage--;
+                NewBook.Pages--;
                 Text = "";
                 ReadPage();
             }
         });
-
-        public void ReadPage()
+        public void UpdateBookStats()
         {
-            int readchar = NewBook.CurrentPage * pageChars;
+            Preferences.Set(NewBook.FileName, JsonConvert.SerializeObject(NewBook));
+        }
+        private void ReadPage()
+        {
+            int readchar = NewBook.Pages * pageChars;
             int i;
             for (i = readchar; i < readchar + pageChars; i++)
             {
@@ -72,10 +88,11 @@ namespace ExpReader.ViewModels
             {
                 Text += '-';
             }
+            UpdateBookStats();
         }
-        public async void OpenBook()
+        private async void OpenBook()
         {
-            using (var stream = await FileSystem.OpenAppPackageFileAsync(NewBook.Path))
+            using (var stream = await FileSystem.OpenAppPackageFileAsync(NewBook.FileName))
             {
                 using (StreamReader reader = new StreamReader(stream))
                 {
@@ -83,5 +100,7 @@ namespace ExpReader.ViewModels
                 }
             }
         }
+
+
     }
 }
