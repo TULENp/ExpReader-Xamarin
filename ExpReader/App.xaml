@@ -44,6 +44,12 @@
             <Color x:Key="TextColorTitleDark1">#EE3354</Color>
 
 
+            <Style x:Key="MyButton" TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColorTitle1},
+                    Light={StaticResource TextColorTitle}}" />
+            </Style>
             <Style x:Key="MyFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding
@@ -56,6 +62,8 @@
                         Value="{AppThemeBinding
                     Dark={StaticResource TextColor},
                     Light={StaticResource TextColorTitle}}" />
+                <Setter Property="HasShadow"
+                        Value="False"/>
             </Style>
 
             <Style x:Key="MyText" TargetType="Label">

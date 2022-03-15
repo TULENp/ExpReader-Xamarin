@@ -1,22 +1,123 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels" xmlns:customcomponents="clr-namespace:ExpReader.CustomComponents"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels" 
              x:Class="ExpReader.Views.ReaderPage"
              x:DataType="ViewModels:ReaderVM"
             >
     <ContentPage.Content>
-        <Frame Style="{StaticResource MyFrame}" VerticalOptions="FillAndExpand">
-            <StackLayout >
-                <!--<customcomponents:PdfJsWebView x:Name="PdfJsWebView" Uri="{Binding NewBook.Path}"/>-->
-                <ScrollView x:Name="scroll">
-                    <Label Text="{Binding Text}" Style="{StaticResource MyText}"/>
-                </ScrollView>
-                <Label Text="{Binding NewBook.Pages, Mode=TwoWay}" HorizontalOptions="EndAndExpand"/>
-                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
-                    <Button Text="Previous" Clicked="ScrollToTop" Command="{Binding OpenPrevPage}"/>
-                    <Button Text="Next" Clicked="ScrollToTop" Command="{Binding OpenNextPage}" HorizontalOptions="EndAndExpand"/>
+        <!--<customcomponents:PdfJsWebView x:Name="PdfJsWebView"/>-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+        
+            
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>    
+                <SwipeView x:Name="TextBackGround" >
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItemView  Command="{Binding OpenNextPage}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <SwipeView.LeftItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItemView Command="{Binding OpenPrevPage}"/>
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                            <ScrollView x:Name="scroll">
+                                <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions> 
+                            <!--Текст книги-->
+                                    <StackLayout VerticalOptions="Fill">
+                                        <Label x:Name="ReaderText" TextColor="Black"  Margin="15,0,15,0" Text="{Binding Text}" Style="{StaticResource MyText}"/>
+                                    </StackLayout>
+                            <StackLayout  ScaleX="0.52">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout   ScaleX="0.25" TranslationX="-150">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenPrevPage}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout   ScaleX="0.25" TranslationX="150">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenNextPage}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                           
+                        </Grid>
+                    </ScrollView>
+                </SwipeView>
+                </Grid>
+               
+                
+                
+                <!--<Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3"/>
+                        <ColumnDefinition Width="0.3"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>-->
+                <!--<StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="Gray">
+                    <Button  Text="Previous" Clicked="ScrollToTop" Command="{Binding OpenPrevPage}"/>
+                    <Button  Text="Next" Clicked="ScrollToTop" Command="{Binding OpenNextPage}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>-->
+            
+                  
+            
+       
+                    <Image x:Name="imageGear" Source="gearBlue.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="End" TranslationY="10" Margin="0,20,30,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image x:Name="imageBack" Source="iconBack.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="Start" TranslationY="10" Margin="20,20,0,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <StackLayout x:Name="PanelBackground" InputTransparent="True">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout x:Name="SettingsPanel" BackgroundColor="#2e74ff" VerticalOptions="Start" >
+                        <StackLayout x:Name="PanelMenu">
+                            <Label Text="Тема" FontFamily="LatoLig" TextColor="White" FontSize="28" Margin="15,0,0,0"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Frame BackgroundColor="White" CornerRadius="15">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                                    </Frame.GestureRecognizers>
+                                    <RadioButton x:Name="RadioWhiteTheme" Value="1" 
+                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                </Frame>
+                                <Frame BackgroundColor="#F5E6BD" CornerRadius="15">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                                    </Frame.GestureRecognizers>
+                                    <RadioButton x:Name="RadioBeigeTheme" Value="2" 
+                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                </Frame>
+                                <Frame BackgroundColor="Black" CornerRadius="15">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                                    </Frame.GestureRecognizers>
+                                    <RadioButton x:Name="RadioBlackTheme" Value="3" 
+                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                                </Frame>
+                            </StackLayout>
+                            <Label Text="Размер шрифта" FontFamily="LatoLig" TextColor="White" FontSize="28" Margin="15,0,0,0"/>
+                            <Slider x:Name="MySlider"  Maximum="50" Minimum="10" ThumbColor="White" HorizontalOptions="Start" WidthRequest="240"/>
                 </StackLayout>
-            </StackLayout>
-        </Frame>
+                    </StackLayout>
+    </Grid>
     </ContentPage.Content>
 </ContentPage>
