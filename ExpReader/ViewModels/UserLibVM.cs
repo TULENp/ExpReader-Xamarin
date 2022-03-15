@@ -1,15 +1,22 @@
-﻿using ExpReader.Models;
+﻿using Android.Widget;
+using ExpReader.Models;
 using ExpReader.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Net.Http;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ExpReader.ViewModels
 {
     class UserLibVM : BindableObject
     {
-        
+        private string MainIp = "192.168.0.103";
+        private string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Books");
+
         private double _ProgressValue;
         public double ProgressValue
         {
@@ -28,72 +35,60 @@ namespace ExpReader.ViewModels
         ObservableCollection<Book> db { get; set; }
         public UserLibVM()
         {
-            InitBooks();
-            ProgressValue = 1;
-            
+            LoadBooks();
+            GetUserBooks();
+        }
+        public async void LoadBooks()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                string json = await client.GetStringAsync($"http://{MainIp}/Books/GetUserBooks/1");
+                Preferences.Set("UserLib", json);
+            } catch {}
+        }
+        public void GetUserBooks()
+        {
+            string json = Preferences.Get("UserLib", string.Empty);
+            var collection = JsonConvert.DeserializeObject<ObservableCollection<Book>>(json);
+            Books.Clear();
+            foreach (var book in collection)
+            {
+                Books.Add(book);
+            }
         }
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
-        public ICommand TestCommand => new Command(Test1);
 
         public void OpenBook(Book book)
         {
             Shell.Current.Navigation.PushAsync(new ReaderPage(book));
-            
         }
 
-        public void Test1()
+        public ICommand AddBookCommand => new Command(AddBook);
+
+        public async void AddBook()
         {
-
-        }
-
-        private void InitBooks()
-        { 
-            //todo Move this collection to db or somewhere else
-            db = new ObservableCollection<Book>()
+            try
             {
-                new Book
+                var result = await FilePicker.PickAsync();
+                if (result != null)
                 {
-                    Id = 0,
-                    Title = "Преступление и наказание(Pdf)",
-                    Author = "Достоевский Ф.М.",
-                    Path = "prest.pdf"
-                },
-                new Book
-                {
-                    Id = 1,
-                    Title = "Преступление и наказание(Epub)",
-                    Author = "Достоевский Ф.М.",
-                   Path = "prest.epub"
-                },
-                new Book
-                {
-                    Id = 2,
-                    Title = "Мастер и маргарита(F2b)",
-                    Author = "да",
-                    Path = "master.fb2"
-                },
-                new Book
-                {
-                    Id = 3,
-                    Title = "Иэнис",
-                    Author = "zzz",
-                    Path = "ienis.docx"
-                },
-                new Book
-                {
-                    Id = 4,
-                    Title = "Преступление и наказание(Txt)",
-                    Author = "Достоевский Ф.М.",
-                    Path = "prestup.txt",
-                    ReadPages = 0,
-            CurrentPage = 0
+                    if (result.FileName.EndsWith(".txt"))
+                    {
+                        string filepath = Path.Combine(BooksFolderPath, result.FileName);
+                        if (File.Exists(filepath)) Toast.MakeText(Android.App.Application.Context, "Файл уже существует", ToastLength.Long).Show();
+                        else
+                        {
+                            File.Move(result.FullPath, filepath);
+                            Books.Add(new Book { Title = result.FileName, Author = "N/A", CurrentPage = 0, ReadPages = 0, Path = filepath });
+                        }
+                    }
                 }
-    };
-
-            foreach (var file in db)
+            }
+            catch (Exception exc)
             {
-                Books.Add(file);
+                Toast.MakeText(Android.App.Application.Context, exc.Message, ToastLength.Long).Show();
             }
         }
     }
