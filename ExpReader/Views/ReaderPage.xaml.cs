@@ -19,6 +19,9 @@ namespace ExpReader.Views
             BindingContext = new ReaderVM(book);
             Shell.SetNavBarIsVisible(this, false);
             Shell.SetTabBarIsVisible(this, false);
+            MySlider.Value = System.Convert.ToDouble(Settings.ReaderSlider);
+            ReaderText.FontSize = Settings.ReaderSlider;
+            MySlider.ValueChanged += MySlider_ValueChanged;
             //PdfJsWebView.Uri = Path.Combine(FileSystem.AppDataDirectory, book.Path);
             switch (Settings.ReaderTheme)
             {
@@ -34,6 +37,12 @@ namespace ExpReader.Views
             }
         }
         
+        private void MySlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            ReaderText.FontSize = System.Convert.ToInt32(MySlider.Value);
+            Settings.ReaderSlider = System.Convert.ToInt32(MySlider.Value);
+        }
+
         private void ScrollToTop(object sender, System.EventArgs e)
         {
             scroll.ScrollToAsync(0, 0, false);
@@ -54,6 +63,7 @@ namespace ExpReader.Views
                 Settings.ReaderTheme = 3;
             }
             SetReaderTheme();
+            
         }
 
         private void SetReaderTheme()
@@ -61,7 +71,29 @@ namespace ExpReader.Views
             switch(Settings.ReaderTheme)
             {
                 case 1:
-                    
+                    StackBackGround.BackgroundColor = Color.White;
+                    TextBackGround.BackgroundColor = Color.White;
+                    ReaderText.TextColor = Color.Black;
+                    break;
+                case 2:
+                    StackBackGround.BackgroundColor = Color.FromHex("f5e6bd");
+                    TextBackGround.BackgroundColor = Color.FromHex("f5e6bd");
+                    ReaderText.TextColor = Color.Black;
+                    break;
+                case 3:
+                   
+                    StackBackGround.BackgroundColor = Color.Black;
+                    TextBackGround.BackgroundColor = Color.Black;
+                    ReaderText.TextColor = Color.Gray;
+                    break;
+            }
+        }
+        private void SetStatusBarTheme()
+        {
+            var e = DependencyService.Get<IEnvironment>();
+            switch (Settings.ReaderTheme)
+            {
+                case 1:
                     if (App.Current.RequestedTheme == OSAppTheme.Dark)
                     {
                         e?.SetStatusBarColor(Color.White, false);
@@ -70,12 +102,8 @@ namespace ExpReader.Views
                     {
                         e?.SetStatusBarColor(Color.White, true);
                     }
-                    StackBackGround.BackgroundColor = Color.White;
-                    TextBackGround.BackgroundColor = Color.White;
-                    ReaderText.TextColor = Color.Black;
                     break;
                 case 2:
-                    
                     if (App.Current.RequestedTheme == OSAppTheme.Dark)
                     {
                         e?.SetStatusBarColor(Color.FromHex("f5e6bd"), false);
@@ -84,12 +112,8 @@ namespace ExpReader.Views
                     {
                         e?.SetStatusBarColor(Color.FromHex("f5e6bd"), true);
                     }
-                    StackBackGround.BackgroundColor = Color.FromHex("f5e6bd");
-                    TextBackGround.BackgroundColor = Color.FromHex("f5e6bd");
-                    ReaderText.TextColor = Color.Black;
                     break;
                 case 3:
-                    
                     if (App.Current.RequestedTheme == OSAppTheme.Dark)
                     {
                         e?.SetStatusBarColor(Color.Black, false);
@@ -98,9 +122,6 @@ namespace ExpReader.Views
                     {
                         e?.SetStatusBarColor(Color.Black, true);
                     }
-                    StackBackGround.BackgroundColor = Color.Black;
-                    TextBackGround.BackgroundColor = Color.Black;
-                    ReaderText.TextColor = Color.Gray;
                     break;
             }
         }
@@ -109,12 +130,13 @@ namespace ExpReader.Views
         {
             base.OnAppearing();
             HideSettingsPanel();
-            
+            SetStatusBarTheme();
+            //  Window.DecorView.SystemUiVisibility = StatusBarVisibility.Visible;
         }
 
         private async void HideSettingsPanel()
         {
-            SettingsPanel.TranslationY = -80;
+            SettingsPanel.TranslationY = -190;
         }
 
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
@@ -157,10 +179,11 @@ namespace ExpReader.Views
 
         private void TapGestureRecognizer_Tapped_2(object sender, System.EventArgs e)
         {
-            SettingsPanel.TranslateTo(0, -80, 250, Easing.CubicInOut);
+            SettingsPanel.TranslateTo(0, -190, 250, Easing.CubicInOut);
             PanelBackground.BackgroundColor = Color.Transparent;
             PanelBackground.InputTransparent = true;
             SetReaderTheme();
+            SetStatusBarTheme();
         }
 
         private void TapGestureRecognizer_Tapped_3(object sender, System.EventArgs e)
@@ -176,6 +199,11 @@ namespace ExpReader.Views
         private void TapGestureRecognizer_Tapped_5(object sender, System.EventArgs e)
         {
             RadioBlackTheme.IsChecked = true;
+        }
+
+        private async void TapGestureRecognizer_Tapped_6(object sender, System.EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Main");
         }
     }
 }

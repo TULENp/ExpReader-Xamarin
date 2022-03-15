@@ -9,6 +9,7 @@ namespace ExpReader.Services
     {
         const  int theme = 1;
         const int readerTheme = 1;
+        const int readerslider = 22;
         public static int Theme
         {
             get => Preferences.Get(nameof(Theme), theme);
@@ -19,6 +20,12 @@ namespace ExpReader.Services
         {
             get => Preferences.Get(nameof(ReaderTheme), readerTheme);
             set => Preferences.Set(nameof(ReaderTheme), value);
+        }
+
+        public static int ReaderSlider
+        {
+            get => Preferences.Get(nameof(ReaderSlider), readerslider);
+            set => Preferences.Set(nameof(ReaderSlider), value);
         }
     }
 }
