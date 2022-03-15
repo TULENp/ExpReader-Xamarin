@@ -19,7 +19,7 @@ namespace ExpReader.ViewModels
         Book newBook;
         string text;
         string charbook;
-        readonly int pageChars = 900;
+        public readonly static int pageChars = 900;
         int ReadPages;
 
         //int NewBook.Pages;
