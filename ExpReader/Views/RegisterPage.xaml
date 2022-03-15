@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:cs="clr-namespace:ExpReader.CustomeRenderer"
+             x:Class="ExpReader.Views.RegisterPage"
+              Shell.BackgroundColor="#2e74ff">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#171817">
+            <StackLayout>
+                <Image Source="readerLogo.png" HeightRequest="130" Margin="0,40,0,0"/>
+                <StackLayout Margin="25,0,25,0">
+                    <Label Text="Регистрация" FontFamily="LatoHev" TextColor="White" FontSize="36"/>
+                    <Frame BackgroundColor="White" CornerRadius="15" Padding="0" Margin="0,20,0,0">
+                        <StackLayout Orientation="Horizontal" Margin="15,0,15,0" >
+                            <cs:MyCustomeEntry Placeholder="Email..." HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="White" CornerRadius="15" Padding="0" Margin="0,20,0,0">
+                        <StackLayout Orientation="Horizontal" Margin="15,0,15,0" >
+                            <cs:MyCustomeEntry Placeholder="Введите имя..." HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="White" CornerRadius="15" Padding="0" Margin="0,30,0,0">
+                        <StackLayout Orientation="Horizontal" Margin="15,0,15,0" >
+                            <cs:MyCustomeEntry Placeholder="Пароль..." HorizontalOptions="FillAndExpand" IsPassword="True"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Button Clicked="Button_Clicked" CornerRadius="15" Text="Зарегистрироваться" FontFamily="LatoLig" Margin="0,50,0,0" FontSize="18"/>
+                    
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

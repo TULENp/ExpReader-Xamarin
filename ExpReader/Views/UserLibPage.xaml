@@ -22,7 +22,12 @@
         </Grid.RowDefinitions>
 
     <ScrollView>
+            <Grid>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
             <StackLayout Style="{StaticResource MyStackLayout}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
                 <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorTitle1}, Light={StaticResource TextColorTitle}}" Padding="0,0,0,35" Margin="0,0,0,0">
@@ -70,8 +75,10 @@
                     </Grid.RowDefinitions>
                     
                     <StackLayout  Style="{StaticResource MyStackLayout}" Orientation="Horizontal" Margin="30,15,0,0">
+                        <Frame Padding="0" CornerRadius="15" BackgroundColor="Transparent">
 
-                        <SearchBar BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="#AEAEAE" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
+                            <SearchBar BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
+                        </Frame>
 
 
                         <Frame Style="{StaticResource MyFrame1}" HeightRequest="3">
@@ -80,8 +87,8 @@
                             </Frame.GestureRecognizers>
                             <StackLayout Orientation="Horizontal" Padding="-5,-10,-5,-13">
                             <!--Здесь открывается кнопка сортировки-->
-                                <Image Source="SortIconWhite.png" WidthRequest="20" Margin="0,-5,0,0"/>
-                                <Label Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
+                                <Image x:Name="ImageSort" Source="SortIconWhite.png" WidthRequest="20" Margin="0,-5,0,0"/>
+                                <Label x:Name="TextSort" Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
@@ -134,37 +141,46 @@
                         </CollectionView>
                     </StackLayout>
                 </yummy:PancakeView>
-               <StackLayout x:Name="PanelSort" Grid.Row="0" HorizontalOptions="End" TranslationY="60" BackgroundColor="Transparent" Spacing="0" WidthRequest="150" >
-                       <!--Панель сортировки-->
-                        <Frame BorderColor="Black">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer /> <!--Сортировка по названию книги-->
-                            </Frame.GestureRecognizers>
-                            <Label Text="По названию" >
-                                
-                            </Label>
-                        </Frame>
-                        <Frame BorderColor="Black" >
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer />   <!--Сортировка по прочитанным книгам-->
-                            </Frame.GestureRecognizers>
-                            <Label Text="Прочитано"></Label>
-                        </Frame>
-                        <Frame BorderColor="Black" >
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer />   <!--Сортировка по непрочитанным книгам-->
-                            </Frame.GestureRecognizers>
-                            <Label Text="Не прочитано"></Label>
-                        </Frame>
-                    </StackLayout> 
+               
                 </Grid>
-            </StackLayout> 
+            </StackLayout>
+                <StackLayout x:Name="PanelSortBackGround" InputTransparent="True">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout x:Name="PanelSort" Grid.Row="0" HorizontalOptions="End" TranslationY="500" TranslationX="-10" BackgroundColor="Transparent" Spacing="0" WidthRequest="150" >
+                    <!--Панель сортировки-->
+                    <Frame BorderColor="Black">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer />
+                            <!--Сортировка по названию книги-->
+                        </Frame.GestureRecognizers>
+                        <Label Text="По названию" >
 
+                        </Label>
+                    </Frame>
+                    <Frame BorderColor="Black" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer />
+                            <!--Сортировка по прочитанным книгам-->
+                        </Frame.GestureRecognizers>
+                        <Label Text="Прочитано"></Label>
+                    </Frame>
+                    <Frame BorderColor="Black" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer />
+                            <!--Сортировка по непрочитанным книгам-->
+                        </Frame.GestureRecognizers>
+                        <Label Text="Не прочитано"></Label>
+                    </Frame>
+                </StackLayout>
+            </Grid>
     </ScrollView>
 
             
-            <ImageButton Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
-                    HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding AddBookCommand}">
+            <ImageButton x:Name="FabButton" Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
+                    HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding TapCommandRead}">
             <!--Вот здесь кнопка добавления книги-->
         </ImageButton>
     </Grid>        

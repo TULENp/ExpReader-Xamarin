@@ -16,7 +16,7 @@ namespace ExpReadersBack.Controllers
         {
             db = context;
         }
-
+        
         [HttpGet("GetAllBooks")]
         public async Task<ActionResult<List<Book>>> GetAllBooks()
         {
