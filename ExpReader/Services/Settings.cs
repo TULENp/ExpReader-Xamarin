@@ -5,11 +5,14 @@ using Xamarin.Essentials;
 
 namespace ExpReader.Services
 {
-   public static class Settings
+    public static class Settings
     {
-        const  int theme = 1;
+        const int theme = 1;
         const int readerTheme = 1;
         const int readerslider = 22;
+        const int dailyTask = 60;
+
+
         public static int Theme
         {
             get => Preferences.Get(nameof(Theme), theme);
@@ -27,5 +30,11 @@ namespace ExpReader.Services
             get => Preferences.Get(nameof(ReaderSlider), readerslider);
             set => Preferences.Set(nameof(ReaderSlider), value);
         }
+        public static int DailyTask
+        {
+            get => Preferences.Get(nameof(DailyTask), dailyTask);
+            set => Preferences.Set(nameof(DailyTask), value);
+        }
+        
     }
 }

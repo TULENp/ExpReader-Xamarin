@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using ExpReader.Services;
 using System.Runtime.InteropServices.ComTypes;
 //using Android.Content.Res;
 using System;
@@ -11,26 +12,19 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using DAL.Models;
 using Newtonsoft.Json;
+using ExpReader.UserStats.DailyTasks;
 
 namespace ExpReader.ViewModels
 {
     class ReaderVM : BindableObject
     {
+        readonly int pageChars = 900;
         Book newBook;
         string text;
         string charbook;
-        readonly int pageChars = 900;
         int ReadPages;
+        int CurrentPage;
 
-        //int NewBook.Pages;
-        //public int NewBook.Pages
-        //{
-        //    get => NewBook.Pages; set
-        //    {
-        //        NewBook.Pages = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
         public Book NewBook
         {
             get => newBook;
@@ -57,11 +51,14 @@ namespace ExpReader.ViewModels
         }
         public ICommand OpenNextPage => new Command(value =>
         {
-            NewBook.Pages++;
-            ReadPages++;
+            if (CurrentPage == ReadPages)
+            {
+                DailyTask.UpdateTodayReadPages();
+                ReadPages++;
+                CurrentPage++;
+            }
             Text = "";
             ReadPage();
-
         });
         public ICommand OpenPrevPage => new Command(value =>
         {
@@ -72,10 +69,7 @@ namespace ExpReader.ViewModels
                 ReadPage();
             }
         });
-        public void UpdateBookStats()
-        {
-            Preferences.Set(NewBook.FileName, JsonConvert.SerializeObject(NewBook));
-        }
+
         private void ReadPage()
         {
             int readchar = NewBook.Pages * pageChars;
@@ -99,6 +93,10 @@ namespace ExpReader.ViewModels
                     charbook = reader.ReadToEnd();
                 }
             }
+        }
+        void UpdateBookStats()
+        {
+            Preferences.Set(NewBook.FileName, JsonConvert.SerializeObject(NewBook));
         }
 
 

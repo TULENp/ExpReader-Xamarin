@@ -20,28 +20,48 @@ namespace ExpReader.Views
             Shell.SetNavBarIsVisible(this, false);
             switch (Settings.Theme)
             {
-                case 1: SwitchTheme.IsToggled = false;
+                case 1:
+                    SwitchTheme.IsToggled = false;
                     break;
-                case 2: SwitchTheme.IsToggled = true;
+                case 2:
+                    SwitchTheme.IsToggled = true;
                     break;
             }
         }
 
         private void SwitchTheme_Toggled(object sender, ToggledEventArgs e)
         {
-            switch(e.Value)
+            switch (e.Value)
             {
-                case false: Settings.Theme = 1;
+                case false:
+                    Settings.Theme = 1;
                     break;
-                case true: Settings.Theme = 2;
+                case true:
+                    Settings.Theme = 2;
                     break;
             }
             TheTheme.SetTheme();
         }
 
+
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        }
+
+        private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Settings.DailyTask = 60;
+        }
+
+        private void RadioButton_CheckedChanged_1(object sender, CheckedChangedEventArgs e)
+        {
+            Settings.DailyTask = 120;
+        }
+
+        private void RadioButton_CheckedChanged_2(object sender, CheckedChangedEventArgs e)
+        {
+            Settings.DailyTask = 240;
         }
     }
 }

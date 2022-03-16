@@ -1,5 +1,6 @@
 ﻿using ExpReader.Services;
 using ExpReader.Services.Themes;
+using ExpReader.UserStats.DailyTasks;
 using ExpReader.Views;
 using System;
 using Xamarin.Essentials;
@@ -21,6 +22,7 @@ namespace ExpReader
 
         protected override void OnStart()
         {
+
             OnResume();
         }
 
@@ -28,12 +30,21 @@ namespace ExpReader
         {
             TheTheme.SetTheme();
             RequestedThemeChanged -= App_RequestedThemeChanged;
+
         }
 
         protected override void OnResume()
         {
             TheTheme.SetTheme();
             RequestedThemeChanged += App_RequestedThemeChanged;
+
+            //daily task
+            if (DateTime.Today > Preferences.Get("Date", DateTime.MinValue))
+            {
+                //reset TodayReadPages
+                Preferences.Set(nameof(DailyTask.TodayReadPages), 0);
+            }
+            Preferences.Set("Date", DateTime.Today);
         }
 
         private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
