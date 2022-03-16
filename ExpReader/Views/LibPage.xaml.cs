@@ -58,8 +58,8 @@ namespace ExpReader.Views
                 }
                 else
                 {
-                    TextSort.TextColor = Color.FromHex("001EDE");
-                    ImageSort.Source = ImageSource.FromFile("SortIcon.png");
+                    TextSort.TextColor = Color.FromHex("0091FF");
+                    ImageSort.Source = ImageSource.FromFile("SortIconBlueLig.png");
                 }
                 PanelSortBackGround.InputTransparent = false;
                 PanelSort.IsVisible = true;

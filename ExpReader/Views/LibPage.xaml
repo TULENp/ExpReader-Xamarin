@@ -21,17 +21,17 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout  Style="{StaticResource MyStackLayout}">
+                <StackLayout  BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBlue}, Light={StaticResource TextColorTitle}}">
 
                     <Label Text="Каталог книг" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev"/>
 
-                    <StackLayout  Style="{StaticResource MyStackLayout}" Orientation="Horizontal" Margin="24,10,0,0">
+                    <StackLayout  BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBlue}, Light={StaticResource TextColorTitle}}" Orientation="Horizontal" Margin="24,10,0,0">
                         <Frame Padding="0" CornerRadius="15" BackgroundColor="Transparent">
                             <SearchBar BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
                         </Frame>
 
 
-                        <Frame Style="{StaticResource MyFrame1}" HeightRequest="3">
+                        <Frame CornerRadius="15" BackgroundColor="{AppThemeBinding Dark=#121212, Light={StaticResource TextColorTitle}}" HeightRequest="3">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                             </Frame.GestureRecognizers>
@@ -106,13 +106,13 @@
                     </yummy:PancakeView>
                 </StackLayout>
                 
-                <StackLayout x:Name="PanelSortBackGround" InputTransparent="True">
+                <StackLayout x:Name="PanelSortBackGround"  InputTransparent="True">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
-                <StackLayout x:Name="PanelSort"  HorizontalOptions="End" TranslationY="176" TranslationX="-20" BackgroundColor="Transparent" Spacing="0" WidthRequest="140" >
+                <StackLayout x:Name="PanelSort"  HorizontalOptions="End" TranslationY="176" TranslationX="-20" BackgroundColor="Transparent" VerticalOptions="Start" Spacing="0" WidthRequest="140" >
                     <!--Панель сортировки-->
                     <Frame BorderColor="Black">
                         <Frame.GestureRecognizers>

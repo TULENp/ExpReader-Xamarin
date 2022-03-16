@@ -13,7 +13,7 @@ namespace ExpReader.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReaderPage : ContentPage
     {
-        public ReaderPage(Book book)
+        public ReaderPage(Book book) 
         {
             InitializeComponent();
             BindingContext = new ReaderVM(book);
@@ -33,7 +33,7 @@ namespace ExpReader.Views
                     break;
                 case 3:
                     RadioBlackTheme.IsChecked = true;
-                    break;
+                    break;  
             }
         }
         
@@ -43,14 +43,14 @@ namespace ExpReader.Views
             Settings.ReaderSlider = System.Convert.ToInt32(MySlider.Value);
         }
 
-        private void ScrollToTop(object sender, System.EventArgs e)
+        public void ScrollToTop(object sender, System.EventArgs e)
         {
             scroll.ScrollToAsync(0, 0, false);
         }
 
         private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if(RadioWhiteTheme.IsChecked)
+            if(RadioWhiteTheme.IsChecked) 
             {
                 Settings.ReaderTheme = 1;
             }
@@ -71,18 +71,14 @@ namespace ExpReader.Views
             switch(Settings.ReaderTheme)
             {
                 case 1:
-                    //StackBackGround.BackgroundColor = Color.White;
                     TextBackGround.BackgroundColor = Color.White;
                     ReaderText.TextColor = Color.Black;
                     break;
                 case 2:
-                   // StackBackGround.BackgroundColor = Color.FromHex("f5e6bd");
                     TextBackGround.BackgroundColor = Color.FromHex("f5e6bd");
                     ReaderText.TextColor = Color.Black;
                     break;
                 case 3:
-                   
-                   // StackBackGround.BackgroundColor = Color.Black;
                     TextBackGround.BackgroundColor = Color.Black;
                     ReaderText.TextColor = Color.Gray;
                     break;
@@ -136,54 +132,67 @@ namespace ExpReader.Views
 
         private async void HideSettingsPanel()
         {
-            SettingsPanel.TranslationY = -190;
+            SettingsPanel.TranslationY = 190;
         }
 
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
         {
-            SettingsPanel.TranslateTo(0, 0, 250, Easing.CubicInOut);
-            PanelBackground.BackgroundColor = Color.FromRgba(55, 55, 55, 99);
-            PanelBackground.InputTransparent = false;
-            var er = DependencyService.Get<IEnvironment>();
-            if (App.Current.RequestedTheme == OSAppTheme.Dark)
+            if(SettingsPanel.TranslationY ==190)
             {
-                er?.SetStatusBarColor(Color.FromHex("#2e74ff"), false);
+                imageGear.Source = ImageSource.FromFile("gear.png");
+                SettingsPanel.TranslateTo(0, 0, 250, Easing.CubicInOut);
+                PanelBackground.BackgroundColor = Color.FromRgba(55, 55, 55, 99);
+                PanelBackground.InputTransparent = false;
+                var er = DependencyService.Get<IEnvironment>();
+                if (App.Current.RequestedTheme == OSAppTheme.Dark)
+                {
+                    er?.SetStatusBarColor(Color.FromHex("#2e74ff"), false);
+                }
+                else
+                {
+                    er?.SetStatusBarColor(Color.FromHex("#2e74ff"), true);
+                }
             }
             else
             {
-                er?.SetStatusBarColor(Color.FromHex("#2e74ff"), true);
+                TapGestureRecognizer_Tapped_2(sender, e);
             }
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, System.EventArgs e)
         {
             
-            if((imageBack.IsVisible==true) && (imageGear.IsVisible==true))
+            if(UpperPannel.IsVisible==true)
             {
-                imageBack.TranslateTo(0, -80, 250, Easing.CubicIn);
-                imageGear.TranslateTo(0, -80, 250, Easing.CubicIn);
+                UpperPannel.TranslateTo(0, -110, 250, Easing.CubicIn);
                 Task.Delay(250);
-                imageBack.IsVisible = false;
-                Task.Delay(250);
-                imageGear.IsVisible = false;
+                UpperPannel.IsVisible = false;
+                SetStatusBarTheme();
             }
             else
             {
-                imageBack.TranslateTo(0, 0, 250, Easing.CubicInOut);
-                imageBack.IsVisible = true;
-                imageGear.TranslateTo(0, 0, 250, Easing.CubicInOut);
-                imageGear.IsVisible = true;
-
+                UpperPannel.TranslateTo(0, 0, 250, Easing.CubicInOut);
+                UpperPannel.IsVisible = true;
+                var er = DependencyService.Get<IEnvironment>();
+                if (App.Current.RequestedTheme == OSAppTheme.Dark)
+                {
+                    er?.SetStatusBarColor(Color.FromHex("#2e74ff"), false);
+                }
+                else
+                {
+                    er?.SetStatusBarColor(Color.FromHex("#2e74ff"), true);
+                }
             }
         }
 
         private void TapGestureRecognizer_Tapped_2(object sender, System.EventArgs e)
         {
-            SettingsPanel.TranslateTo(0, -190, 250, Easing.CubicInOut);
+            SettingsPanel.TranslateTo(0, 190, 250, Easing.CubicInOut);
+            imageGear.Source = ImageSource.FromFile("gearWhite.png");
             PanelBackground.BackgroundColor = Color.Transparent;
             PanelBackground.InputTransparent = true;
             SetReaderTheme();
-            SetStatusBarTheme();
+           // SetStatusBarTheme();
         }
 
         private void TapGestureRecognizer_Tapped_3(object sender, System.EventArgs e)

@@ -30,7 +30,7 @@
                 
             <StackLayout Style="{StaticResource MyStackLayout}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
-                <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorTitle1}, Light={StaticResource TextColorTitle}}" Padding="0,0,0,35" Margin="0,0,0,0">
+                <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBlue}, Light={StaticResource TextColorTitle}}" Padding="0,0,0,35" Margin="0,0,0,0">
 
                     <Label Text="Библиотека" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev"/>
 
@@ -81,7 +81,7 @@
                         </Frame>
 
 
-                        <Frame Style="{StaticResource MyFrame1}" HeightRequest="3">
+                        <Frame CornerRadius="15" Style="{StaticResource MyFrame1}" HeightRequest="3">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                             </Frame.GestureRecognizers>
@@ -123,13 +123,15 @@
                                                     
                                                 </StackLayout>
 
-                                                    <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+                                                    <StackLayout Orientation="Horizontal" Margin="0,30,0,0" VerticalOptions="End">
 
                                                         <ProgressBar x:Name="progressbar" 
-                                                                     ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
+                                                                     ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#0091FF}"
                                                                      Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
                                                                      Path= ProgressValue}" 
-                                                                     WidthRequest="150"></ProgressBar> 
+                                                                     WidthRequest="150">
+                                                            
+                                                        </ProgressBar> 
 
                                                     </StackLayout>
                                                 </StackLayout>
@@ -144,12 +146,12 @@
                
                 </Grid>
             </StackLayout>
-                <StackLayout x:Name="PanelSortBackGround" InputTransparent="True">
+                <StackLayout x:Name="PanelSortBackGround"  InputTransparent="True">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                <StackLayout x:Name="PanelSort" Grid.Row="0" HorizontalOptions="End" TranslationY="500" TranslationX="-10" BackgroundColor="Transparent" Spacing="0" WidthRequest="150" >
+                <StackLayout x:Name="PanelSort" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Start" TranslationY="500" TranslationX="-10" BackgroundColor="Transparent" Spacing="0" WidthRequest="150" >
                     <!--Панель сортировки-->
                     <Frame BorderColor="Black">
                         <Frame.GestureRecognizers>

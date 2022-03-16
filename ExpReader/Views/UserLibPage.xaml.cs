@@ -30,7 +30,7 @@ namespace ExpReader.Views
             var e = DependencyService.Get<IEnvironment>();
             if (App.Current.RequestedTheme == OSAppTheme.Dark)
             {
-                e?.SetStatusBarColor(Color.FromHex("#001EDE"), false);
+                e?.SetStatusBarColor(Color.FromHex("#0091FF"), false);
             }
             else
             {
@@ -78,8 +78,8 @@ namespace ExpReader.Views
                 }
                 else
                 {
-                    TextSort.TextColor = Color.FromHex("001EDE");
-                    ImageSort.Source = ImageSource.FromFile("SortIcon.png");
+                    TextSort.TextColor = Color.FromHex("0091FF");
+                    ImageSort.Source = ImageSource.FromFile("SortIconBlueLig.png");
                 }
                 PanelSortBackGround.InputTransparent = false;
                 FabButton.IsVisible = false;

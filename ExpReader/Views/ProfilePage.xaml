@@ -37,7 +37,7 @@
                                FontSize="19" TextColor="White"/>
                         <Frame Grid.Row="2" CornerRadius="10" Margin="0,0,15,0" Padding="0" Style="{StaticResource FrameProfile1}">
                             <StackLayout Orientation="Horizontal" Spacing="0">
-                                <Image Source="PrizeBlue.png" Margin="5,0,0,0" WidthRequest="40" HeightRequest="50"/>
+                                <Image x:Name="Prize"  Margin="5,0,0,0" WidthRequest="40" HeightRequest="50"/>
                                 <Label Text="Всего страниц" FontFamily="LatoLig" 
                                        FontSize="17" Margin="0,18,0,0" TextColor="{AppThemeBinding Light=Black,Dark=White}"/>
                                 <Label Text="1315" FontFamily="LatoHev" 
