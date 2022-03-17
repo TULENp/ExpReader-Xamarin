@@ -30,17 +30,20 @@ namespace ExpReader.ViewModels
                 OnPropertyChanged();
             }
         }
+        int userid = 1; //TODO Move it to session user and get from
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
         public UserLibVM()
         {
             SetUserBooks();
             GetUserBooks();
+            SetUserBookStats();
         }
 
+        //Get user's books from db and write it to preferences. 
         public void SetUserBooks()
         {
             List<string> booknames = new List<string>();
-            string json = DBService.GetUserBooks(1).Result;
+            string json = DBService.GetUserBooks(userid).Result;
             List <Book> collection = JsonConvert.DeserializeObject<List<Book>>(json.ToString());
             foreach (var file in collection)
             {
@@ -51,12 +54,10 @@ namespace ExpReader.ViewModels
         }
         //TODO Add UserBookStats get/set methods.
         //TODO Add Update db method (ondestroy(), onstart()).
-        //TODO Get userId and store it. 
-        //TODO Add online book page.
-        //TODO Add SignUp SignIn VMs and save user into prefernces. 
+        //TODO Add SignUp SignIn VMs and save user into prefernces (id included). 
         //TODO Add LastReadBook.
         //TODO Search and Sort. 
-        //TODO Add motivation system (Daily tasks, Achives, Book rare system/read sys).
+        //TODO Add motivation system (+Daily tasks, Achives, Book rare system/read sys). 
         private void GetUserBooks() 
         {
             string json = Preferences.Get("BookNames", string.Empty);
@@ -66,7 +67,17 @@ namespace ExpReader.ViewModels
             {
                 Books.Add(JsonConvert.DeserializeObject<Book>(Preferences.Get(name, string.Empty)));
             }
+        }
 
+        // Get userbookstats drom db and separately write to preferences.
+        public void SetUserBookStats()
+        {
+            string json = DBService.GetUserBookStats(userid).Result;
+            List<UserBook> collection = JsonConvert.DeserializeObject<List<UserBook>>(json.ToString());
+            foreach (var file in collection)
+            {
+                Preferences.Set(file.BookId.ToString(), JsonConvert.SerializeObject(file));
+            }
         }
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
