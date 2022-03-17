@@ -1,5 +1,6 @@
 ﻿using ExpReader.Services.Themes;
-using ExpReader.UserStats.DailyTasks;
+using ExpReader.Services;
+using ExpReader.DailyTasks;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
