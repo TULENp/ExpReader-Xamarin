@@ -24,6 +24,15 @@ namespace ExpReadersBack.Controllers
         }
 
         [HttpGet("GetBook")]
-        public Task<Book> GetBook(int id) => db.Books.FirstOrDefaultAsync(b => b.Id == id);
+        public async Task<Book> GetBook(int id) => await db.Books.FirstOrDefaultAsync(b => b.Id == id);
+
+        [HttpGet("GetUserBooks/{userid}")]
+        public async Task<List<Book>> GetUserBook(int userid)
+        {
+            var data = from b in db.Books
+                       join ub in db.UserBooks on b.Id equals ub.BookId where ub.UserId == userid
+                       select b;
+            return await data.ToListAsync();
+        }
     }
 }

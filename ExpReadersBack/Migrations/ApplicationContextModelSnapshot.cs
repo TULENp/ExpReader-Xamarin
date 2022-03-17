@@ -68,6 +68,12 @@ namespace ExpReadersBack.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CurrentPage")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<DateTime>("LastBookDate")
                         .HasColumnType("datetime");
 

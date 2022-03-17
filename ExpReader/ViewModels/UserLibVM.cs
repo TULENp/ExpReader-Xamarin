@@ -1,24 +1,23 @@
-﻿using DAL.Models;
+﻿using Android.Widget;
+using DAL.Models;
 using ExpReader.Views;
 using Newtonsoft.Json;
-using Org.Apache.Http.Authentication;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Net.Http;
+using System.IO;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.Icu.Text.CaseMap;
-using static Android.Resource;
+using ExpReader.Services;
 
 namespace ExpReader.ViewModels
 {
     internal class UserLibVM : BindableObject
     {
-        //List<Book> collection;
-        double progressValue;
+        private string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Books");
 
+        private double progressValue;
         public double ProgressValue
         {
             get
@@ -31,21 +30,21 @@ namespace ExpReader.ViewModels
                 OnPropertyChanged();
             }
         }
+        int userid = 1; //TODO Move it to session user and get from
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
-
-        public ICommand OpenBookCommand => new Command<Book>(OpenBookPage);
-
         public UserLibVM()
         {
             SetUserBooks();
             GetUserBooks();
+            SetUserBookStats();
         }
+
+        //Get user's books from db and write it to preferences. 
         public void SetUserBooks()
         {
             List<string> booknames = new List<string>();
-            HttpClient client = new HttpClient();
-            var json = "[{\"Id\":0,\"Title\":\"(МЯУ)Преступление и наказание(Pdf)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.pdf\",\"Pages\":0},{\"Id\":1,\"Title\":\"Преступление и наказание(Epub)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.epub\",\"Pages\":0},{\"Id\":2,\"Title\":\"Мастер и маргарита(F2b)\",\"Author\":\"да\",\"FileName\":\"master.fb2\",\"Pages\":0},{\"Id\":3,\"Title\":\"Иэнис\",\"Author\":\"zzz\",\"FileName\":\"ienis.docx\",\"Pages\":0},{\"Id\":4,\"Title\":\"Преступление и наказание(Txt)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prestup.txt\",\"Pages\":0}]";
-            List<Book> collection = JsonConvert.DeserializeObject<List<Book>>(json);
+            string json = DBService.GetUserBooks(userid).Result;
+            List <Book> collection = JsonConvert.DeserializeObject<List<Book>>(json.ToString());
             foreach (var file in collection)
             {
                 Preferences.Set(file.FileName, JsonConvert.SerializeObject(file));
@@ -53,7 +52,13 @@ namespace ExpReader.ViewModels
             }
             Preferences.Set("BookNames", JsonConvert.SerializeObject(booknames));
         }
-        private void GetUserBooks()
+        //TODO Add UserBookStats get/set methods.
+        //TODO Add Update db method (ondestroy(), onstart()).
+        //TODO Add SignUp SignIn VMs and save user into prefernces (id included). 
+        //TODO Add LastReadBook.
+        //TODO Search and Sort. 
+        //TODO Add motivation system (+Daily tasks, Achives, Book rare system/read sys). 
+        private void GetUserBooks() 
         {
             string json = Preferences.Get("BookNames", string.Empty);
             var collection = JsonConvert.DeserializeObject<List<string>>(json);
@@ -62,23 +67,51 @@ namespace ExpReader.ViewModels
             {
                 Books.Add(JsonConvert.DeserializeObject<Book>(Preferences.Get(name, string.Empty)));
             }
-
         }
+
+        // Get userbookstats drom db and separately write to preferences.
         public void SetUserBookStats()
         {
-            List<string> bookStats = new List<string>();
-            string json = "";
+            string json = DBService.GetUserBookStats(userid).Result;
             List<UserBook> collection = JsonConvert.DeserializeObject<List<UserBook>>(json.ToString());
             foreach (var file in collection)
             {
                 Preferences.Set(file.BookId.ToString(), JsonConvert.SerializeObject(file));
-                bookStats.Add(file.BookId.ToString());
             }
-            Preferences.Set("BookStats", JsonConvert.SerializeObject(bookStats));
         }
-        private void OpenBookPage(Book book)
+
+        public ICommand OpenBookCommand => new Command<Book>(OpenBook);
+        private void OpenBook(Book book)
         {
             Shell.Current.Navigation.PushAsync(new ReaderPage(book));
+        }
+        public ICommand AddBookCommand => new Command(AddBook);
+
+        public async void AddBook()
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync();
+                if (result != null)
+                {
+                    if (result.FileName.EndsWith(".txt"))
+                    {
+                        string filepath = Path.Combine(BooksFolderPath, result.FileName);
+                        if (File.Exists(filepath)) Toast.MakeText(Android.App.Application.Context, "Файл уже существует", ToastLength.Long).Show();
+                        else
+                        {
+                            File.Move(result.FullPath, filepath);
+                            string txt = File.ReadAllText(result.FullPath);
+                            int pages = txt.Length / ReaderVM.pageChars + 1;
+                            Books.Add(new Book { Title = result.FileName, Author = "N/A", FileName=result.FileName, Pages=pages });
+                        }
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Toast.MakeText(Android.App.Application.Context, exc.Message, ToastLength.Long).Show();
+            }
         }
     }
 }

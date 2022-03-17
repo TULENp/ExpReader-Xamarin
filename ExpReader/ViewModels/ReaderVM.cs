@@ -22,7 +22,9 @@ namespace ExpReader.ViewModels
         Book newBook;
         string text;
         string charbook;
+        public readonly static int pageChars = 900;
         int ReadPages;
+        UserBook stats;
         int CurrentPage;
 
         public Book NewBook
@@ -48,6 +50,7 @@ namespace ExpReader.ViewModels
             NewBook = book;
             OpenBook();
             ReadPage();
+            stats = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(NewBook.Id.ToString(), string.Empty));
         }
         public ICommand OpenNextPage => new Command(value =>
         {
