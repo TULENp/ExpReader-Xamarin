@@ -18,8 +18,8 @@ namespace ExpReadersBack.Controllers
             db = context;
         }
 
-        [HttpGet("GetBookStats/{userid}")]
-        public async Task<List<UserBook>> GetUserBooks(int userid)
+        [HttpGet("GetUserBookStats/{userid}")]
+        public async Task<List<UserBook>> GetUserBookStats(int userid)
         {
             var data = from ub in db.UserBooks where ub.UserId == userid select ub;
             return await data.ToListAsync();
