@@ -11,6 +11,7 @@ namespace ExpReader.UserStats.DailyTasks
     {
         public static int TodayReadPages;
 
+
         public static void UpdateTodayReadPages()
         {
             TodayReadPages++;

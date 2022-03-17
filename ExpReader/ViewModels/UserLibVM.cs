@@ -33,7 +33,7 @@ namespace ExpReader.ViewModels
         }
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
 
-        public ICommand OpenBookCommand => new Command<Book>(OpenBook);
+        public ICommand OpenBookCommand => new Command<Book>(OpenBookPage);
 
         public UserLibVM()
         {
@@ -64,7 +64,19 @@ namespace ExpReader.ViewModels
             }
 
         }
-        private void OpenBook(Book book)
+        public void SetUserBookStats()
+        {
+            List<string> bookStats = new List<string>();
+            string json = "";
+            List<UserBook> collection = JsonConvert.DeserializeObject<List<UserBook>>(json.ToString());
+            foreach (var file in collection)
+            {
+                Preferences.Set(file.BookId.ToString(), JsonConvert.SerializeObject(file));
+                bookStats.Add(file.BookId.ToString());
+            }
+            Preferences.Set("BookStats", JsonConvert.SerializeObject(bookStats));
+        }
+        private void OpenBookPage(Book book)
         {
             Shell.Current.Navigation.PushAsync(new ReaderPage(book));
         }

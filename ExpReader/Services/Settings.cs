@@ -30,11 +30,12 @@ namespace ExpReader.Services
             get => Preferences.Get(nameof(ReaderSlider), readerslider);
             set => Preferences.Set(nameof(ReaderSlider), value);
         }
+        //todo save radio button isChecked
         public static int DailyTask
         {
             get => Preferences.Get(nameof(DailyTask), dailyTask);
             set => Preferences.Set(nameof(DailyTask), value);
         }
-        
+
     }
 }

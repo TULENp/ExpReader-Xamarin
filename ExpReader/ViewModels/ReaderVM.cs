@@ -55,8 +55,8 @@ namespace ExpReader.ViewModels
             {
                 DailyTask.UpdateTodayReadPages();
                 ReadPages++;
-                CurrentPage++;
             }
+            NewBook.Pages++;
             Text = "";
             ReadPage();
         });
@@ -72,7 +72,7 @@ namespace ExpReader.ViewModels
 
         private void ReadPage()
         {
-            int readchar = NewBook.Pages * pageChars;
+            int readchar = CurrentPage * pageChars;
             int i;
             for (i = readchar; i < readchar + pageChars; i++)
             {

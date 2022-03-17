@@ -14,14 +14,12 @@ namespace ExpReader.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserLibPage : ContentPage
     {
-        
         public UserLibPage()
         {
             InitializeComponent();
             Shell.SetNavBarIsVisible(this, false);
             //Shell.SetTabBarIsVisible(this, true);
             HidePanelSort();
-            
         }
 
         protected override void OnAppearing()
@@ -39,8 +37,8 @@ namespace ExpReader.Views
         }
         private void HidePanelSort()
         {
-           PanelSort.Scale = 0;
-           PanelSort.IsVisible = false;
+            PanelSort.Scale = 0;
+            PanelSort.IsVisible = false;
         }
 
 
@@ -51,8 +49,8 @@ namespace ExpReader.Views
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-             if(PanelSort.IsVisible)
-             {
+            if (PanelSort.IsVisible)
+            {
                 if (Settings.Theme == 1)
                 {
                     TextSort.TextColor = Color.White;
@@ -68,9 +66,9 @@ namespace ExpReader.Views
                 PanelSort.ScaleTo(0, 250, Easing.CubicIn);
                 await Task.Delay(250);
                 PanelSort.IsVisible = false;
-             }
-             else
-             {
+            }
+            else
+            {
                 if (Settings.Theme == 1)
                 {
                     TextSort.TextColor = Color.Black;
@@ -85,7 +83,7 @@ namespace ExpReader.Views
                 FabButton.IsVisible = false;
                 PanelSort.IsVisible = true;
                 PanelSort.ScaleTo(1, 250, Easing.CubicOut);
-             }
+            }
 
         }
 

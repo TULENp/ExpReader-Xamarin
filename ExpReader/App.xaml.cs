@@ -1,8 +1,8 @@
-﻿using ExpReader.Services;
-using ExpReader.Services.Themes;
+﻿using ExpReader.Services.Themes;
 using ExpReader.UserStats.DailyTasks;
-using ExpReader.Views;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -22,8 +22,8 @@ namespace ExpReader
 
         protected override void OnStart()
         {
-
             OnResume();
+            //UpdateDb();
         }
 
         protected override void OnSleep()
@@ -53,6 +53,15 @@ namespace ExpReader
             {
                 TheTheme.SetTheme();
             });
+        }
+        private void UpdateDb()
+        {
+            var stats = JsonConvert.DeserializeObject<List<string>>(Preferences.Get("BookStats", string.Empty));
+            foreach (var statId in stats)
+            {
+                var stat = Preferences.Get(statId, string.Empty);
+                //SetUserBook(stat);
+            }
         }
     }
 }
