@@ -18,6 +18,17 @@ namespace ExpReader.ViewModels
         private string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Books");
         private int userid;
         private double progressValue;
+        private UserStats userStats;
+        private Book lastReadBook;
+        public Book LastReadBook
+        {
+            get => lastReadBook;
+            set
+            {
+                lastReadBook = value;
+                OnPropertyChanged();
+            }
+        }
         public double ProgressValue
         {
             get
@@ -58,7 +69,7 @@ namespace ExpReader.ViewModels
         //TODO Add LastReadBook.
         //TODO Search and Sort. 
         //TODO Add motivation system (+Daily tasks, Achives, Book rare system/read sys). 
-        private void GetUserBooks() 
+        public void GetUserBooks() 
         {
             string json = Preferences.Get("BookNames", string.Empty);
             var collection = JsonConvert.DeserializeObject<List<string>>(json);
@@ -69,23 +80,40 @@ namespace ExpReader.ViewModels
             }
         }
 
-        // Get userbookstats drom db and separately write to preferences.
+        // Get userbookstats from db and separately write to preferences.
         public void SetUserBookStats()
         {
+            List<string> userstatsids = new List<string>();
             string json = DBService.GetUserBookStats(userid).Result;
             List<UserBook> collection = JsonConvert.DeserializeObject<List<UserBook>>(json.ToString());
             foreach (var file in collection)
             {
                 Preferences.Set(file.BookId.ToString(), JsonConvert.SerializeObject(file));
+                userstatsids.Add(file.BookId.ToString());
+                // TODO Мы перепутали юзерстатс и юзербукстатс 
             }
+            Preferences.Set("UserStats", JsonConvert.SerializeObject(userstatsids));
         }
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
         private void OpenBook(Book book)
         {
-            Shell.Current.Navigation.PushAsync(new ReaderPage(book));
+            string directory = Path.Combine(BooksFolderPath, book.FileName);
+            if (!File.Exists(directory))
+            {
+                try
+                {
+                    byte[] array = DBService.DownloadBook(book.FileName);
+                    File.WriteAllBytes(directory, array);
+                    Toast.MakeText(Android.App.Application.Context, "Загрузка...", ToastLength.Long).Show();
+                } catch(Exception exc) { Toast.MakeText(Android.App.Application.Context, exc.Message, ToastLength.Long).Show(); }
+            } else
+            {
+                Shell.Current.Navigation.PushAsync(new ReaderPage(book));
+            }
         }
         public ICommand AddBookCommand => new Command(AddBook);
+
 
         public async void AddBook()
         {
@@ -112,6 +140,16 @@ namespace ExpReader.ViewModels
             {
                 Toast.MakeText(Android.App.Application.Context, exc.Message, ToastLength.Long).Show();
             }
+
+
+        }
+
+        public void SetLastReadBook()
+        {
+            string str = Settings.userStats;
+            userStats = JsonConvert.DeserializeObject<UserStats>(str);
+            string st = Preferences.Get(userStats.LastReadBook, string.Empty);
+            LastReadBook = JsonConvert.DeserializeObject<Book>(st);
         }
     }
 }

@@ -12,20 +12,21 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using DAL.Models;
 using Newtonsoft.Json;
-using ExpReader.UserStats.DailyTasks;
+using static System.Net.Mime.MediaTypeNames;
+using Acr.UserDialogs;
+using ExpReader.DailyTasks;
 
 namespace ExpReader.ViewModels
 {
     class ReaderVM : BindableObject
     {
-        readonly int pageChars = 900;
-        Book newBook;
+        public static readonly int pageChars = 900;
         string text;
         string charbook;
-        public readonly static int pageChars = 900;
-        int ReadPages;
-        UserBook stats;
-        int CurrentPage;
+        Book newBook;
+        UserBook Stats;
+        UserStats userStats;
+        string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Books");
 
         public Book NewBook
         {
@@ -33,6 +34,15 @@ namespace ExpReader.ViewModels
             set
             {
                 newBook = value;
+                OnPropertyChanged();
+            }
+        }
+        public int CurrentPage
+        {
+            get => Stats.CurrentPage;
+            set
+            {
+                Stats.CurrentPage = value;
                 OnPropertyChanged();
             }
         }
@@ -48,26 +58,39 @@ namespace ExpReader.ViewModels
         public ReaderVM(Book book)
         {
             NewBook = book;
+            Stats = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(NewBook.Id.ToString(), string.Empty));
+            userStats = JsonConvert.DeserializeObject<UserStats>(Preferences.Get("UserStats", string.Empty));
+            userStats.LastReadBook = NewBook.FileName;
             OpenBook();
             ReadPage();
-            stats = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(NewBook.Id.ToString(), string.Empty));
+            UpdateUserStats();
         }
         public ICommand OpenNextPage => new Command(value =>
         {
-            if (CurrentPage == ReadPages)
+            if (Stats.CurrentPage != NewBook.Pages)
             {
-                DailyTask.UpdateTodayReadPages();
-                ReadPages++;
+                if (Stats.CurrentPage == Stats.ReadPages)
+                {
+                    DailyTask.UpdateTodayReadPages();
+                    Stats.ReadPages++;
+                }
+                Stats.CurrentPage++;
+                Text = "";
+                ReadPercentCheck();
+                ReadPage();
+
             }
-            NewBook.Pages++;
-            Text = "";
-            ReadPage();
+            else
+            {
+                Stats.IsRead = true;
+                UserDialogs.Instance.Alert("Read");
+            }
         });
         public ICommand OpenPrevPage => new Command(value =>
         {
-            if (NewBook.Pages != 0)
+            if (Stats.CurrentPage != 0)
             {
-                NewBook.Pages--;
+                Stats.CurrentPage--;
                 Text = "";
                 ReadPage();
             }
@@ -75,21 +98,25 @@ namespace ExpReader.ViewModels
 
         private void ReadPage()
         {
-            int readchar = CurrentPage * pageChars;
+            int readchar = Stats.CurrentPage * pageChars;
+            string pagetext = "";
             int i;
             for (i = readchar; i < readchar + pageChars; i++)
             {
-                Text += charbook[i];
+                pagetext += charbook[i];
             }
             if (!(Char.IsWhiteSpace(charbook[i - 1]) || charbook[i - 1] == '-'))
             {
-                Text += '-';
+                pagetext += '-';
             }
+            Text = pagetext.Replace("</p><p>", " ");
             UpdateBookStats();
         }
-        private async void OpenBook()
+        private void OpenBook()
         {
-            using (var stream = await FileSystem.OpenAppPackageFileAsync(NewBook.FileName))
+            // TODO Change Path 
+            string path = Path.Combine(BooksFolderPath, NewBook.FileName);
+            using (var stream = File.OpenRead(path))
             {
                 using (StreamReader reader = new StreamReader(stream))
                 {
@@ -99,9 +126,34 @@ namespace ExpReader.ViewModels
         }
         void UpdateBookStats()
         {
-            Preferences.Set(NewBook.FileName, JsonConvert.SerializeObject(NewBook));
+            Preferences.Set(NewBook.Id.ToString(), JsonConvert.SerializeObject(Stats));
         }
+        void UpdateUserStats()
+        {
+            Settings.userStats = JsonConvert.SerializeObject(userStats);
+        }
+        void ReadPercentCheck()
+        {
+            int bronze = (NewBook.Pages * 30) / 100;
+            int silver = (NewBook.Pages * 60) / 100;
+            int gold = NewBook.Pages;
 
+            if (Stats.ReadPages == bronze)
+            {
+                //присвоить бронзовую обложку
+                UserDialogs.Instance.Alert("Bronze");
+            }
+            else if (Stats.ReadPages == silver)
+            {
+                //присвоить серебряную обложку
+                UserDialogs.Instance.Alert("Silver");
+            }
+            else if (Stats.ReadPages == gold)
+            {
+                //присвоить золотую обложку
+                UserDialogs.Instance.Alert("Gold");
+            }
 
+        }
     }
 }
