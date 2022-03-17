@@ -1,4 +1,5 @@
 ﻿using ExpReader.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace ExpReader.Views
         {
             InitializeComponent();
             profileVM = new ProfileVM();
+
             Shell.SetNavBarIsVisible(this, false);
         }
         protected override void OnAppearing()

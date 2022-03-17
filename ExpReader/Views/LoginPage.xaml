@@ -15,12 +15,12 @@
                     <Label Text="Пожалуйста войдите в свой аккаунт" FontFamily="LatoLig" TextColor="White" FontSize="18" Margin="0,5,0,0"/>
                     <Frame BackgroundColor="White" CornerRadius="15" Padding="0" Margin="0,20,0,0">
                         <StackLayout Orientation="Horizontal" Margin="15,0,15,0" >
-                            <cs:MyCustomeEntry Placeholder="Email..." HorizontalOptions="FillAndExpand"/>
+                            <cs:MyCustomeEntry x:Name="LogEntry" Placeholder="Email..." HorizontalOptions="FillAndExpand"/>
                         </StackLayout>
                     </Frame>
                     <Frame BackgroundColor="White" CornerRadius="15" Padding="0" Margin="0,30,0,0">
                         <StackLayout Orientation="Horizontal" Margin="15,0,15,0" >
-                            <cs:MyCustomeEntry Placeholder="Пароль..." HorizontalOptions="FillAndExpand" IsPassword="True"/>
+                            <cs:MyCustomeEntry x:Name="PasEntry" Placeholder="Пароль..." HorizontalOptions="FillAndExpand" IsPassword="True"/>
                         </StackLayout>
                     </Frame>
                     <Label Text="Забыли пароль?" FontFamily="LatoLig" TextColor="#EE3354" FontSize="15" Margin="0,15,0,0" HorizontalOptions="EndAndExpand"/>

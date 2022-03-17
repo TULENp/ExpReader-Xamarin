@@ -16,7 +16,7 @@ namespace ExpReader.ViewModels
     internal class UserLibVM : BindableObject
     {
         private string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Books");
-
+        private int userid;
         private double progressValue;
         public double ProgressValue
         {
@@ -30,10 +30,10 @@ namespace ExpReader.ViewModels
                 OnPropertyChanged();
             }
         }
-        int userid = 1; //TODO Move it to session user and get from
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
         public UserLibVM()
         {
+            userid = Preferences.Get("TempUserId", -1);
             SetUserBooks();
             GetUserBooks();
             SetUserBookStats();

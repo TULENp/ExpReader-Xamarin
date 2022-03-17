@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ExpReader.Services;
+using Xamarin.Essentials;
 
 namespace ExpReader.Views
 {
@@ -23,8 +25,14 @@ namespace ExpReader.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            
-            await  Shell.Current.GoToAsync("//Main");
+            try
+            {
+                // !!! Remove if!
+                if (LogEntry.Text == "" && PasEntry.Text == "") { LogEntry.Text = "admin"; PasEntry.Text = "admin"; }
+                int userid = DBService.GetUserId(LogEntry.Text, PasEntry.Text).Result;
+                Preferences.Set("TempUserId", userid);
+                await Shell.Current.GoToAsync("//Main");
+            } catch { }
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

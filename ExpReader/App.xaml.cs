@@ -22,12 +22,21 @@ namespace ExpReader
         protected override void OnStart()
         {
             OnResume();
+            try
+            {
+                DBService.UpdateDb();
+            }
+            catch { }
         }
 
         protected override void OnSleep()
         {
             TheTheme.SetTheme();
             RequestedThemeChanged -= App_RequestedThemeChanged;
+            try
+            {
+                DBService.UpdateDb();
+            } catch { }
         }
 
         protected override void OnResume()
@@ -35,6 +44,7 @@ namespace ExpReader
             TheTheme.SetTheme();
             RequestedThemeChanged += App_RequestedThemeChanged;
         }
+        
 
         private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {
