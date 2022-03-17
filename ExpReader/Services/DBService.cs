@@ -30,6 +30,10 @@ namespace ExpReader.Services
         {
             client.PostAsJsonAsync($"http://{MainIp}/UserBook/SetUserBook", userBook);
         }
+        public static void AddUserBookStats(UserBook userBook)
+        {
+            client.PostAsJsonAsync($"http://{MainIp}/UserBook/AddUserBook", userBook);
+        }
 
         public static async Task<string> GetUserBookStats(int userid)
         {
@@ -57,6 +61,18 @@ namespace ExpReader.Services
             string json = await client.GetStringAsync($"http://{MainIp}/User/SignIn?login={log}&password={pas}").ConfigureAwait(false);
             User temp = JsonConvert.DeserializeObject<User>(json);
             return temp.Id;
+        }
+
+        public static byte[] DownloadBook(string filename)
+        {
+            byte[] array = client.GetByteArrayAsync($"http://{MainIp}/Files/Books/{filename}").Result;
+            return array;
+        }
+
+        public static string GetUserStats(int userid)
+        {
+            string json = client.GetStringAsync($"http://{MainIp}/UserStats/GetUserStats/{userid}").Result;
+            return json;
         }
     }
     
