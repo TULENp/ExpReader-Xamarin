@@ -19,13 +19,10 @@ namespace ExpReader.ViewModels
     class ReaderVM : BindableObject
     {
         readonly int pageChars = 900;
-        Book newBook;
         string text;
         string charbook;
-        public readonly static int pageChars = 900;
-        int ReadPages;
-        UserBook stats;
-        int CurrentPage;
+        Book newBook;
+        UserBook Stats;
 
         public Book NewBook
         {
@@ -33,6 +30,15 @@ namespace ExpReader.ViewModels
             set
             {
                 newBook = value;
+                OnPropertyChanged();
+            }
+        }
+        public int CurrentPage
+        {
+            get => Stats.CurrentPage;
+            set
+            {
+                Stats.CurrentPage = value;
                 OnPropertyChanged();
             }
         }
@@ -48,18 +54,18 @@ namespace ExpReader.ViewModels
         public ReaderVM(Book book)
         {
             NewBook = book;
+            Stats = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(NewBook.Id.ToString(), string.Empty));
             OpenBook();
             ReadPage();
-            stats = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(NewBook.Id.ToString(), string.Empty));
         }
         public ICommand OpenNextPage => new Command(value =>
         {
-            if (CurrentPage == ReadPages)
+            if (Stats.CurrentPage == Stats.ReadPages)
             {
                 DailyTask.UpdateTodayReadPages();
-                ReadPages++;
+                Stats.ReadPages++;
             }
-            NewBook.Pages++;
+            Stats.CurrentPage++;
             Text = "";
             ReadPage();
         });
@@ -67,7 +73,7 @@ namespace ExpReader.ViewModels
         {
             if (NewBook.Pages != 0)
             {
-                NewBook.Pages--;
+                Stats.CurrentPage--;
                 Text = "";
                 ReadPage();
             }
@@ -75,7 +81,7 @@ namespace ExpReader.ViewModels
 
         private void ReadPage()
         {
-            int readchar = CurrentPage * pageChars;
+            int readchar = Stats.CurrentPage * pageChars;
             int i;
             for (i = readchar; i < readchar + pageChars; i++)
             {
@@ -99,7 +105,7 @@ namespace ExpReader.ViewModels
         }
         void UpdateBookStats()
         {
-            Preferences.Set(NewBook.FileName, JsonConvert.SerializeObject(NewBook));
+            Preferences.Set(NewBook.Id.ToString(), JsonConvert.SerializeObject(Stats));
         }
 
 
