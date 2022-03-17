@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -26,6 +27,12 @@ namespace ExpReader.Services
         public static void SetUserBook(UserBook userBook)
         {
             client.PostAsJsonAsync($"http://{MainIp}/UserBook/SetUserBook", userBook);
+        }
+
+        public static async Task<string> GetUserBookStats(int userid)
+        {
+            string jsonstring = await client.GetStringAsync($"http://{MainIp}/UserBook/GetUserBookStats/{userid}").ConfigureAwait(false);
+            return jsonstring;
         }
     }
     
