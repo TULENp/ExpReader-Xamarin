@@ -33,7 +33,7 @@ namespace ExpReader.ViewModels
         }
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
 
-        public ICommand OpenBookCommand => new Command<Book>(OpenBook);
+        public ICommand OpenBookCommand => new Command<Book>(OpenBookPage);
 
         public UserLibVM()
         {
@@ -64,7 +64,20 @@ namespace ExpReader.ViewModels
             }
 
         }
-        private void OpenBook(Book book)
+        public void SetUserBookStats()
+        {
+            List<string> booknames = new List<string>();
+            HttpClient client = new HttpClient();
+            var json = "[{\"Id\":0,\"Title\":\"(МЯУ)Преступление и наказание(Pdf)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.pdf\",\"Pages\":0},{\"Id\":1,\"Title\":\"Преступление и наказание(Epub)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.epub\",\"Pages\":0},{\"Id\":2,\"Title\":\"Мастер и маргарита(F2b)\",\"Author\":\"да\",\"FileName\":\"master.fb2\",\"Pages\":0},{\"Id\":3,\"Title\":\"Иэнис\",\"Author\":\"zzz\",\"FileName\":\"ienis.docx\",\"Pages\":0},{\"Id\":4,\"Title\":\"Преступление и наказание(Txt)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prestup.txt\",\"Pages\":0}]";
+            List<Book> collection = JsonConvert.DeserializeObject<List<Book>>(json);
+            foreach (var file in collection)
+            {
+                Preferences.Set(file.FileName, JsonConvert.SerializeObject(file));
+                booknames.Add(file.FileName);
+            }
+            Preferences.Set("BookNames", JsonConvert.SerializeObject(booknames));
+        }
+        private void OpenBookPage(Book book)
         {
             Shell.Current.Navigation.PushAsync(new ReaderPage(book));
         }

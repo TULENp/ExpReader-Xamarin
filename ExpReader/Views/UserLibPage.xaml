@@ -2,11 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="ExpReader.Views.UserLibPage">
+             x:Class="ExpReader.Views.UserLibPage"
+             x:DataType="vm:UserLibVM">
 
-    <ContentPage.BindingContext>
-        <vm:UserLibVM />
-    </ContentPage.BindingContext>
+
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -21,129 +20,130 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-    <ScrollView>
+        <ScrollView>
             <Grid>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-            <StackLayout Style="{StaticResource MyStackLayout}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
-                <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorTitle1}, Light={StaticResource TextColorTitle}}" Padding="0,0,0,35" Margin="0,0,0,0">
+                <StackLayout Style="{StaticResource MyStackLayout}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
-                    <Label Text="Библиотека" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev"/>
+                    <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorTitle1}, Light={StaticResource TextColorTitle}}" Padding="0,0,0,35" Margin="0,0,0,0">
 
-                </StackLayout>
-                <!-- <StackLayout BackgroundColor="{StaticResource SecColor}" Orientation="Vertical" IsVisible="true" Margin="0,-6,0,-6">-->
+                        <Label Text="Библиотека" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev"/>
+
+                    </StackLayout>
+                    <!-- <StackLayout BackgroundColor="{StaticResource SecColor}" Orientation="Vertical" IsVisible="true" Margin="0,-6,0,-6">-->
 
 
-                <yummy:PancakeView CornerRadius="50,0,50,0" IsVisible="true" Margin="0,-50,0,0" BackgroundColor="{AppThemeBinding Dark=#121212,Light=White}">
-                    <StackLayout >
-                        <Label Text ="Продолжить читать" FontSize="23" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" Margin="30,15,0,15"></Label>
-                        <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" >
+                    <yummy:PancakeView CornerRadius="50,0,50,0" IsVisible="true" Margin="0,-50,0,0" BackgroundColor="{AppThemeBinding Dark=#121212,Light=White}">
+                        <StackLayout >
+                            <Label Text ="Продолжить читать" FontSize="23" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" Margin="30,15,0,15"></Label>
+                            <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" >
 
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.4*"/>
-                                    <ColumnDefinition Width="0.6*"/>
-                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.4*"/>
+                                        <ColumnDefinition Width="0.6*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Image Source="Dune.jpg" WidthRequest="100" Margin="20,15,0,20"></Image>
-                                <Grid Grid.Column="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="35" />
-                                        <RowDefinition Height="63" />
-                                        <RowDefinition Height="60"/>
-                                    </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Grid.Column="1"  Text="Дюна" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
-                                    <Label Grid.Row="1" Grid.Column="1" Text="Фрэнк Герберт" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
-                                    <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
-                                    <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
-                                    <Label Grid.Row="2" Grid.Column="1" Text="1315 страниц" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
-                               <!--Здесь должна выводится последняя открытая книга-->
+                                    <Image Source="Dune.jpg" WidthRequest="100" Margin="20,15,0,20"></Image>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35" />
+                                            <RowDefinition Height="63" />
+                                            <RowDefinition Height="60"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="1"  Text="Дюна" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="Фрэнк Герберт" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                                        <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
+                                        <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="1315 страниц" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                                        <!--Здесь должна выводится последняя открытая книга-->
+                                    </Grid>
                                 </Grid>
-                            </Grid>
 
-                        </Frame>
-                    </StackLayout>
-                </yummy:PancakeView>
-                <!-- </StackLayout>-->
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    
-                    <StackLayout  Style="{StaticResource MyStackLayout}" Orientation="Horizontal" Margin="30,15,0,0">
-                        <Frame Padding="0" CornerRadius="15" BackgroundColor="Transparent">
+                            </Frame>
+                        </StackLayout>
+                    </yummy:PancakeView>
+                    <!-- </StackLayout>-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                            <SearchBar BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
-                        </Frame>
+                        <StackLayout  Style="{StaticResource MyStackLayout}" Orientation="Horizontal" Margin="30,15,0,0">
+                            <Frame Padding="0" CornerRadius="15" BackgroundColor="Transparent">
+
+                                <SearchBar TextChanged="SearchBar_TextChanged"
+                                BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
+                            </Frame>
 
 
-                        <Frame Style="{StaticResource MyFrame1}" HeightRequest="3">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                            </Frame.GestureRecognizers>
-                            <StackLayout Orientation="Horizontal" Padding="-5,-10,-5,-13">
-                            <!--Здесь открывается кнопка сортировки-->
-                                <Image x:Name="ImageSort" Source="SortIconWhite.png" WidthRequest="20" Margin="0,-5,0,0"/>
-                                <Label x:Name="TextSort" Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
+                            <Frame Style="{StaticResource MyFrame1}" HeightRequest="3">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" Padding="-5,-10,-5,-13">
+                                    <!--Здесь открывается кнопка сортировки-->
+                                    <Image x:Name="ImageSort" Source="SortIconWhite.png" WidthRequest="20" Margin="0,-5,0,0"/>
+                                    <Label x:Name="TextSort" Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
 
-                    <yummy:PancakeView Grid.Row="1" Style="{StaticResource MyFrame2}" CornerRadius="50,0,0,0" Margin="0,15,0,0" Padding="30,20,0,0">
-                    <StackLayout>
-                        <Label Text="Ваши книги" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" FontSize="23" Padding="15,0,0,0"></Label>
-                        <CollectionView ItemsSource="{Binding Books}" 
+                        <yummy:PancakeView Grid.Row="1" Style="{StaticResource MyFrame2}" CornerRadius="50,0,0,0" Margin="0,15,0,0" Padding="30,20,0,0">
+                            <StackLayout>
+                                <Label Text="Ваши книги" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" FontSize="23" Padding="15,0,0,0"></Label>
+                                <CollectionView ItemsSource="{Binding Books}" 
                                         SelectionMode="None"
                                         Margin="0,0,0,0">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Frame Padding="0,0,0,0" Style="{StaticResource MyFrame3}">
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Padding="0,0,0,0" Style="{StaticResource MyFrame3}">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
                                             Path= OpenBookCommand}" CommandParameter="{Binding .}"/>
-                                        </Frame.GestureRecognizers>
-                                        <StackLayout Orientation="Horizontal">
+                                                </Frame.GestureRecognizers>
+                                                <StackLayout Orientation="Horizontal">
 
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="140"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Image Grid.Column="0" Source="CoverGreen.png" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
-                                                <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,35,0" TextColor ="{StaticResource SecColor}"/>
-                                            </Grid>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="140"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Grid.Column="0" Source="CoverGreen.png" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
+                                                        <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,35,0" TextColor ="{StaticResource SecColor}"/>
+                                                    </Grid>
 
-                                            <StackLayout>
-                                                <StackLayout Orientation="Vertical">
-                                                    <Label  Text="{Binding  Title}" FontSize="20" FontFamily="LatoMed" Margin="0,5,0,0" TextColor="{AppThemeBinding Dark=White,Light=Black}"/>
-                                                    <Label  Text="{Binding  Author}" FontSize="18" FontFamily="LatoLig" TextColor="{AppThemeBinding Dark=White,Light=Black}" />
-                                                    
-                                                </StackLayout>
+                                                    <StackLayout>
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label  Text="{Binding  Title}" FontSize="20" FontFamily="LatoMed" Margin="0,5,0,0" TextColor="{AppThemeBinding Dark=White,Light=Black}"/>
+                                                            <Label  Text="{Binding  Author}" FontSize="18" FontFamily="LatoLig" TextColor="{AppThemeBinding Dark=White,Light=Black}" />
 
-                                                    <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+                                                        </StackLayout>
 
-                                                        <ProgressBar x:Name="progressbar" 
+                                                        <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+
+                                                            <ProgressBar x:Name="progressbar" 
                                                                      ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
                                                                      Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
                                                                      Path= ProgressValue}" 
-                                                                     WidthRequest="150"></ProgressBar> 
+                                                                     WidthRequest="150"></ProgressBar>
 
+                                                        </StackLayout>
                                                     </StackLayout>
-                                                </StackLayout>
 
-                                        </StackLayout>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </StackLayout>
-                </yummy:PancakeView>
-               
-                </Grid>
-            </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </yummy:PancakeView>
+
+                    </Grid>
+                </StackLayout>
                 <StackLayout x:Name="PanelSortBackGround" InputTransparent="True">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
@@ -176,13 +176,13 @@
                     </Frame>
                 </StackLayout>
             </Grid>
-    </ScrollView>
+        </ScrollView>
 
-            
-            <ImageButton x:Name="FabButton" Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
+
+        <ImageButton x:Name="FabButton" Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
                     HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding TapCommandRead}">
             <!--Вот здесь кнопка добавления книги-->
         </ImageButton>
-    </Grid>        
-   
+    </Grid>
+
 </ContentPage>
