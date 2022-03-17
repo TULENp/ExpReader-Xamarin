@@ -34,5 +34,6 @@ namespace ExpReadersBack.Controllers
                        select b;
             return await data.ToListAsync();
         }
+
     }
 }
