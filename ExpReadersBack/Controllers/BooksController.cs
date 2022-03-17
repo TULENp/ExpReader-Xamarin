@@ -23,7 +23,7 @@ namespace ExpReadersBack.Controllers
             return await db.Books.ToListAsync();
         }
 
-        [HttpGet("GetBook")]
+        [HttpGet("GetBook/{id}")]
         public async Task<Book> GetBook(int id) => await db.Books.FirstOrDefaultAsync(b => b.Id == id);
 
         [HttpGet("GetUserBooks/{userid}")]

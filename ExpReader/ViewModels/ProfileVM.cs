@@ -31,8 +31,6 @@ namespace ExpReader.ViewModels
         }
         public void UpdateStats()
         {
-            Book book = JsonConvert.DeserializeObject<Book>(Preferences.Get("prestup.txt", string.Empty));
-            ReadPages = book.Pages;
         }
     }
 }

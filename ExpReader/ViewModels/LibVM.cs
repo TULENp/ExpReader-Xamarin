@@ -19,11 +19,11 @@ namespace ExpReader.ViewModels
         {
             GetAllBooks();
         }
-        public ICommand OpenBookCommand => new Command<Book>(OpenBook);
+        public ICommand AddBookCommand => new Command<Book>(AddBook);
 
-        public void OpenBook(Book book)
+        public void AddBook(Book book)
         {
-            Shell.Current.Navigation.PushAsync(new ReaderPage(book));
+
         }
 
         public void GetAllBooks()
