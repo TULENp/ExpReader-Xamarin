@@ -93,5 +93,44 @@ namespace ExpReader.Views
         {
             TapGestureRecognizer_Tapped(sender, e);
         }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var _container = BindingContext as UserLibVM;
+            //var searchTerm = e.NewTextValue;
+            //if (string.IsNullOrWhiteSpace(searchTerm))
+            //{
+            //    searchTerm = string.Empty;
+            //    _container.Books.ToList();
+            //}
+
+            //searchTerm = searchTerm.ToLowerInvariant();
+            //var filteredItems = _container.Books.Where(i => i.Title.ToLowerInvariant().Contains(searchTerm)).ToList();
+
+            //if(string.IsNullOrWhiteSpace(searchTerm))
+            //{
+            //    filteredItems = _container.Books.ToList();
+            //}
+
+            //foreach(var i in _container.Books.ToList())
+            //{
+            //    if (!filteredItems.Contains(i))
+            //    {
+            //        _container.Books.Remove(i);
+            //    }
+            //    else if(!_container.Books.Contains(i))
+            //    {
+            //        _container.Books.Add(i);
+            //    }
+            //}
+            if(string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                CollectionBooks.ItemsSource = _container.Books.ToList();
+            }
+            else
+            {
+                CollectionBooks.ItemsSource = _container.Books.Where(i => i.Title.ToLowerInvariant().Contains(e.NewTextValue)).ToList();
+            }
+        }
     }
 }

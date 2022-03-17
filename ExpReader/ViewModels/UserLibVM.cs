@@ -3,6 +3,7 @@ using ExpReader.Services;
 using ExpReader.Views;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -35,7 +36,7 @@ namespace ExpReader.ViewModels
         }
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
-        public ICommand TestCommand => new Command(Test1);
+        //public ICommand SearchBooksCommand => new Command(SearchBooks);
 
         public void OpenBook(Book book)
         {
@@ -44,9 +45,17 @@ namespace ExpReader.ViewModels
         }
         
 
-        public void Test1()
+        public void SearchBooks(object sender,TextChangedEventArgs e)
         {
+            //var _container = BindingContext as UserLibVM;
+            //var searchTerm = e.NewTextValue;
+            //if(string.IsNullOrWhiteSpace(searchTerm))
+            //{
+            //    searchTerm = string.Empty;
+            //}
 
+            //searchTerm = searchTerm.ToLowerInvariant();
+            //var filteredItems = Books.Where
         }
 
         private void InitBooks()

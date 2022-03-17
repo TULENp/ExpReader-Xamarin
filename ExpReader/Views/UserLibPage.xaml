@@ -77,7 +77,7 @@
                     <StackLayout  Style="{StaticResource MyStackLayout}" Orientation="Horizontal" Margin="30,15,0,0">
                         <Frame Padding="0" CornerRadius="15" BackgroundColor="Transparent">
 
-                            <SearchBar BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
+                            <SearchBar TextChanged="SearchBar_TextChanged" BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
                         </Frame>
 
 
@@ -96,7 +96,7 @@
                     <yummy:PancakeView Grid.Row="1" Style="{StaticResource MyFrame2}" CornerRadius="50,0,0,0" Margin="0,15,0,0" Padding="30,20,0,0">
                     <StackLayout>
                         <Label Text="Ваши книги" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" FontSize="23" Padding="15,0,0,0"></Label>
-                        <CollectionView ItemsSource="{Binding Books}" 
+                        <CollectionView x:Name="CollectionBooks" ItemsSource="{Binding Books}" 
                                         SelectionMode="None"
                                         Margin="0,0,0,0">
                             <CollectionView.ItemTemplate>
@@ -125,7 +125,7 @@
 
                                                     <StackLayout Orientation="Horizontal" Margin="0,30,0,0" VerticalOptions="End">
 
-                                                        <ProgressBar x:Name="progressbar" 
+                                                        <ProgressBar x:Name="progressbar"  
                                                                      ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#0091FF}"
                                                                      Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
                                                                      Path= ProgressValue}" 
@@ -158,7 +158,7 @@
                             <TapGestureRecognizer />
                             <!--Сортировка по названию книги-->
                         </Frame.GestureRecognizers>
-                        <Label Text="По названию" >
+                        <Label Text="По названию(А-я)" >
 
                         </Label>
                     </Frame>
@@ -167,7 +167,7 @@
                             <TapGestureRecognizer />
                             <!--Сортировка по прочитанным книгам-->
                         </Frame.GestureRecognizers>
-                        <Label Text="Прочитано"></Label>
+                        <Label Text="По названию(Я-а)"></Label>
                     </Frame>
                     <Frame BorderColor="Black" >
                         <Frame.GestureRecognizers>
