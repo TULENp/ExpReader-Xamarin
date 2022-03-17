@@ -27,9 +27,10 @@ namespace ExpReader.Views
         {
             try
             {
-                // !!! Remove if!
-                if (LogEntry.Text == "" && PasEntry.Text == "") { LogEntry.Text = "admin"; PasEntry.Text = "admin"; }
-                int userid = DBService.GetUserId(LogEntry.Text, PasEntry.Text).Result;
+                // int userid = DBService.GetUserId(LogEntry.Text, PasEntry.Text).Result;
+                int userid = 1; 
+                string userstats = DBService.GetUserStats(userid);
+                Settings.userStats = userstats;
                 Preferences.Set("TempUserId", userid);
                 await Shell.Current.GoToAsync("//Main");
             } catch { }
