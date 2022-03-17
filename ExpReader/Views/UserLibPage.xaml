@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="ExpReader.Views.UserLibPage">
+             x:Class="ExpReader.Views.UserLibPage"
+             x:DataType="vm:UserLibVM">
 
-    <ContentPage.BindingContext>
-        <vm:UserLibVM />
-    </ContentPage.BindingContext>
+
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#2e74ff</Color>
