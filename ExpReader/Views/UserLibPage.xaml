@@ -179,7 +179,7 @@
 
 
         <ImageButton x:Name="FabButton" Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
-                    HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding TapCommandRead}">
+                    HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding AddBookCommand}">
             <!--Вот здесь кнопка добавления книги-->
         </ImageButton>
     </Grid>
