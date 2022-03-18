@@ -48,7 +48,7 @@ namespace ExpReader.ViewModels
             userid = Preferences.Get("TempUserId", -1);
             SetUserBooks();
             GetUserBooks();
-            //SetUserBookStats();
+            SetUserBookStats();
         }
         //Get user's books from db and write it to preferences. 
         public void SetUserBooks()
@@ -98,7 +98,8 @@ namespace ExpReader.ViewModels
         public void SetUserBookStats()
         {
             List<string> userstatsids = new List<string>();
-            string json = DBService.GetUserBookStats(userid).Result;
+            //string json = DBService.GetUserBookStats(userid).Result;
+            string json = "[{\"Id\":0,\"Title\":\"Преступление и наказание(Pdf)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.pdf\",\"Pages\":10},{\"Id\":1,\"Title\":\"Преступление и наказание(Epub)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.epub\",\"Pages\":0},{\"Id\":2,\"Title\":\"Мастер и маргарита(F2b)\",\"Author\":\"да\",\"FileName\":\"master.fb2\",\"Pages\":0},{\"Id\":3,\"Title\":\"Иэнис\",\"Author\":\"zzz\",\"FileName\":\"ienis.docx\",\"Pages\":0},{\"Id\":4,\"Title\":\"Преступление и наказание(Txt)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prestup.txt\",\"Pages\":0}]";
             List<UserBook> collection = JsonConvert.DeserializeObject<List<UserBook>>(json.ToString());
             foreach (var file in collection)
             {

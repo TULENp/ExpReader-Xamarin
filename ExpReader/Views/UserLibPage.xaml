@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="ExpReader.Views.UserLibPage">
-             <!--x:DataType="vm:UserLibVM"-->
+    <!--x:DataType="vm:UserLibVM"-->
 
     <ContentPage.BindingContext>
         <vm:UserLibVM />
@@ -126,11 +126,10 @@
                                                         </StackLayout>
 
                                                         <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
-                                                                <!--set book to Progress via converter-->
+                                                            <!--set book to Progress via converter-->
                                                             <ProgressBar x:Name="progressbar" 
                                                                      ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
-                                                                     Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
-                                                                     Path= ProgressValue}" 
+                                                                     Progress="{Binding ., Converter={StaticResource ProgressBarConverter}}"
                                                                      WidthRequest="150"></ProgressBar>
 
                                                         </StackLayout>

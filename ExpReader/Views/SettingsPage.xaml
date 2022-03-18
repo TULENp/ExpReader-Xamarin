@@ -31,9 +31,9 @@
                 </Frame>
                 <Frame BackgroundColor="{AppThemeBinding Light=White,Dark=Black}" BorderColor="{AppThemeBinding Dark=#30FFFFFF}" >
                     <StackLayout>
-                        <RadioButton Content="60 страниц в день" TextColor="Red" CheckedChanged="RadioButton_CheckedChanged" GroupName="DailyTask"/>
-                        <RadioButton Content="120 страниц в день" TextColor="Red" CheckedChanged="RadioButton_CheckedChanged_1" GroupName="DailyTask"/>
-                        <RadioButton Content="240 страниц в день" TextColor="Red" CheckedChanged="RadioButton_CheckedChanged_2" GroupName="DailyTask"/>
+                        <RadioButton x:Name="min" Content="60 страниц в день" TextColor="{AppThemeBinding Light=Black,Dark=White}" CheckedChanged="RadioButton_CheckedChanged" GroupName="DailyTask"/>
+                        <RadioButton x:Name="mid" Content="120 страниц в день" TextColor="{AppThemeBinding Light=Black,Dark=White}" CheckedChanged="RadioButton_CheckedChanged_1" GroupName="DailyTask"/>
+                        <RadioButton x:Name="max" Content="240 страниц в день" TextColor="{AppThemeBinding Light=Black,Dark=White}" CheckedChanged="RadioButton_CheckedChanged_2" GroupName="DailyTask"/>
                     </StackLayout>
                 </Frame>
 
