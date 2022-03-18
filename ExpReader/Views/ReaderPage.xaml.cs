@@ -2,6 +2,7 @@
 using ExpReader.Services;
 using ExpReader.ViewModels;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -35,6 +36,9 @@ namespace ExpReader.Views
                     RadioBlackTheme.IsChecked = true;
                     break;  
             }
+            //Thread.Sleep(1000);
+            //Task.Delay(5000);
+            //ShowDailyMessage();
         }
         
         private void MySlider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -135,6 +139,13 @@ namespace ExpReader.Views
             SettingsPanel.TranslationY = 190;
         }
 
+        private async void ShowDailyMessage()
+        {
+            MessagePanel.TranslateTo(0, 0, 250, Easing.BounceOut);
+            await Task.Delay(5000);
+            MessagePanel.TranslateTo(0, -150, 250, Easing.BounceOut);
+        }
+
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
         {
             if(SettingsPanel.TranslationY ==190)
@@ -214,5 +225,7 @@ namespace ExpReader.Views
         {
             await Shell.Current.GoToAsync("//Main");
         }
+
+        
     }
 }
