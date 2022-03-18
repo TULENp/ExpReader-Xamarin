@@ -17,7 +17,7 @@ namespace ExpReader.ViewModels
         private int readPages;
         public int ReadPages
         {
-            get => readPages; 
+            get => readPages;
             set
             {
                 readPages = value;
@@ -34,3 +34,4 @@ namespace ExpReader.ViewModels
         }
     }
 }
+

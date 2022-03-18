@@ -5,6 +5,9 @@
              x:Class="ExpReader.Views.UserLibPage">
              <!--x:DataType="vm:UserLibVM"-->
 
+    <ContentPage.BindingContext>
+        <vm:UserLibVM />
+    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -37,7 +40,7 @@
 
 
                     <yummy:PancakeView CornerRadius="50,0,50,0" IsVisible="true" Margin="0,-50,0,0" BackgroundColor="{AppThemeBinding Dark=#121212,Light=White}">
-                        <StackLayout >
+                        <StackLayout>
                             <Label Text ="Продолжить читать" FontSize="23" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" Margin="30,15,0,15"></Label>
                             <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" >
 
@@ -123,7 +126,7 @@
                                                         </StackLayout>
 
                                                         <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
-
+                                                                <!--set book to Progress via converter-->
                                                             <ProgressBar x:Name="progressbar" 
                                                                      ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
                                                                      Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},

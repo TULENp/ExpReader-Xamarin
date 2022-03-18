@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using ExpReader.Services;
+using System.Net.Http;
 
 namespace ExpReader.ViewModels
 {
@@ -47,14 +48,15 @@ namespace ExpReader.ViewModels
             userid = Preferences.Get("TempUserId", -1);
             SetUserBooks();
             GetUserBooks();
-            SetUserBookStats();
+            //SetUserBookStats();
         }
         //Get user's books from db and write it to preferences. 
         public void SetUserBooks()
         {
             List<string> booknames = new List<string>();
-            string json = DBService.GetUserBooks(userid).Result;
-            List <Book> collection = JsonConvert.DeserializeObject<List<Book>>(json.ToString());
+            HttpClient client = new HttpClient();
+            var json = "[{\"Id\":0,\"Title\":\"Преступление и наказание(Pdf)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.pdf\",\"Pages\":10},{\"Id\":1,\"Title\":\"Преступление и наказание(Epub)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prest.epub\",\"Pages\":0},{\"Id\":2,\"Title\":\"Мастер и маргарита(F2b)\",\"Author\":\"да\",\"FileName\":\"master.fb2\",\"Pages\":0},{\"Id\":3,\"Title\":\"Иэнис\",\"Author\":\"zzz\",\"FileName\":\"ienis.docx\",\"Pages\":0},{\"Id\":4,\"Title\":\"Преступление и наказание(Txt)\",\"Author\":\"Достоевский Ф.М.\",\"FileName\":\"prestup.txt\",\"Pages\":10}]";
+            List<Book> collection = JsonConvert.DeserializeObject<List<Book>>(json);
             foreach (var file in collection)
             {
                 Preferences.Set(file.FileName, JsonConvert.SerializeObject(file));
@@ -62,6 +64,19 @@ namespace ExpReader.ViewModels
             }
             Preferences.Set("BookNames", JsonConvert.SerializeObject(booknames));
         }
+        //Get user's books from db and write it to preferences. 
+        //public void SetUserBooks()
+        //{
+        //    List<string> booknames = new List<string>();
+        //    string json = DBService.GetUserBooks(userid).Result;
+        //    List<Book> collection = JsonConvert.DeserializeObject<List<Book>>(json.ToString());
+        //    foreach (var file in collection)
+        //    {
+        //        Preferences.Set(file.FileName, JsonConvert.SerializeObject(file));
+        //        booknames.Add(file.FileName);
+        //    }
+        //    Preferences.Set("BookNames", JsonConvert.SerializeObject(booknames));
+        //}
         //TODO Add UserBookStats get/set methods.
         //TODO Add Update db method (ondestroy(), onstart()).
         //TODO Add SignUp SignIn VMs and save user into prefernces (id included). 
@@ -92,7 +107,7 @@ namespace ExpReader.ViewModels
             }
             Preferences.Set("BookStats", JsonConvert.SerializeObject(userstatsids));
         }
-
+        //todo Add SetUserStats() and GetUserStats()
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
         private void OpenBook(Book book)
         {
@@ -129,7 +144,7 @@ namespace ExpReader.ViewModels
                             File.Move(result.FullPath, filepath);
                             string txt = File.ReadAllText(result.FullPath);
                             int pages = txt.Length / ReaderVM.pageChars + 1;
-                            Books.Add(new Book { Title = result.FileName, Author = "N/A", FileName=result.FileName, Pages=pages });
+                            Books.Add(new Book { Title = result.FileName, Author = "N/A", FileName = result.FileName, Pages = pages });
                         }
                     }
                 }

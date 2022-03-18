@@ -39,10 +39,10 @@ namespace ExpReader.ViewModels
         }
         public int CurrentPage
         {
-            get => Stats.CurrentPage;
+            get => currentPage;
             set
             {
-                Stats.CurrentPage = value;
+                currentPage = value;
                 OnPropertyChanged();
             }
         }
@@ -133,7 +133,7 @@ namespace ExpReader.ViewModels
         {
             if (Stats.CurrentPage != 0)
             {
-                Stats.CurrentPage--;
+                currentPage--;
                 Text = "";
                 ReadPage();
             }

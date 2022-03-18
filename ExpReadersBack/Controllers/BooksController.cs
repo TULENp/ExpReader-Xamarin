@@ -20,6 +20,7 @@ namespace ExpReadersBack.Controllers
         [HttpGet("GetAllBooks")]
         public async Task<ActionResult<List<Book>>> GetAllBooks()
         {
+
             return await db.Books.ToListAsync();
         }
 
@@ -29,6 +30,7 @@ namespace ExpReadersBack.Controllers
         [HttpGet("GetUserBooks/{userid}")]
         public async Task<List<Book>> GetUserBook(int userid)
         {
+            var userpages = from ub in db.UserBooks where ub.UserId == userid select ub;
             var data = from b in db.Books
                        join ub in db.UserBooks on b.Id equals ub.BookId where ub.UserId == userid
                        select b;
