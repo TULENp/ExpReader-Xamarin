@@ -23,7 +23,7 @@ namespace ExpReadersBack
             services.AddControllers();
             services.AddDbContext<ApplicationContext>(options =>
             {
-                options.UseMySQL(connectionString: _configuration.GetConnectionString("DbContextConnection"));
+                options.UseNpgsql(connectionString: _configuration.GetConnectionString("DbContextConnection"));
             });
         }
 
