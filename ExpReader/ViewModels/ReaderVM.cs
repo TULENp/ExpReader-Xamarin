@@ -65,27 +65,70 @@ namespace ExpReader.ViewModels
             ReadPage();
             UpdateUserStats();
         }
+        //public ICommand OpenNextPage => new Command(value =>
+        //{
+        //    if (Stats.CurrentPage != NewBook.Pages)
+        //    {
+        //        if (Stats.CurrentPage == Stats.ReadPages)
+        //        {
+        //            DailyTask.UpdateTodayReadPages();
+        //            Stats.ReadPages++;
+        //        }
+        //        Stats.CurrentPage++;
+        //        Text = "";
+        //        ReadPercentCheck();
+        //        ReadPage();
+
+        //    }
+        //    else
+        //    {
+        //        Stats.IsRead = true;
+        //        UpdateBookStats();
+        //        UserDialogs.Instance.Alert("Read");
+        //    }
+        //});
+
         public ICommand OpenNextPage => new Command(value =>
         {
             if (Stats.CurrentPage != NewBook.Pages)
             {
-                if (Stats.CurrentPage == Stats.ReadPages)
-                {
-                    DailyTask.UpdateTodayReadPages();
-                    Stats.ReadPages++;
-                }
                 Stats.CurrentPage++;
-                Text = "";
-                ReadPercentCheck();
-                ReadPage();
+                if (Stats.CurrentPage != NewBook.Pages)
+                {
+                    if (Stats.CurrentPage == Stats.ReadPages + 1)
+                    {
+                        DailyTask.UpdateTodayReadPages();
+                        Stats.ReadPages++;
+                    }
+                    ReadPercentCheck();
 
-            }
-            else
-            {
-                Stats.IsRead = true;
-                UserDialogs.Instance.Alert("Read");
+                    ReadPage();
+                }
+                else
+                {
+                    ReadLastPage();
+                    Stats.IsRead = true;
+                    UpdateBookStats();
+                    UserDialogs.Instance.Alert("Read");
+                }
             }
         });
+
+        private void ReadLastPage()
+        {
+            int readchar = (Stats.CurrentPage-1) * pageChars;
+            int i = readchar;
+            string pagetext = "";
+            while (i != charbook.Length-1)
+            {
+                pagetext += charbook[i];
+                i++;
+            }
+            Text = pagetext.Replace("</p><p>", " ");
+            UpdateBookStats();
+        }
+
+
         public ICommand OpenPrevPage => new Command(value =>
         {
             if (Stats.CurrentPage != 0)
@@ -100,15 +143,15 @@ namespace ExpReader.ViewModels
         {
             int readchar = Stats.CurrentPage * pageChars;
             string pagetext = "";
-            int i;
-            for (i = readchar; i < readchar + pageChars; i++)
+            int i = readchar;
+            for (i = readchar; i < readchar + pageChars && i < charbook.Length; i++)
             {
                 pagetext += charbook[i];
             }
-            if (!(Char.IsWhiteSpace(charbook[i - 1]) || charbook[i - 1] == '-'))
-            {
-                pagetext += '-';
-            }
+            //if (!(Char.IsWhiteSpace(charbook[i - 1]) || charbook[i - 1] == '-'))
+            //{
+            //    pagetext += '-';
+            //}
             Text = pagetext.Replace("</p><p>", " ");
             UpdateBookStats();
         }
@@ -121,6 +164,7 @@ namespace ExpReader.ViewModels
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     charbook = reader.ReadToEnd();
+                    //int pagestest = charbook.Length / ReaderVM.pageChars + 1;
                 }
             }
         }

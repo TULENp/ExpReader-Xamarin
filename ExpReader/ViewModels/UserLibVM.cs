@@ -90,9 +90,8 @@ namespace ExpReader.ViewModels
             {
                 Preferences.Set(file.BookId.ToString(), JsonConvert.SerializeObject(file));
                 userstatsids.Add(file.BookId.ToString());
-                // TODO Мы перепутали юзерстатс и юзербукстатс 
             }
-            Preferences.Set("UserStats", JsonConvert.SerializeObject(userstatsids));
+            Preferences.Set("BookStats", JsonConvert.SerializeObject(userstatsids));
         }
 
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
