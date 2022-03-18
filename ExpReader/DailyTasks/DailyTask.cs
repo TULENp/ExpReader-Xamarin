@@ -5,7 +5,7 @@ using Acr.UserDialogs;
 using ExpReader.Services;
 using Xamarin.Essentials;
 
-namespace ExpReader.UserStats.DailyTasks
+namespace ExpReader.DailyTasks
 {
     static class DailyTask
     {

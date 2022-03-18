@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Essentials;
+using DAL.Models;
 
 namespace ExpReader.Services
 {
@@ -11,6 +12,12 @@ namespace ExpReader.Services
         const int readerTheme = 1;
         const int readerslider = 22;
         const int dailyTask = 60;
+
+        public static string userStats
+        {
+            get => Preferences.Get("UserStats", string.Empty);
+            set => Preferences.Set("UserStats", value);
+        }
 
 
         public static int Theme

@@ -31,5 +31,12 @@ namespace ExpReadersBack.Controllers
             db.Update(userbook);
             db.SaveChanges();
         }
+
+        [HttpPost("AddUserBook")]
+        public void AddUserBook([FromBody] UserBook userBook)
+        {
+            db.Add(userBook);
+            db.SaveChanges();
+        }
     }
 }

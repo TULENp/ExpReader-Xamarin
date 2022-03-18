@@ -16,10 +16,20 @@ namespace ExpReader.ViewModels
 {
     internal class UserLibVM : BindableObject
     {
-        Book lastReadBook;
-        private string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Books");
-
+        private string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Books");
+        private int userid;
         private double progressValue;
+        private UserStats userStats;
+        private Book lastReadBook;
+        public Book LastReadBook
+        {
+            get => lastReadBook;
+            set
+            {
+                lastReadBook = value;
+                OnPropertyChanged();
+            }
+        }
         public double ProgressValue
         {
             get
@@ -32,23 +42,15 @@ namespace ExpReader.ViewModels
                 OnPropertyChanged();
             }
         }
-        public Book LastReadBook
-        {
-            get => lastReadBook;
-            set
-            {
-                lastReadBook = value;
-                OnPropertyChanged();
-            }
-        }
-        int userid = 1; //TODO Move it to session user and get from
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
         public UserLibVM()
         {
+            userid = Preferences.Get("TempUserId", -1);
             SetUserBooks();
             GetUserBooks();
             //SetUserBookStats();
         }
+        //Get user's books from db and write it to preferences. 
         public void SetUserBooks()
         {
             List<string> booknames = new List<string>();
@@ -81,7 +83,7 @@ namespace ExpReader.ViewModels
         //TODO Add LastReadBook.
         //TODO Search and Sort. 
         //TODO Add motivation system (+Daily tasks, Achives, Book rare system/read sys). 
-        private void GetUserBooks()
+        public void GetUserBooks() 
         {
             string json = Preferences.Get("BookNames", string.Empty);
             var collection = JsonConvert.DeserializeObject<List<string>>(json);
@@ -92,24 +94,38 @@ namespace ExpReader.ViewModels
             }
         }
 
-        // Get userbookstats drom db and separately write to preferences.
+        // Get userbookstats from db and separately write to preferences.
         public void SetUserBookStats()
         {
+            List<string> userstatsids = new List<string>();
             string json = DBService.GetUserBookStats(userid).Result;
             List<UserBook> collection = JsonConvert.DeserializeObject<List<UserBook>>(json.ToString());
             foreach (var file in collection)
             {
                 Preferences.Set(file.BookId.ToString(), JsonConvert.SerializeObject(file));
+                userstatsids.Add(file.BookId.ToString());
             }
+            Preferences.Set("BookStats", JsonConvert.SerializeObject(userstatsids));
         }
         //todo Add SetUserStats() and GetUserStats()
         public ICommand OpenBookCommand => new Command<Book>(OpenBook);
         private void OpenBook(Book book)
         {
-            Shell.Current.Navigation.PushAsync(new ReaderPage(book));
+            string directory = Path.Combine(BooksFolderPath, book.FileName);
+            if (!File.Exists(directory))
+            {
+                try
+                {
+                    byte[] array = DBService.DownloadBook(book.FileName);
+                    File.WriteAllBytes(directory, array);
+                    Toast.MakeText(Android.App.Application.Context, "Загрузка...", ToastLength.Long).Show();
+                } catch(Exception exc) { Toast.MakeText(Android.App.Application.Context, exc.Message, ToastLength.Long).Show(); }
+            } else
+            {
+                Shell.Current.Navigation.PushAsync(new ReaderPage(book));
+            }
         }
         public ICommand AddBookCommand => new Command(AddBook);
-
 
 
         public async void AddBook()
@@ -137,27 +153,16 @@ namespace ExpReader.ViewModels
             {
                 Toast.MakeText(Android.App.Application.Context, exc.Message, ToastLength.Long).Show();
             }
+
+
         }
+
         public void SetLastReadBook()
         {
-            //todo switch prestup.txt to UserStats.LastReadBook
-            LastReadBook = JsonConvert.DeserializeObject<Book>(Preferences.Get("prestup.txt", string.Empty));
-        }
-        private string SetCover(int pages)
-        {
-            if (pages < 200)
-            {
-                return "СoverGreen.png";
-            }
-            else if (pages >= 200 && pages < 400)
-            {
-                return "СoverBlue.png";
-            }
-            else if (pages >= 600)
-            {
-                return "СoverRed.png";
-            }
-            return "";
+            string str = Settings.userStats;
+            userStats = JsonConvert.DeserializeObject<UserStats>(str);
+            string st = Preferences.Get(userStats.LastReadBook, string.Empty);
+            LastReadBook = JsonConvert.DeserializeObject<Book>(st);
         }
     }
 }

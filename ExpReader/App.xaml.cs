@@ -1,5 +1,6 @@
 ﻿using ExpReader.Services.Themes;
-using ExpReader.UserStats.DailyTasks;
+using ExpReader.Services;
+using ExpReader.DailyTasks;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -23,14 +24,21 @@ namespace ExpReader
         protected override void OnStart()
         {
             OnResume();
-            //UpdateDb();
+            try
+            {
+                DBService.UpdateDb();
+            }
+            catch { }
         }
 
         protected override void OnSleep()
         {
             TheTheme.SetTheme();
             RequestedThemeChanged -= App_RequestedThemeChanged;
-
+            try
+            {
+                DBService.UpdateDb();
+            } catch { }
         }
 
         protected override void OnResume()
@@ -46,6 +54,7 @@ namespace ExpReader
             }
             Preferences.Set("Date", DateTime.Today);
         }
+        
 
         private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {

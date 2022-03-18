@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="ExpReader.Views.UserLibPage">
+             <!--x:DataType="vm:UserLibVM"-->
 
     <ContentPage.BindingContext>
         <vm:UserLibVM />
@@ -60,7 +61,7 @@
                                         <Label Grid.Row="1" Grid.Column="1" Text="{Binding LastReadBook.Author}" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                         <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
                                         <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
-                                        <Label Grid.Row="2" Grid.Column="1" Text="1315 страниц" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding LastReadBook.Pages}" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                         <!--Здесь должна выводится последняя открытая книга-->
                                     </Grid>
                                 </Grid>
@@ -113,7 +114,7 @@
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="140"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <Image Grid.Column="0" Source="CoverGreen.png" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
+                                                        <Image Grid.Column="0" Source="{Binding Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5"/>
                                                         <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,35,0" TextColor ="{StaticResource SecColor}"/>
                                                     </Grid>
 
@@ -181,7 +182,7 @@
 
 
         <ImageButton x:Name="FabButton" Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
-                    HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding TapCommandRead}">
+                    HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding AddBookCommand}">
             <!--Вот здесь кнопка добавления книги-->
         </ImageButton>
     </Grid>

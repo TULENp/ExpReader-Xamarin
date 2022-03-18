@@ -16,5 +16,6 @@ namespace DAL.Models
         public int User { get; set; }
         public int ReadBooks { get; set; }
         public int ReadPages { get; set; }
+        public string LastReadBook { get; set; }
     }
 }
