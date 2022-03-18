@@ -13,7 +13,7 @@ namespace ExpReader.Converters
         {
             var book = (Book)value;
 
-            return book.ReadPages / book.Pages * 100;
+            return book.CurrentPage / book.Pages * 100;
 
         }
 

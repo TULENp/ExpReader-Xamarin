@@ -126,11 +126,11 @@
                                                         </StackLayout>
 
                                                         <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
-                                                            <!--set book to Progress via converter-->
                                                             <ProgressBar x:Name="progressbar" 
                                                                      ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
                                                                      Progress="{Binding ., Converter={StaticResource ProgressBarConverter}}"
-                                                                     WidthRequest="150"></ProgressBar>
+                                                                     WidthRequest="150">
+                                                            </ProgressBar>
 
                                                         </StackLayout>
                                                     </StackLayout>
