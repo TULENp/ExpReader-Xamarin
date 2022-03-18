@@ -42,8 +42,8 @@ namespace ExpReader.Services
         }
         public static void UpdateDb()
         {
-            var stats = JsonConvert.DeserializeObject<List<string>>(Preferences.Get("BookStats", string.Empty));
-            foreach (var statId in stats)
+            var bookstats = JsonConvert.DeserializeObject<List<string>>(Preferences.Get("BookStats", string.Empty)); 
+            foreach (var statId in bookstats)
             {
                 var stat = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(statId, string.Empty));
                 SetUserBookStats(stat);
