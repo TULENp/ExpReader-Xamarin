@@ -101,7 +101,6 @@ namespace ExpReader.ViewModels
                         Stats.ReadPages++;
                     }
                     ReadPercentCheck();
-
                     ReadPage();
                 }
                 else
@@ -109,17 +108,16 @@ namespace ExpReader.ViewModels
                     ReadLastPage();
                     Stats.IsRead = true;
                     UpdateBookStats();
-                    UserDialogs.Instance.Alert("Read");
                 }
             }
         });
 
         private void ReadLastPage()
         {
-            int readchar = (Stats.CurrentPage-1) * pageChars;
+            int readchar = (Stats.CurrentPage - 1) * pageChars;
             int i = readchar;
             string pagetext = "";
-            while (i != charbook.Length-1)
+            while (i != charbook.Length - 1)
             {
                 pagetext += charbook[i];
                 i++;
