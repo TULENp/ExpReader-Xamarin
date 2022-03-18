@@ -10,5 +10,6 @@ namespace DAL.Models
         public string Author { get; set; }
         public int Pages { get; set; }
         public string FileName { get; set; }
+        public int CurrentPage { get; set; }
     }
 }

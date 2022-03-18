@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="ExpReader.Views.UserLibPage"
-             x:DataType="vm:UserLibVM">
+             x:Class="ExpReader.Views.UserLibPage">
 
-
+    <ContentPage.BindingContext>
+        <vm:UserLibVM />
+    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -38,7 +39,7 @@
 
 
                     <yummy:PancakeView CornerRadius="50,0,50,0" IsVisible="true" Margin="0,-50,0,0" BackgroundColor="{AppThemeBinding Dark=#121212,Light=White}">
-                        <StackLayout >
+                        <StackLayout>
                             <Label Text ="Продолжить читать" FontSize="23" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" Margin="30,15,0,15"></Label>
                             <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" >
 
@@ -55,8 +56,8 @@
                                             <RowDefinition Height="63" />
                                             <RowDefinition Height="60"/>
                                         </Grid.RowDefinitions>
-                                        <Label Grid.Row="0" Grid.Column="1"  Text="Дюна" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
-                                        <Label Grid.Row="1" Grid.Column="1" Text="Фрэнк Герберт" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                                        <Label Grid.Row="0" Grid.Column="1"  Text="{Binding LastReadBook.Title}" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding LastReadBook.Author}" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                         <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
                                         <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
                                         <Label Grid.Row="2" Grid.Column="1" Text="1315 страниц" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
@@ -124,7 +125,7 @@
                                                         </StackLayout>
 
                                                         <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
-
+                                                                <!--set book to Progress via converter-->
                                                             <ProgressBar x:Name="progressbar" 
                                                                      ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
                                                                      Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},

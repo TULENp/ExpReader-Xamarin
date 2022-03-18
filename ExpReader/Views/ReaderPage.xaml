@@ -34,8 +34,12 @@
                             </Grid.RowDefinitions> 
                             <!--Текст книги-->
                                     <StackLayout VerticalOptions="Fill">
-                                        <Label x:Name="ReaderText" TextColor="Black"  Margin="15,0,15,0" Text="{Binding Text}" Style="{StaticResource MyText}"/>
-                                    </StackLayout>
+                                <Label x:Name="ReaderText" TextColor="Black"  Margin="15,0,15,0" Text="{Binding Text}" Style="{StaticResource MyText}"/>
+                                <StackLayout>
+                                    <Label TextColor="Black"  Margin="15,0,15,0" Text="{Binding CurrentPage}" Style="{StaticResource MyText}"/>
+                                </StackLayout>
+                            </StackLayout>
+                                    
                             <StackLayout  ScaleX="0.52">
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>

@@ -17,7 +17,7 @@ namespace ExpReader.ViewModels
         private int readPages;
         public int ReadPages
         {
-            get => readPages; 
+            get => readPages;
             set
             {
                 readPages = value;
@@ -29,10 +29,26 @@ namespace ExpReader.ViewModels
         {
             UpdateStats();
         }
-        public void UpdateStats()
+        private void GetReadBooks()
         {
-            Book book = JsonConvert.DeserializeObject<Book>(Preferences.Get("prestup.txt", string.Empty));
-            ReadPages = book.Pages;
+            //string json = Preferences.Get("BookNames", string.Empty);
+            //var collection = JsonConvert.DeserializeObject<List<string>>(json);
+            //Books.Clear();
+            //foreach (var name in collection)
+            //{
+            //    Book book = (JsonConvert.DeserializeObject<Book>(Preferences.Get(name, string.Empty)));
+            //    if (book.Is)
+            //    {
+            //        Books.Add(book);
+            //    }
+
         }
     }
+    public void UpdateStats()
+    {
+        Book book = JsonConvert.DeserializeObject<Book>(Preferences.Get("prestup.txt", string.Empty));
+        ReadPages = book.Pages;
+    }
+
 }
+

@@ -14,9 +14,13 @@ namespace ExpReader.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserLibPage : ContentPage
     {
+        UserLibVM userLibVM;
         public UserLibPage()
         {
             InitializeComponent();
+
+            userLibVM = new UserLibVM();
+            BindingContext = userLibVM;
             Shell.SetNavBarIsVisible(this, false);
             //Shell.SetTabBarIsVisible(this, true);
             HidePanelSort();
@@ -34,6 +38,7 @@ namespace ExpReader.Views
             {
                 e?.SetStatusBarColor(Color.FromHex("#2e74ff"), true);
             }
+            userLibVM.SetLastReadBook();
         }
         private void HidePanelSort()
         {

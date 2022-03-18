@@ -13,16 +13,20 @@ using System.Windows.Input;
 using DAL.Models;
 using Newtonsoft.Json;
 using ExpReader.UserStats.DailyTasks;
+using static System.Net.Mime.MediaTypeNames;
+using Acr.UserDialogs;
 
 namespace ExpReader.ViewModels
 {
     class ReaderVM : BindableObject
     {
-        readonly int pageChars = 900;
+        public static readonly int pageChars = 900;
         string text;
         string charbook;
         Book newBook;
         UserBook Stats;
+        int currentPage;
+        int ReadPages;
 
         public Book NewBook
         {
@@ -35,10 +39,10 @@ namespace ExpReader.ViewModels
         }
         public int CurrentPage
         {
-            get => Stats.CurrentPage;
+            get => currentPage;
             set
             {
-                Stats.CurrentPage = value;
+                currentPage = value;
                 OnPropertyChanged();
             }
         }
@@ -54,26 +58,40 @@ namespace ExpReader.ViewModels
         public ReaderVM(Book book)
         {
             NewBook = book;
-            Stats = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(NewBook.Id.ToString(), string.Empty));
+            //Stats = JsonConvert.DeserializeObject<UserBook>(Preferences.Get(NewBook.Id.ToString(), string.Empty));
+            //UserStats.LastReadBook = NewBook.FileName;
             OpenBook();
             ReadPage();
         }
         public ICommand OpenNextPage => new Command(value =>
         {
-            if (Stats.CurrentPage == Stats.ReadPages)
+            if (currentPage != NewBook.Pages)
             {
-                DailyTask.UpdateTodayReadPages();
-                Stats.ReadPages++;
+                currentPage++;
+                if (currentPage != NewBook.Pages)
+                {
+                    if (currentPage == ReadPages + 1)
+                    {
+                        DailyTask.UpdateTodayReadPages();
+                        ReadPages++;
+                    }
+                    ReadPercentCheck();
+
+                    ReadPage();
+                }
+                else
+                {
+                    ReadLastPage();
+                    //Stats.IsRead = true;
+                    UserDialogs.Instance.Alert("Read");
+                }
             }
-            Stats.CurrentPage++;
-            Text = "";
-            ReadPage();
         });
         public ICommand OpenPrevPage => new Command(value =>
         {
-            if (NewBook.Pages != 0)
+            if (currentPage != 0)
             {
-                Stats.CurrentPage--;
+                currentPage--;
                 Text = "";
                 ReadPage();
             }
@@ -81,16 +99,33 @@ namespace ExpReader.ViewModels
 
         private void ReadPage()
         {
-            int readchar = Stats.CurrentPage * pageChars;
+            int readchar = currentPage * pageChars;
+            string pagetext = "";
             int i;
             for (i = readchar; i < readchar + pageChars; i++)
             {
-                Text += charbook[i];
+                pagetext += charbook[i];
+
             }
             if (!(Char.IsWhiteSpace(charbook[i - 1]) || charbook[i - 1] == '-'))
             {
-                Text += '-';
+                pagetext += '-';
             }
+            Text = pagetext.Replace("</p><p>", " ");
+            UpdateBookStats();
+        }
+        private void ReadLastPage()
+        {
+            int readchar = currentPage * pageChars;
+            int i = readchar;
+            string pagetext = "";
+            //todo replace NewBook.Pages * pageChars to charbook.Length
+            while (i != charbook.Length)
+            {
+                pagetext += charbook[i];
+                i++;
+            }
+            Text = pagetext.Replace("</p><p>", " ");
             UpdateBookStats();
         }
         private async void OpenBook()
@@ -107,7 +142,28 @@ namespace ExpReader.ViewModels
         {
             Preferences.Set(NewBook.Id.ToString(), JsonConvert.SerializeObject(Stats));
         }
+        void ReadPercentCheck()
+        {
+            int bronze = (NewBook.Pages * 30) / 100;
+            int silver = (NewBook.Pages * 60) / 100;
+            int gold = NewBook.Pages;
 
+            if (ReadPages >= bronze && ReadPages< silver)
+            {
+                //присвоить бронзовую обложку
+                UserDialogs.Instance.Alert("Bronze");
+            }
+            else if (ReadPages >= silver && ReadPages < gold)
+            {
+                //присвоить серебряную обложку
+                UserDialogs.Instance.Alert("Silver");
+            }
+            else if (ReadPages == gold)
+            {
+                //присвоить золотую обложку
+                UserDialogs.Instance.Alert("Gold");
+            }
 
+        }
     }
 }
