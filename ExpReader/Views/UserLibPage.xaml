@@ -33,35 +33,37 @@
                 <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBlue}, Light={StaticResource TextColorTitle}}" Padding="0,0,0,35" Margin="0,0,0,0">
 
                     <Label Text="Библиотека" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev"/>
-
-                </StackLayout>
+                        <Label x:Name="textTest"/>
+                    </StackLayout>
                 <!-- <StackLayout BackgroundColor="{StaticResource SecColor}" Orientation="Vertical" IsVisible="true" Margin="0,-6,0,-6">-->
 
 
                 <yummy:PancakeView CornerRadius="50,0,50,0" IsVisible="true" Margin="0,-50,0,0" BackgroundColor="{AppThemeBinding Dark=#121212,Light=White}">
                     <StackLayout >
                         <Label Text ="Продолжить читать" FontSize="23" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" Margin="30,15,0,15"></Label>
-                        <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" >
+                        <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" Padding="0,0,15,0" >
 
-                            <Grid>
+                            <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.4*"/>
-                                    <ColumnDefinition Width="0.6*"/>
+                                    <ColumnDefinition Width="0.4*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="Dune.jpg" WidthRequest="100" Margin="20,15,0,20"></Image>
-                                <Grid Grid.Column="1">
+                                <Grid Grid.Column="1"  Margin="0,0,0,0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="35" />
+                                        <RowDefinition  Height="35" />
                                         <RowDefinition Height="63" />
                                         <RowDefinition Height="60"/>
                                     </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Grid.Column="1"  Text="Дюна" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
-                                    <Label Grid.Row="1" Grid.Column="1" Text="Фрэнк Герберт" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
-                                    <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
-                                    <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
-                                    <Label Grid.Row="2" Grid.Column="1" Text="1315 страниц" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
-                               <!--Здесь должна выводится последняя открытая книга-->
+                                        <StackLayout Grid.Column="1">
+                                            <Label Grid.Row="0" Grid.Column="1"  Text="Дюна"  FontSize="21" Margin="0,7,7,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
+                                    <Label Grid.Row="1" Grid.Column="1" Text="Фрэнк Герберт" FontSize="17" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                                        </StackLayout>
+                                        <Image Grid.Row="2"  Source="ProcentObr.png" WidthRequest="150"  />
+                                        <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="1315 страниц" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
+                                        <!--Здесь должна выводится последняя открытая книга-->
                                 </Grid>
                             </Grid>
 
@@ -155,7 +157,7 @@
                     <!--Панель сортировки-->
                     <Frame BorderColor="Black">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
                             <!--Сортировка по названию книги-->
                         </Frame.GestureRecognizers>
                         <Label Text="По названию(А-я)" >
@@ -164,17 +166,10 @@
                     </Frame>
                     <Frame BorderColor="Black" >
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
                             <!--Сортировка по прочитанным книгам-->
                         </Frame.GestureRecognizers>
                         <Label Text="По названию(Я-а)"></Label>
-                    </Frame>
-                    <Frame BorderColor="Black" >
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer />
-                            <!--Сортировка по непрочитанным книгам-->
-                        </Frame.GestureRecognizers>
-                        <Label Text="Не прочитано"></Label>
                     </Frame>
                 </StackLayout>
             </Grid>

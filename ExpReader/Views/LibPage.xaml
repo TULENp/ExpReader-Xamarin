@@ -27,7 +27,7 @@
 
                     <StackLayout  BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBlue}, Light={StaticResource TextColorTitle}}" Orientation="Horizontal" Margin="24,10,0,0">
                         <Frame Padding="0" CornerRadius="15" BackgroundColor="Transparent">
-                            <SearchBar BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
+                            <SearchBar TextChanged="SearchBar_TextChanged" BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
                         </Frame>
 
 
@@ -46,7 +46,7 @@
 
                     <yummy:PancakeView Grid.Row="1" Style="{StaticResource MyFrame2}" CornerRadius="50,0,0,0" Margin="0,15,0,0" Padding="30,20,0,0">
                         <StackLayout>
-                            <CollectionView ItemsSource="{Binding Books}" 
+                            <CollectionView x:Name="CollectionBooks" ItemsSource="{Binding Books}" 
                                         SelectionMode="None"
                                         Margin="0,0,0,0">
                                 <CollectionView.ItemTemplate>
@@ -116,26 +116,19 @@
                     <!--Панель сортировки-->
                     <Frame BorderColor="Black">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
                             <!--Сортировка по названию книги-->
                         </Frame.GestureRecognizers>
-                        <Label Text="По названию" >
+                        <Label Text="По названию(А-я)" >
 
                         </Label>
                     </Frame>
                     <Frame BorderColor="Black" >
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
                             <!--Сортировка по прочитанным книгам-->
                         </Frame.GestureRecognizers>
-                        <Label Text="Прочитано"></Label>
-                    </Frame>
-                    <Frame BorderColor="Black" >
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer />
-                            <!--Сортировка по непрочитанным книгам-->
-                        </Frame.GestureRecognizers>
-                        <Label Text="Не прочитано"></Label>
+                        <Label Text="По названию(Я-а)"></Label>
                     </Frame>
                 </StackLayout>
 

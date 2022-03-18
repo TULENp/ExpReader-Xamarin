@@ -21,6 +21,7 @@ namespace ExpReader.Views
             Shell.SetNavBarIsVisible(this, false);
             //Shell.SetTabBarIsVisible(this, true);
             HidePanelSort();
+            var _container = BindingContext as UserLibVM;
             
         }
 
@@ -97,32 +98,7 @@ namespace ExpReader.Views
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             var _container = BindingContext as UserLibVM;
-            //var searchTerm = e.NewTextValue;
-            //if (string.IsNullOrWhiteSpace(searchTerm))
-            //{
-            //    searchTerm = string.Empty;
-            //    _container.Books.ToList();
-            //}
-
-            //searchTerm = searchTerm.ToLowerInvariant();
-            //var filteredItems = _container.Books.Where(i => i.Title.ToLowerInvariant().Contains(searchTerm)).ToList();
-
-            //if(string.IsNullOrWhiteSpace(searchTerm))
-            //{
-            //    filteredItems = _container.Books.ToList();
-            //}
-
-            //foreach(var i in _container.Books.ToList())
-            //{
-            //    if (!filteredItems.Contains(i))
-            //    {
-            //        _container.Books.Remove(i);
-            //    }
-            //    else if(!_container.Books.Contains(i))
-            //    {
-            //        _container.Books.Add(i);
-            //    }
-            //}
+           
             if(string.IsNullOrWhiteSpace(e.NewTextValue))
             {
                 CollectionBooks.ItemsSource = _container.Books.ToList();
@@ -131,6 +107,26 @@ namespace ExpReader.Views
             {
                 CollectionBooks.ItemsSource = _container.Books.Where(i => i.Title.ToLowerInvariant().Contains(e.NewTextValue)).ToList();
             }
+        }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            var _container = BindingContext as UserLibVM;
+            var sortedBooks = _container.Books.OrderBy(x => x.Title).ToList();
+
+            for (var i = 0; i < sortedBooks.Count; i++)
+                _container.Books.Move(_container.Books.IndexOf(sortedBooks[i]), i);
+            TapGestureRecognizer_Tapped(sender,e);
+        }
+
+        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        {
+            var _container = BindingContext as UserLibVM;
+            var sortedBooks = _container.Books.OrderByDescending(x => x.Title).ToList();
+
+            for (var i = 0; i < sortedBooks.Count; i++)
+                _container.Books.Move(_container.Books.IndexOf(sortedBooks[i]), i);
+            TapGestureRecognizer_Tapped(sender, e);
         }
     }
 }

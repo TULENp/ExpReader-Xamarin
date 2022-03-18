@@ -45,18 +45,6 @@ namespace ExpReader.ViewModels
         }
         
 
-        public void SearchBooks(object sender,TextChangedEventArgs e)
-        {
-            //var _container = BindingContext as UserLibVM;
-            //var searchTerm = e.NewTextValue;
-            //if(string.IsNullOrWhiteSpace(searchTerm))
-            //{
-            //    searchTerm = string.Empty;
-            //}
-
-            //searchTerm = searchTerm.ToLowerInvariant();
-            //var filteredItems = Books.Where
-        }
 
         private void InitBooks()
         { 
