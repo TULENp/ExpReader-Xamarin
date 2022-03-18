@@ -39,10 +39,10 @@ namespace ExpReader.ViewModels
         }
         public int CurrentPage
         {
-            get => currentPage;
+            get => Stats.CurrentPage;
             set
             {
-                currentPage = value;
+                Stats.CurrentPage = value;
                 OnPropertyChanged();
             }
         }
@@ -101,6 +101,7 @@ namespace ExpReader.ViewModels
                         Stats.ReadPages++;
                     }
                     ReadPercentCheck();
+
                     ReadPage();
                 }
                 else
@@ -108,6 +109,7 @@ namespace ExpReader.ViewModels
                     ReadLastPage();
                     Stats.IsRead = true;
                     UpdateBookStats();
+                    UserDialogs.Instance.Alert("Read");
                 }
             }
         });
@@ -131,7 +133,7 @@ namespace ExpReader.ViewModels
         {
             if (Stats.CurrentPage != 0)
             {
-                currentPage--;
+                Stats.CurrentPage--;
                 Text = "";
                 ReadPage();
             }
