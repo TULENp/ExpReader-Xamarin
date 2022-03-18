@@ -18,7 +18,22 @@
                     <StackLayout Orientation="Horizontal" Spacing="20">
                         <Image Source="userAvatar.png" WidthRequest="35" />
                         <Label Style="{StaticResource MyText}" Text="Сменить аватар" FontFamily="LatoHev" FontSize="20" HorizontalOptions="Start"/>
-                         
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="{AppThemeBinding Light=White,Dark=Black}" BorderColor="{AppThemeBinding Dark=#30FFFFFF}" >
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Image Source="iconLogout.png" WidthRequest="30" />
+                        <Label Style="{StaticResource MyText}" Text="Выйти из аккаунта" FontFamily="LatoHev" FontSize="20" HorizontalOptions="Start"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="{AppThemeBinding Light=White,Dark=Black}" BorderColor="{AppThemeBinding Dark=#30FFFFFF}" >
+                    <StackLayout>
+                        <RadioButton Content="60 страниц в день" TextColor="Red" CheckedChanged="RadioButton_CheckedChanged" GroupName="DailyTask"/>
+                        <RadioButton Content="120 страниц в день" TextColor="Red" CheckedChanged="RadioButton_CheckedChanged_1" GroupName="DailyTask"/>
+                        <RadioButton Content="240 страниц в день" TextColor="Red" CheckedChanged="RadioButton_CheckedChanged_2" GroupName="DailyTask"/>
                     </StackLayout>
                 </Frame>
 

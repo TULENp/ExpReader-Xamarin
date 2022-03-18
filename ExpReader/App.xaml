@@ -2,11 +2,13 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:converters="clr-namespace:ExpReader.Converters;assembly=ExpReader"
              x:Class="ExpReader.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
+        <converters:ImageSourceConverter x:Key="ImageSourceConverter"/>
         <ResourceDictionary>
             
             <Color x:Key="Primary">#2e74ff</Color>
@@ -44,6 +46,12 @@
             <Color x:Key="TextColorTitleDark1">#EE3354</Color>
 
 
+            <Style x:Key="MyButton" TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding
+                    Dark={StaticResource TextColorTitle1},
+                    Light={StaticResource TextColorTitle}}" />
+            </Style>
             <Style x:Key="MyFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding
@@ -56,6 +64,8 @@
                         Value="{AppThemeBinding
                     Dark={StaticResource TextColor},
                     Light={StaticResource TextColorTitle}}" />
+                <Setter Property="HasShadow"
+                        Value="False"/>
             </Style>
 
             <Style x:Key="MyText" TargetType="Label">

@@ -32,7 +32,7 @@ namespace ExpReadersBack.Controllers
         [HttpGet("SignIn")]
         public ActionResult<User> SignIn(string login, string password)
         {
-            var _user = db.Users.FirstOrDefault(x => x.Login == login && x.Password == password);
+            var _user = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
             if (_user != null) 
                 return Ok(_user); 
             else return BadRequest("Данные введены некорректно");
