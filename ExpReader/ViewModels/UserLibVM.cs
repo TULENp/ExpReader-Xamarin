@@ -49,7 +49,6 @@ namespace ExpReader.ViewModels
             GetUserBooks();
             SetUserBookStats();
         }
-
         //Get user's books from db and write it to preferences. 
         public void SetUserBooks()
         {
