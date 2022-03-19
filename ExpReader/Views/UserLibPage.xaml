@@ -50,6 +50,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Source="{Binding LastReadBook.Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="100" Margin="20,15,0,20"></Image>
+                                    <Label  Text="{Binding LastReadBook.Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,5,0" TextColor ="White"/>
                                     <Grid Grid.Column="1">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="35" />
@@ -59,6 +60,7 @@
                                         <Label Grid.Row="0" Grid.Column="1" Text="{Binding LastReadBook.Title}" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
                                         <Label Grid.Row="1" Grid.Column="1" Text="{Binding LastReadBook.Author}" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                         <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
+
                                         <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
                                         <Label Grid.Row="2" Grid.Column="1" Text="{Binding LastReadBook.Pages}" FontSize="17" Padding="0,10,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                         <!--Здесь должна выводится последняя открытая книга-->
