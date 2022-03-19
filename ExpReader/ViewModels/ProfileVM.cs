@@ -1,6 +1,7 @@
 ﻿using DAL.Models;
 using Newtonsoft.Json;
 using System;
+using ExpReader.AppSettings;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -12,25 +13,36 @@ namespace ExpReader.ViewModels
     class ProfileVM : BindableObject
     {
         public ObservableCollection<Book> Books { get; set; } = new ObservableCollection<Book>();
-        ObservableCollection<Book> db { get; set; }
 
-        private int readPages;
-        public int ReadPages
+        private UserStats userStats;
+        public UserStats UserStats
         {
-            get => readPages; 
+            get => userStats;
             set
             {
-                readPages = value;
+                userStats = value;
                 OnPropertyChanged();
             }
         }
 
         public ProfileVM()
         {
-            UpdateStats();
+            GetUserBooks();
+            UpdateUserStats();
         }
-        public void UpdateStats()
+        public void UpdateUserStats()
         {
+            UserStats = JsonConvert.DeserializeObject<UserStats>(Settings.userStats);
+        }
+        public void GetUserBooks()
+        {
+            string json = Preferences.Get("BookNames", string.Empty);
+            var collection = JsonConvert.DeserializeObject<List<string>>(json);
+            Books.Clear();
+            foreach (var name in collection)
+            {
+                Books.Add(JsonConvert.DeserializeObject<Book>(Preferences.Get(name, string.Empty)));
+            }
         }
     }
 }

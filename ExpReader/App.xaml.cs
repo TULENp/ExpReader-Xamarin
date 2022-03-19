@@ -1,4 +1,4 @@
-﻿using ExpReader.Services.Themes;
+﻿
 using ExpReader.Services;
 using ExpReader.DailyTasks;
 using Newtonsoft.Json;
@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using ExpReader.AppSettings.Themes;
 
 namespace ExpReader
 {

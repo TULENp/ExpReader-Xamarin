@@ -53,8 +53,7 @@
                                     <DataTemplate>
                                         <Frame Padding="0,0,0,0" Style="{StaticResource MyFrame3}">
                                             <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:LibVM}},
-                                            Path=AddBookCommand}" CommandParameter="{Binding .}"/>
+                                                <TapGestureRecognizer />
                                             </Frame.GestureRecognizers>
                                             <StackLayout Orientation="Horizontal" Margin="0,0,20,0">
 
@@ -63,7 +62,7 @@
                                                         <ColumnDefinition Width="140"/>
                                                         <ColumnDefinition Width="0"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Image Grid.Column="0" Source="CoverGreen.png" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
+                                                    <Image Grid.Column="0" Source="{Binding Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
                                                     <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,35,0" TextColor ="{StaticResource SecColor}"/>
                                                 </Grid>
 
@@ -88,7 +87,9 @@
                                                             </Grid.RowDefinitions>
                                                             <Label  Text="{Binding  Title}" FontSize="18" FontFamily="LatoMed" Margin="0,5,0,0" TextColor="{AppThemeBinding Dark=White,Light=Black}"/>
                                                             <Label Grid.Row="1"  Text="{Binding  Author}" FontSize="15" FontFamily="LatoLig" TextColor="{AppThemeBinding Dark=White,Light=Black}" />
-                                                            <Button Grid.Row="2" Text="Добавить" Margin="-10,-14,0,0" HorizontalOptions="StartAndExpand" WidthRequest="120" VerticalOptions="StartAndExpand" CornerRadius="15" Scale="0.8" />
+                                                            <Button Grid.Row="2" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:LibVM}},
+                                            Path=AddBookCommand}" CommandParameter="{Binding .}"
+                                                                    Text="Добавить" Margin="-10,-14,0,0" HorizontalOptions="StartAndExpand" WidthRequest="120" VerticalOptions="StartAndExpand" CornerRadius="15" Scale="0.8" />
                                                         </Grid>
                                                             
 

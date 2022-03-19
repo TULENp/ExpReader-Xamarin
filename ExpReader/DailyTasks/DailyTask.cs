@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ExpReader.AppSettings;
 using System.Text;
 using Acr.UserDialogs;
 using ExpReader.Services;

@@ -1,11 +1,7 @@
-﻿using ExpReader.Services;
+﻿using ExpReader.AppSettings;
 using ExpReader.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

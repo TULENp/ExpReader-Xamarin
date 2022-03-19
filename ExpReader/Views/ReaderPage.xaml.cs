@@ -3,6 +3,7 @@ using DAL.Models;
 using ExpReader.CustomComponents;
 using ExpReader.ViewModels;
 using System.IO;
+using ExpReader.AppSettings;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;

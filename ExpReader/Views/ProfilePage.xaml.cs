@@ -25,7 +25,7 @@ namespace ExpReader.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            profileVM.UpdateStats();
+            profileVM.UpdateUserStats();
         }
     }
 }

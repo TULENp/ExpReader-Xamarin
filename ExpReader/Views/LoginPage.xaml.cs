@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using ExpReader.AppSettings;
+using ExpReader.Services;
+using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ExpReader.Services;
-using Xamarin.Essentials;
 
 namespace ExpReader.Views
 {

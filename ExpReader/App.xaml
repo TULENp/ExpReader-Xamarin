@@ -9,6 +9,7 @@
     -->
     <Application.Resources>
         <converters:ImageSourceConverter x:Key="ImageSourceConverter"/>
+        <converters:FrameImageSourceConverter x:Key="FrameImageSourceConverter"/>
         <ResourceDictionary>
             
             <Color x:Key="Primary">#2e74ff</Color>

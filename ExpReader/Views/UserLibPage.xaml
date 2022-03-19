@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:ExpReader.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ExpReader.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="ExpReader.Views.UserLibPage">
-             <!--x:DataType="vm:UserLibVM"-->
-
+    <!--x:DataType="vm:UserLibVM">-->
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,45 +16,47 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <ScrollView>
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <StackLayout Style="{StaticResource MyStackLayout}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
                     <StackLayout Orientation="Horizontal"  VerticalOptions="Center" BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorTitle1}, Light={StaticResource TextColorTitle}}" Padding="0,0,0,35" Margin="0,0,0,0">
 
-                        <Label Text="Библиотека" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev"/>
-
+                        <Label Text="Библиотека" FontSize="36" TextColor="White" HorizontalOptions="EndAndExpand" Padding="0,30,20,35" FontFamily="LatoHev" />
                     </StackLayout>
                     <!-- <StackLayout BackgroundColor="{StaticResource SecColor}" Orientation="Vertical" IsVisible="true" Margin="0,-6,0,-6">-->
 
-
                     <yummy:PancakeView CornerRadius="50,0,50,0" IsVisible="true" Margin="0,-50,0,0" BackgroundColor="{AppThemeBinding Dark=#121212,Light=White}">
                         <StackLayout >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
+                                    Path= OpenBookCommand}" CommandParameter="{Binding LastReadBook}"/>
+                            </StackLayout.GestureRecognizers>
+
                             <Label Text ="Продолжить читать" FontSize="23" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" Margin="30,15,0,15"></Label>
                             <Frame BackgroundColor="#0B1D40" Margin="20,0,20,30" CornerRadius="50" >
-
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.4*"/>
                                         <ColumnDefinition Width="0.6*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Source="Dune.jpg" WidthRequest="100" Margin="20,15,0,20"></Image>
+                                    <Image Source="{Binding LastReadBook.Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="100" Margin="20,15,0,20"></Image>
                                     <Grid Grid.Column="1">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="35" />
                                             <RowDefinition Height="63" />
                                             <RowDefinition Height="60"/>
                                         </Grid.RowDefinitions>
-                                        <Label Grid.Row="0" Grid.Column="1"  Text="{Binding LastReadBook.Title}" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding LastReadBook.Title}" FontSize="23" Margin="0,7,0,0" FontFamily="LatoMed" Padding="-65,0,0,0" TextColor="{StaticResource SecColor}"></Label>
                                         <Label Grid.Row="1" Grid.Column="1" Text="{Binding LastReadBook.Author}" FontSize="20" Padding="-65,0,0,0" FontFamily="LatoLig" TextColor="{StaticResource SecColor}"></Label>
                                         <Image Grid.Row="2" Source="ProcentObr.png" WidthRequest="150"/>
                                         <Label Grid.Row="2" Text="15%" FontSize="17" Padding="0,0,0,0" FontFamily="LatoLig" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource SecColor}" HorizontalTextAlignment="Center"></Label>
@@ -62,7 +64,6 @@
                                         <!--Здесь должна выводится последняя открытая книга-->
                                     </Grid>
                                 </Grid>
-
                             </Frame>
                         </StackLayout>
                     </yummy:PancakeView>
@@ -79,15 +80,14 @@
                                 BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}" TextColor="{AppThemeBinding Dark=White,Light=Black}" WidthRequest="200" HeightRequest="40" Placeholder="Поиск" PlaceholderColor="{AppThemeBinding Dark=White,Light=black}" CancelButtonColor="{StaticResource Accent}" FontFamily="LatoLig"></SearchBar>
                             </Frame>
 
-
                             <Frame Style="{StaticResource MyFrame1}" HeightRequest="3">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                                 </Frame.GestureRecognizers>
                                 <StackLayout Orientation="Horizontal" Padding="-5,-10,-5,-13">
                                     <!--Здесь открывается кнопка сортировки-->
-                                    <Image x:Name="ImageSort" Source="SortIconWhite.png" WidthRequest="20" Margin="0,-5,0,0"/>
-                                    <Label x:Name="TextSort" Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0"/>
+                                    <Image x:Name="ImageSort" Source="SortIconWhite.png" WidthRequest="20" Margin="0,-5,0,0" />
+                                    <Label x:Name="TextSort" Text="Сортировать" FontFamily="LatoLig" TextColor="White" Margin="0,0,0,0" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
@@ -95,7 +95,7 @@
                         <yummy:PancakeView Grid.Row="1" Style="{StaticResource MyFrame2}" CornerRadius="50,0,0,0" Margin="0,15,0,0" Padding="30,20,0,0">
                             <StackLayout>
                                 <Label Text="Ваши книги" FontFamily="LatoMed" Style="{StaticResource MyTextTitle}" FontSize="23" Padding="15,0,0,0"></Label>
-                                <CollectionView ItemsSource="{Binding Books}" 
+                                <CollectionView ItemsSource="{Binding Books}"
                                         SelectionMode="None"
                                         Margin="0,0,0,0">
                                     <CollectionView.ItemTemplate>
@@ -103,36 +103,33 @@
                                             <Frame Padding="0,0,0,0" Style="{StaticResource MyFrame3}">
                                                 <Frame.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
-                                            Path= OpenBookCommand}" CommandParameter="{Binding .}"/>
+                                            Path= OpenBookCommand}" CommandParameter="{Binding .}" />
                                                 </Frame.GestureRecognizers>
                                                 <StackLayout Orientation="Horizontal">
 
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="140"/>
+                                                            <ColumnDefinition Width="140" />
                                                         </Grid.ColumnDefinitions>
-                                                        <Image Grid.Column="0" Source="{Binding Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5"/>
-                                                        <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,35,0" TextColor ="{StaticResource SecColor}"/>
+                                                        <Image Grid.Column="0" Source="{Binding Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
+                                                        <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,35,0" TextColor ="{StaticResource SecColor}" />
                                                     </Grid>
 
                                                     <StackLayout>
                                                         <StackLayout Orientation="Vertical">
-                                                            <Label  Text="{Binding  Title}" FontSize="20" FontFamily="LatoMed" Margin="0,5,0,0" TextColor="{AppThemeBinding Dark=White,Light=Black}"/>
+                                                            <Label  Text="{Binding  Title}" FontSize="20" FontFamily="LatoMed" Margin="0,5,0,0" TextColor="{AppThemeBinding Dark=White,Light=Black}" />
                                                             <Label  Text="{Binding  Author}" FontSize="18" FontFamily="LatoLig" TextColor="{AppThemeBinding Dark=White,Light=Black}" />
-
                                                         </StackLayout>
 
                                                         <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
 
-                                                            <ProgressBar x:Name="progressbar" 
+                                                            <ProgressBar x:Name="progressbar"
                                                                      ProgressColor="{AppThemeBinding Light=#2e74ff, Dark=#001EDE}"
                                                                      Progress="{Binding Source={RelativeSource AncestorType={x:Type vm:UserLibVM}},
-                                                                     Path= ProgressValue}" 
+                                                                     Path= ProgressValue}"
                                                                      WidthRequest="150"></ProgressBar>
-
                                                         </StackLayout>
                                                     </StackLayout>
-
                                                 </StackLayout>
                                             </Frame>
                                         </DataTemplate>
@@ -140,33 +137,31 @@
                                 </CollectionView>
                             </StackLayout>
                         </yummy:PancakeView>
-
                     </Grid>
                 </StackLayout>
                 <StackLayout x:Name="PanelSortBackGround" InputTransparent="True">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                <StackLayout x:Name="PanelSort" Grid.Row="0" HorizontalOptions="End" TranslationY="500" TranslationX="-10" BackgroundColor="Transparent" Spacing="0" WidthRequest="150" >
+                <StackLayout x:Name="PanelSort" Grid.Row="0" HorizontalOptions="End" TranslationY="500" TranslationX="-10" BackgroundColor="Transparent" Spacing="0" WidthRequest="150">
                     <!--Панель сортировки-->
                     <Frame BorderColor="Black">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer />
                             <!--Сортировка по названию книги-->
                         </Frame.GestureRecognizers>
-                        <Label Text="По названию" >
-
+                        <Label Text="По названию">
                         </Label>
                     </Frame>
-                    <Frame BorderColor="Black" >
+                    <Frame BorderColor="Black">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer />
                             <!--Сортировка по прочитанным книгам-->
                         </Frame.GestureRecognizers>
                         <Label Text="Прочитано"></Label>
                     </Frame>
-                    <Frame BorderColor="Black" >
+                    <Frame BorderColor="Black">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer />
                             <!--Сортировка по непрочитанным книгам-->
@@ -177,11 +172,9 @@
             </Grid>
         </ScrollView>
 
-
-        <ImageButton x:Name="FabButton" Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent" 
+        <ImageButton x:Name="FabButton" Grid.Row="0" Source="CirclePlus.png"   BackgroundColor="Transparent"
                     HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" Command="{Binding AddBookCommand}">
             <!--Вот здесь кнопка добавления книги-->
         </ImageButton>
     </Grid>
-
 </ContentPage>

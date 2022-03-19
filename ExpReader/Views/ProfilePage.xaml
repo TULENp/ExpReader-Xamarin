@@ -32,7 +32,7 @@
                                FontSize="30" TextColor="White" />
                             <!--Никнейм пользователя-->
                             <Label Grid.Row="1" Margin="0,10,0,0"
-                               Text="18" FontFamily="LatoHev"
+                               Text="{Binding UserStats.ReadBooks}" FontFamily="LatoHev"
                                FontSize="21" TextColor="White" />
                             <!--Количество прочитанных книг пользователя-->
                             <Label Grid.Row="1" Margin="0,40,0,0"
@@ -43,7 +43,7 @@
                                     <Image Source="PrizeBlue.png" Margin="5,0,0,0" WidthRequest="40" HeightRequest="50" />
                                     <Label Text="Всего страниц" FontFamily="LatoLig"
                                        FontSize="17" Margin="0,18,0,0" TextColor="{AppThemeBinding Light=Black,Dark=White}" />
-                                    <Label Text="{Binding ReadPages}" FontFamily="LatoHev"
+                                    <Label Text="{Binding UserStats.ReadPages}" FontFamily="LatoHev"
                                        TextColor="{AppThemeBinding Light=Black,Dark=White}" Margin="10,18,0,0"
                                        FontSize="17" />
                                     <!--Количество прочитанных страниц-->
@@ -108,8 +108,9 @@
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="140" />
                                                     </Grid.ColumnDefinitions>
-                                                    <Image Grid.Column="0" Source="CoverGreen.png" WidthRequest="160"
+                                                    <Image Grid.Column="0" Source="{Binding Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="160"
                                                            HeightRequest="160" Margin="0,10,0,5" />
+                                                    <!--<Image Grid.Column="0" Source="{Binding Pages, Converter={StaticResource FrameImageSourceConverter}, ConverterParameter={Binding CurrentPage}}" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5"/>-->
                                                     <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev"
                                                            Margin="45,50,0,0" Padding="0,0,35,0" FontSize="15" TextColor ="White" />
                                                 </Grid>

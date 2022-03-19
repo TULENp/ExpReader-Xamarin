@@ -3,11 +3,10 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using ExpReader.Services;
+using ExpReader.AppSettings;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 
 [assembly: Dependency(typeof(ExpReader.Droid.MainActivity.Environment))]
 namespace ExpReader.Droid

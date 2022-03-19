@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using ExpReader.AppSettings;
 using ExpReader.Services;
 using System.Runtime.InteropServices.ComTypes;
 //using Android.Content.Res;
@@ -26,7 +27,7 @@ namespace ExpReader.ViewModels
         Book newBook;
         UserBook Stats;
         UserStats userStats;
-        string BooksFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Books");
+        string BooksFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
         public Book NewBook
         {

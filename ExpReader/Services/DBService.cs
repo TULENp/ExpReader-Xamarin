@@ -9,7 +9,7 @@ namespace ExpReader.Services
 {
     static class DBService
     {
-        private static readonly string MainIp = "192.168.0.103";
+        private static readonly string MainIp = "192.168.1.64";
         private static HttpClient client = new HttpClient();
         
         public static async Task<string> GetUserBooks(int userid)
