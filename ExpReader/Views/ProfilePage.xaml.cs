@@ -1,5 +1,6 @@
 ﻿using ExpReader.ViewModels;
 using Newtonsoft.Json;
+using ExpReader.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,14 @@ namespace ExpReader.Views
             profileVM = new ProfileVM();
 
             Shell.SetNavBarIsVisible(this, false);
+            switch(Settings.Theme)
+            {
+                case 1: Prize.Source = ImageSource.FromFile("PrizeBlue.png");
+                    break;
+                case 2: Prize.Source = ImageSource.FromFile("PrizeBlueLig.png");
+                    break;
+            }
+
         }
         protected override void OnAppearing()
         {

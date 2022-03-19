@@ -23,7 +23,11 @@
                             <cs:MyCustomeEntry x:Name="PasEntry" Placeholder="Пароль..." HorizontalOptions="FillAndExpand" IsPassword="True"/>
                         </StackLayout>
                     </Frame>
-                    <Label Text="Забыли пароль?" FontFamily="LatoLig" TextColor="#EE3354" FontSize="15" Margin="0,15,0,0" HorizontalOptions="EndAndExpand"/>
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox Margin="0,10,0,0"/>
+                        <Label Text="Не запоминать меня" FontFamily="LatoLig" TextColor="White" FontSize="15" Margin="0,15,0,0" HorizontalOptions="Start"/>
+                        <Label Text="Забыли пароль?" FontFamily="LatoLig" TextColor="#EE3354" FontSize="15" Margin="0,15,0,0" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
                     <Button Clicked="Button_Clicked" CornerRadius="15" Text="Войти" FontFamily="LatoLig" Margin="0,50,0,0" FontSize="18"/>
                     <Label Text="Регистрация" FontFamily="LatoLig" TextColor="#2e74ff" FontSize="18" Margin="0,15,0,0" HorizontalOptions="CenterAndExpand">
                         <Label.GestureRecognizers>

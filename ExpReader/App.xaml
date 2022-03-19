@@ -40,6 +40,7 @@
             <Color x:Key="LightColor">White</Color>
 
             <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="DarkBlue">#0091FF</Color>
             <Color x:Key="TextColorTitle">#2e74ff</Color>
             <Color x:Key="TextColorTitle1">#001EDE</Color>
             <Color x:Key="TextColorDark">White</Color>
@@ -94,7 +95,7 @@
             <Style x:Key="StackLayoutProfile" TargetType="StackLayout">
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding
-                    Dark={StaticResource TextColorTitle1},
+                    Dark={StaticResource DarkBlue},
                     Light={StaticResource TextColorTitle}}"/>
             </Style>
 

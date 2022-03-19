@@ -20,7 +20,7 @@ namespace ExpReader.AppSettings.Themes
             var e = DependencyService.Get<IEnvironment>();
             if(App.Current.RequestedTheme == OSAppTheme.Dark)
             {
-                e?.SetStatusBarColor(Color.FromHex("#001EDE"),false);
+                e?.SetStatusBarColor(Color.FromHex("#0091FF"),false);
             }
             else
             {

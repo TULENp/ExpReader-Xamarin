@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:ExpReader.ViewModels" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="ExpReader.Views.ReaderPage"
              x:DataType="ViewModels:ReaderVM"
             >
@@ -19,12 +19,12 @@
                 <SwipeView x:Name="TextBackGround" >
                     <SwipeView.RightItems>
                         <SwipeItems Mode="Execute">
-                            <SwipeItemView  Command="{Binding OpenNextPage}"/>
+                            <SwipeItemView Invoked="ScrollToTop" Command="{Binding OpenNextPage}"/>
                         </SwipeItems>
                     </SwipeView.RightItems>
                     <SwipeView.LeftItems>
                         <SwipeItems Mode="Execute">
-                            <SwipeItemView Command="{Binding OpenPrevPage}"/>
+                            <SwipeItemView Invoked="ScrollToTop" Command="{Binding OpenPrevPage}"/>
                         </SwipeItems>
                     </SwipeView.LeftItems>
                             <ScrollView x:Name="scroll">
@@ -43,12 +43,12 @@
                             </StackLayout>
                             <StackLayout   ScaleX="0.25" TranslationX="-150">
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding OpenPrevPage}"/>
+                                    <TapGestureRecognizer Tapped="ScrollToTop" Command="{Binding OpenPrevPage}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                             <StackLayout   ScaleX="0.25" TranslationX="150">
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding OpenNextPage}"/>
+                                    <TapGestureRecognizer Tapped="ScrollToTop" Command="{Binding OpenNextPage}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                            
@@ -73,51 +73,62 @@
                   
             
        
-                    <Image x:Name="imageGear" Source="gearBlue.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="End" TranslationY="10" Margin="0,20,30,0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image x:Name="imageBack" Source="iconBack.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="Start" TranslationY="10" Margin="20,20,0,0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
-                        </Image.GestureRecognizers>
-                    </Image>
                     <StackLayout x:Name="PanelBackground" InputTransparent="True">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <StackLayout x:Name="SettingsPanel" BackgroundColor="#2e74ff" VerticalOptions="Start" >
-                        <StackLayout x:Name="PanelMenu">
-                            <Label Text="Тема" FontFamily="LatoLig" TextColor="White" FontSize="28" Margin="15,0,0,0"/>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                <Frame BackgroundColor="White" CornerRadius="15">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
-                                    </Frame.GestureRecognizers>
-                                    <RadioButton x:Name="RadioWhiteTheme" Value="1" 
-                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
-                                </Frame>
-                                <Frame BackgroundColor="#F5E6BD" CornerRadius="15">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
-                                    </Frame.GestureRecognizers>
-                                    <RadioButton x:Name="RadioBeigeTheme" Value="2" 
-                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
-                                </Frame>
-                                <Frame BackgroundColor="Black" CornerRadius="15">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
-                                    </Frame.GestureRecognizers>
-                                    <RadioButton x:Name="RadioBlackTheme" Value="3" 
-                                                 GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
-                                </Frame>
-                            </StackLayout>
-                            <Label Text="Размер шрифта" FontFamily="LatoLig" TextColor="White" FontSize="28" Margin="15,0,0,0"/>
-                            <Slider x:Name="MySlider"  Maximum="50" Minimum="10" ThumbColor="White" HorizontalOptions="Start" WidthRequest="240"/>
-                </StackLayout>
+            <StackLayout x:Name="UpperPannel" TranslationY="-110" IsVisible="false" BackgroundColor="{StaticResource Primary}"  VerticalOptions="Start" Spacing="0" Padding="0,0,0,-45">
+                <Image x:Name="imageGear" Source="gearWhite.png" VerticalOptions="Start" WidthRequest="55" HorizontalOptions="End"  Margin="0,20,30,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image x:Name="imageBack" Source="iconBackWhite.png" WidthRequest="55" VerticalOptions="Start" TranslationY="-55"  Margin="20,0,0,0" HorizontalOptions="Start">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </StackLayout>
+
+                <StackLayout x:Name="SettingsPanel" BackgroundColor="#2e74ff" VerticalOptions="End" >
+                <StackLayout x:Name="PanelMenu">
+                    <Label Text="Тема" FontFamily="LatoLig" TextColor="White" FontSize="28" Margin="15,0,0,0"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Frame BackgroundColor="White" CornerRadius="15">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                            </Frame.GestureRecognizers>
+                            <RadioButton x:Name="RadioWhiteTheme" Value="1" 
+                                                     GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                        </Frame>
+                        <Frame BackgroundColor="#F5E6BD" CornerRadius="15">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                            </Frame.GestureRecognizers>
+                            <RadioButton x:Name="RadioBeigeTheme" Value="2" 
+                                                     GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                        </Frame>
+                        <Frame BackgroundColor="Black" CornerRadius="15">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                            </Frame.GestureRecognizers>
+                            <RadioButton x:Name="RadioBlackTheme" Value="3" 
+                                                     GroupName="ReaderTheme" CheckedChanged="RadioButton_CheckedChanged" />
+                        </Frame>
+                    </StackLayout>
+                    <Label Text="Размер шрифта" FontFamily="LatoLig" TextColor="White" FontSize="28" Margin="15,0,0,0"/>
+                    <Slider x:Name="MySlider"  Maximum="50" Minimum="10" ThumbColor="White" HorizontalOptions="Start" WidthRequest="240"/>
+                </StackLayout>
+            </StackLayout>
+                <yummy:PancakeView x:Name="MessagePanel" CornerRadius="0,0,10,10" TranslationY="-150" VerticalOptions="Start" BackgroundColor="White" >
+                    <StackLayout Orientation="Horizontal" Margin="15,15,15,10" Spacing="15">
+                    <Image Source="checkMarkBlue.gif" WidthRequest="50" IsAnimationPlaying="True"/>
+                    <Label Text="Вы выполнили ежедневное задание и получаете 60 очков" TextColor="Black"/>
+
+                    </StackLayout>
+                </yummy:PancakeView>
+            
     </Grid>
     </ContentPage.Content>
 </ContentPage>
