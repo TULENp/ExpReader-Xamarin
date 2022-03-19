@@ -22,6 +22,19 @@ namespace ExpReader.Views
                     SwitchTheme.IsToggled = true;
                     break;
             }
+
+            switch (Settings.DailyTask)
+            {
+                case 60:
+                    min.IsChecked = true;
+                    break;
+                case 120:
+                    mid.IsChecked = true;
+                    break;
+                case 240:
+                    max.IsChecked = true;
+                    break;
+            }
         }
 
         private void SwitchTheme_Toggled(object sender, ToggledEventArgs e)
