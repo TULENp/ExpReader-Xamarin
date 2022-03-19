@@ -9,6 +9,7 @@
     -->
     <Application.Resources>
         <converters:ImageSourceConverter x:Key="ImageSourceConverter"/>
+        <converters:ProgressBarConverter x:Key="ProgressBarConverter"/>
         <ResourceDictionary>
             
             <Color x:Key="Primary">#2e74ff</Color>

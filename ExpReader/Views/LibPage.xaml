@@ -63,7 +63,7 @@
                                                         <ColumnDefinition Width="140"/>
                                                         <ColumnDefinition Width="0"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Image Grid.Column="0" Source="CoverGreen.png" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
+                                                    <Image Grid.Column="0" Source="{Binding Pages,Converter={StaticResource ImageSourceConverter}}" WidthRequest="140" HeightRequest="140" Margin="-5,10,0,5" />
                                                     <Label Grid.Column="0" Text="{Binding  Title}" FontFamily="LatoHev" Margin="45,50,0,0" Padding="0,0,35,0" TextColor ="{StaticResource SecColor}"/>
                                                 </Grid>
 
